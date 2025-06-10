@@ -10,20 +10,16 @@
     <nav class="navbar">
         <div class="container nav-split">
             <div class="logo"><img src="logo.png" alt="Zap Tech Logo" class="logo-img"> Zap Tech</div>
-            <div class="nav-center-group">
-                <ul class="navmiddle">
-                    <li><span   class="tilde"></span><a href="websites.html">Websites</a><span class="tilde"></span></li>
-                    <li><span class="tilde"></span><a href="video-tutorials.html">Video Tutorial</a><span class="tilde"></span></li>
-                    <li><span class="tilde"></span><a href="pc-applications.html">PC Application</a><span class="tilde"></span></li>
-                    <li><span class="tilde"></span><a href="apps.html">Apps</a><span class="tilde"></span></li>
-                    <li><span class="tilde"></span><a href="games.html">Games</a><span class="tilde"></span></li>
-                </ul>
-                <ul class="nav-links nav-right small-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+            <ul class="nav-links">
+                <li><span class="tilde"></span><a href="websites.html">Websites</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span><a href="video-tutorials.html">Video Tutorial</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span><a href="pc-applications.html">PC Application</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span><a href="apps.html">Apps</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span><a href="games.html">Games</a><span class="tilde"></span></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -66,7 +62,21 @@
                         <circle cx="26.5" cy="13.5" r="1.5" fill="white"/>
                     </svg>
                 </a>
+               <br>
             </div>
+            <br>
+            <br>
+            <span style="font-weight: 500; font-size: 20px;">Tell us your idea or what u searching for </span>
+            <form class="contact-form" action="https://formspree.io/f/xgvyapqr" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <textarea name="message" placeholder="Your Message" required rows="4"></textarea>
+                </div>
+                <button type="submit" class="cta-btn">Send Message</button>
+            </form>
         </div>
        
         <div class="best-badge">Best of the best ⭐⭐⭐⭐⭐</div>
@@ -118,5 +128,16 @@
             </div>
         </section>
     </main>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var hamburger = document.getElementById('hamburger');
+        var navbar = document.querySelector('.navbar');
+        if (hamburger && navbar) {
+            hamburger.addEventListener('click', function() {
+                navbar.classList.toggle('nav-open');
+            });
+        }
+    });
+    </script>
 </body>
 </html>
