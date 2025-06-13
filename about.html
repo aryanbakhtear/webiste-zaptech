@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Zap Tech</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .search-container {
+            visibility: hidden !important;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="container nav-split">
             <div class="logo"><img src="logo.png" alt="Zap Tech Logo" class="logo-img"></div>
             <ul class="nav-links">
-                <li><span class="tilde"></span>✦✦ <a href="websites.html">Websites</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span> <a href="websites.html">Websites</a><span class="tilde"></span></li>
                 <li><span class="tilde"></span><a href="video-tutorials.html">Video Tutorial</a><span class="tilde"></span></li>
                 <li><span class="tilde"></span><a href="pc-applications.html">PC Application</a><span class="tilde"></span></li>
-                <li><span class="tilde"></span><a href="apps.html">Apps</a><span class="tilde"></span></li>
-                <li><span class="tilde"></span><a href="games.html">Games</a><span class="tilde"></span>✦✦</li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -26,9 +29,7 @@
                 <div id="searchResults" class="search-results"></div>
             </div>
             <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <div id="hamburgerIcon">-_-</div>
             </div>
         </div>
     </nav>
@@ -116,7 +117,15 @@
         const navbar = document.querySelector('.navbar'); // Select the navbar
         
         hamburger.addEventListener('click', function() {
-            navbar.classList.toggle('nav-open'); // Toggle 'nav-open' on the navbar
+            navbar.classList.toggle('nav-open');
+            const hamburgerIcon = document.getElementById('hamburgerIcon');
+            if (navbar.classList.contains('nav-open')) {
+                hamburgerIcon.textContent = 'X';
+                hamburgerIcon.style.color = '#000'; // Ensure X is black
+            } else {
+                hamburgerIcon.textContent = '-_-';
+                hamburgerIcon.style.color = '#000'; // Ensure -_- is black
+            }
         });
 
         // Search functionality
