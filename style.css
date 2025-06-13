@@ -46,21 +46,41 @@ body {
     vertical-align: middle;
 }
 .nav-links {
-    list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 15px;
+    list-style: none;
     margin: 0;
     padding: 0;
 }
 .nav-links li a {
+    color: #000;
     text-decoration: none;
-    color: #222;
-    font-weight: 500;
-    transition: color 0.2s;
+    transition: all 0.3s ease;
+    position: relative;
 }
 .nav-links li a:hover {
-    color: #facc15;
+    color: #ffff00;
 }
+
+/* Special border for Home, About, Contact */
+.nav-links li:last-child a,
+.nav-links li:nth-last-child(2) a,
+.nav-links li:nth-last-child(3) a {
+    padding: 5px 15px;
+    border: 2px solid #000;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-links li:last-child a:hover,
+.nav-links li:nth-last-child(2) a:hover,
+.nav-links li:nth-last-child(3) a:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -509,9 +529,9 @@ main {
 
 .nav-split {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-start;
-    gap: 1.5rem;
+    gap: 20px;
 }
 .logo {
     flex: 0 0 auto;
@@ -618,6 +638,189 @@ main {
 @media (max-width: 600px) {
     .contact-form {
         padding: 1.2rem 0.5rem 1rem 0.5rem;
+    }
+}
+
+.search-container {
+    position: relative;
+    margin-right: auto;
+    margin-left: 20px;
+}
+
+#searchInput {
+    padding: 6px 12px;
+    padding-right: 30px;
+    border: 1px solid #000;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #000;
+    width: 150px;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.clear-search {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 0;
+    display: none;
+    line-height: 1;
+}
+
+.clear-search:hover {
+    color: #000;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #ffff00;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+    width: 250px;
+}
+
+#searchInput::placeholder {
+    color: #000;
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ffff00;
+    border-radius: 8px;
+    margin-top: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+.search-result-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+    text-align: left;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: rgba(255, 255, 0, 0.1);
+}
+
+.result-image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+}
+
+.result-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+}
+
+.result-content i {
+    color: #000;
+    font-size: 1.2em;
+    width: 24px;
+    text-align: center;
+}
+
+.result-content i.fa-globe { color: #2196F3; }
+.result-content i.fa-mobile-alt { color: #4CAF50; }
+.result-content i.fa-gamepad { color: #9C27B0; }
+.result-content i.fa-video { color: #F44336; }
+.result-content i.fa-desktop { color: #FF9800; }
+
+.result-info {
+    flex: 1;
+    text-align: left;
+}
+
+.result-title {
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.result-desc {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.result-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9em;
+    display: inline-block;
+    padding: 3px 8px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    background: #000;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.result-link:hover {
+    background: #fff;
+    color: #000;
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        margin: 10px auto;
+        width: 90%;
+        max-width: 300px;
+    }
+
+    #searchInput {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 1em;
+    }
+
+    #searchInput:focus {
+        width: 100%;
+    }
+
+    .search-results {
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 0;
+        right: 0;
+        width: auto;
+        max-width: none;
+        max-height: 50vh;
+    }
+
+    .navbar .container.nav-split {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links {
+        width: 100%;
+        text-align: center;
     }
 }
 

@@ -9,17 +9,22 @@
 <body>
     <nav class="navbar">
         <div class="container nav-split">
-            <div class="logo"><img src="logo.png" alt="Zap Tech Logo" class="logo-img"> Zap Tech</div>
+            <div class="logo"><img src="logo.png" alt="Zap Tech Logo" class="logo-img"></div>
             <ul class="nav-links">
-                <li><span class="tilde"></span>✦✦ <a href="websites">Websites</a><span class="tilde"></span></li>
-                <li><span class="tilde"></span><a href="video-tutorials">Video Tutorial</a><span class="tilde"></span></li>
-                <li><span class="tilde"></span><a href="pc-applications">PC Application</a><span class="tilde"></span></li>
-                <li><span class="tilde"></span><a href="apps">Apps</a><span class="tilde"></span></li>
-                <li><span class="tilde"></span><a href="games">Games</a><span class="tilde"></span>✦✦</li>
+                <li><span class="tilde"></span>✦✦ <a href="websites.html">Websites</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span><a href="video-tutorials.html">Video Tutorial</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span><a href="pc-applications.html">PC Application</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span><a href="apps.html">Apps</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span><a href="games.html">Games</a><span class="tilde"></span>✦✦</li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search">
+                <button id="clearSearch" class="clear-search">×</button>
+                <div id="searchResults" class="search-results"></div>
+            </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -66,7 +71,9 @@
             </div>
             <br>
             <br>
-            <span style="font-weight: 500; font-size: 20px;">Tell us your idea or what u searching for </span>
+            <span style="font-weight: 500; font-size: 20px;">Have an idea, suggestion, or something you're looking for? <br> Just drop a comment below and I'll do my best to help you out!
+
+            </span>
             <form class="contact-form" action="https://formspree.io/f/xgvyapqr" method="POST">
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Your Name" required>
@@ -161,13 +168,103 @@
     </main>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var hamburger = document.getElementById('hamburger');
-        var navbar = document.querySelector('.navbar');
-        if (hamburger && navbar) {
-            hamburger.addEventListener('click', function() {
-                navbar.classList.toggle('nav-open');
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const navbar = document.querySelector('.navbar'); // Select the navbar
+        
+        hamburger.addEventListener('click', function() {
+            navbar.classList.toggle('nav-open'); // Toggle 'nav-open' on the navbar
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const clearSearch = document.getElementById('clearSearch');
+        const cards = document.querySelectorAll('.card');
+
+        // Show/hide clear button based on input
+        searchInput.addEventListener('input', function() {
+            clearSearch.style.display = this.value ? 'block' : 'none';
+            const searchTerm = this.value.toLowerCase();
+            let results = [];
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                const description = card.querySelector('.card-desc').textContent.toLowerCase();
+                const link = card.querySelector('.card-btn').href;
+                const cardType = card.getAttribute('data-type') || 'default';
+                const image = card.querySelector('img')?.src || '';
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    results.push({
+                        title: card.querySelector('.card-title').textContent,
+                        description: card.querySelector('.card-desc').textContent,
+                        link: link,
+                        type: cardType,
+                        image: image
+                    });
+                }
             });
-        }
+
+            // Display results
+            searchResults.innerHTML = '';
+            if (searchTerm.length > 0 && results.length > 0) {
+                searchResults.style.display = 'block';
+                results.forEach(result => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'search-result-item';
+                    
+                    // Determine icon based on type
+                    let iconClass = 'fas fa-file'; // default icon
+                    switch(result.type) {
+                        case 'website':
+                            iconClass = 'fas fa-globe';
+                            break;
+                        case 'app':
+                            iconClass = 'fas fa-mobile-alt';
+                            break;
+                        case 'game':
+                            iconClass = 'fas fa-gamepad';
+                            break;
+                        case 'video':
+                            iconClass = 'fas fa-video';
+                            break;
+                        case 'pc':
+                            iconClass = 'fas fa-desktop';
+                            break;
+                    }
+
+                    resultItem.innerHTML = `
+                        <div class="result-content">
+                            ${result.image ? `<img src="${result.image}" alt="${result.title}" class="result-image">` : `<i class="${iconClass}"></i>`}
+                            <div class="result-info">
+                                <div class="result-title">${result.title}</div>
+                                <div class="result-desc">${result.description}</div>
+                            </div>
+                        </div>
+                        <a href="${result.link}" class="result-link" target="_blank">Download</a>
+                    `;
+                    searchResults.appendChild(resultItem);
+                });
+            } else {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Clear search functionality
+        clearSearch.addEventListener('click', function() {
+            searchInput.value = '';
+            searchResults.style.display = 'none';
+            clearSearch.style.display = 'none';
+            searchInput.focus();
+        });
+
+        // Close search results when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
     });
     </script>
 </body>
