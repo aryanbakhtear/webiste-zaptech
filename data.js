@@ -7,13 +7,13 @@ window.PC_APPS = [
   },
   {
     title: "Black Ops 1",
-    desc: "Download Call of Duty: Black Ops 1 full game torrent (Plutonium T5).",
+    desc: " BLACK OPS 1 FULL FREE GAME online server and play with your friends .",
     image: "https://dn721308.ca.archive.org/0/items/co-d-black-ops-cover/CoD_Black_Ops_cover.png",
     link: "https://web.archive.org/web/20230317230359/https://plutonium.pw/pluto_t5_full_game.torrent"
   },
   {
     title: "Black Ops 2",
-    desc: "Download Call of Duty: Black Ops 2 full game torrent (Plutonium T6).",
+    desc: " BLACK OPS 2 FULL FREE GAME online server and play with your friends .",
     image: "https://ia800901.us.archive.org/3/items/co-d-black-ops-cover/Call_of_Duty_Black_Ops_II_.png",
     link: "https://web.archive.org/web/20220603191144/https://plutonium.pw/pluto_t6_full_game.torrent"
   },
