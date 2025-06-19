@@ -14,7 +14,7 @@
             <ul class="nav-links">
                 <li><span class="tilde"></span> <a href="websites.html">Websites</a><span class="tilde"></span></li>
                 <li><span class="tilde"></span><a href="video-tutorials.html">Video Tutorial</a><span class="tilde"></span></li>
-                <li><span class="tilde"></span><a href="pc-applications.html">PC Application</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span><a href="pc-applications.html">PC App-Games</a><span class="tilde"></span></li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -33,6 +33,7 @@
     </nav>
     <header class="hero">
         <div class="hero-content">
+            <div id="visitor-counter" style="font-size:1.1rem;margin-bottom:1rem;color:#444;text-align:center;"></div>
             <!-- <img src="logo.svg" alt="Logo" class="hero-logo"> -->
             <h1>Making Your Life Easier and More Enjoyable</h1>
             <p class="hero-subtitle">Discover the latest websites, apps, games, and tutorials all in one place. Stay tuned and follow us on social media</p>
@@ -121,50 +122,25 @@
                 <a href="video-tutorials.html" class="more-btn">More</a>
             </div>
             <div class="items" id="video-tutorials-items">
-                <!-- JS will fill with cards -->
+                <div class="card">
+                    <div class="card-icon" style="padding:0;display:flex;align-items:center;justify-content:center;background:#000;">
+                        <img src="https://ia600704.us.archive.org/27/items/for-logo-yt-1/for%20logo%20yt%201.png" alt="YouTube Tutorial Logo" style="width:100px;height:100px;object-fit:contain;">
+                    </div>
+                    <div class="card-title">How to Download Black Ops 1 & Black Ops 2</div>
+                    <div class="card-desc">PLAY ZOMBIE, MULTIPLAYER ONLINE, FULL SERVERS AND WITH YOUR FRIENDS</div>
+                    <a href="#" class="card-btn" style="pointer-events:none;opacity:0.6;">WATCH</a>
+                </div>
             </div>
         </section>
         <section class="category" id="pc-applications">
             <div class="category-header">
-                <h2>PC Applications <span class="accent-wave">💻</span></h2>
+                <h2>PC App-Games <span class="accent-wave">💻</span></h2>
                 <a href="pc-applications.html" class="more-btn">More</a>
             </div>
-            <div class="items">
-                <div class="card">
-                    <div class="card-icon">
-                        <img src="https://archive.org/download/dwada/dwada.png" alt="Visual Code Icon" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="card-title">Visual Code</div>
-                    <div class="card-desc">Powerful code editor for developers </div>
-                    <a href="https://mega.nz/file/ipxC1QKb#AT4lBbG86n-RzhoUHXGb0_EyF8mDtKvU3EFKBeQkq24" target="_blank" class="card-btn">Download</a>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <img src="https://ia600904.us.archive.org/27/items/untitled-design_20250612/Untitled%20design.png" alt="Application Icon" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="card-title">Code Block</div>
-                    <div class="card-desc">perfect app for c++</div>
-                    <a href="https://mega.nz/file/G0hHHKQR#wwFw2l4FNMxgGT3-rHfxZe18WkwSnjleUMgUL6E4_rc" target="_blank" class="card-btn">Download</a>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <img src="https://ia600901.us.archive.org/10/items/photoshop_202506/photoshop.png" alt="Photoshop Icon" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="card-title">Adobe Photoshop</div>
-                    <div class="card-desc">Professional image editing software 2019</div>
-                    <a href="https://mega.nz/file/bkBVgDJa#5xGuD2Ieps7SMnzpkpRA_VVbbkoC6bzZdTKa63Ls2EI" target="_blank" class="card-btn">Download</a>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <img src="https://archive.org/download/dsgfsrf/dsgfsrf.png" alt="Premiere Pro Icon" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="card-title">Adobe Premiere Pro</div>
-                    <div class="card-desc">Professional video editing software 2023</div>
-                    <a href="https://mega.nz/file/ThZW2aoB#N0jMQInKg2gqQxD2zjXZ79aURD0ZhyJ5B0knjr6wCPw" target="_blank" class="card-btn">Download</a>
-                </div>
-            </div>
-       
+            <div class="items" id="pc-applications-items"></div>
+        </section>
     </main>
+    <script src="data.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Hamburger menu functionality
@@ -264,7 +240,43 @@
                 searchResults.style.display = 'none';
             }
         });
+
+        renderCards('pc-applications-items', window.PC_APPS, 6);
     });
+
+    function renderCards(containerId, items, maxItems) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        items.slice(0, maxItems).forEach(item => {
+            container.innerHTML += `
+                <div class="card">
+                    <div class="card-icon">
+                        <img src="${item.image}" alt="${item.title} Logo" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="card-title">${item.title}</div>
+                    <div class="card-desc">${item.desc}</div>
+                    <a href="${item.link}" target="_blank" class="card-btn">Download</a>
+                </div>
+            `;
+        });
+    }
+
+    // Visitor counter (local demo)
+    (function() {
+        const key = 'zaptech-visitor-count';
+        let count = localStorage.getItem(key);
+        if (!count) {
+            count = 1;
+        } else {
+            count = parseInt(count, 10) + 1;
+        }
+        localStorage.setItem(key, count);
+        const counterDiv = document.getElementById('visitor-counter');
+        if (counterDiv) {
+            counterDiv.textContent = `👁️ Visitors: ${count}`;
+        }
+    })();
     </script>
 </body>
 </html>

@@ -11,11 +11,9 @@
         <div class="container nav-split">
             <div class="logo"><img src="logo.png" alt="Zap Tech Logo" class="logo-img"></div>
             <ul class="nav-links">
-                <li><span class="tilde"></span>✦✦ <a href="websites.html">Websites</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span> <a href="websites.html">Websites</a><span class="tilde"></span></li>
                 <li><span class="tilde"></span><a href="video-tutorials.html">Video Tutorial</a><span class="tilde"></span></li>
-                <li><span class="tilde"></span><a href="pc-applications.html">PC Application</a><span class="tilde"></span></li>
-                <li><span class="tilde"></span><a href="apps.html">Apps</a><span class="tilde"></span></li>
-                <li><span class="tilde"></span><a href="games.html">Games</a><span class="tilde"></span>✦✦</li>
+                <li><span class="tilde"></span><a href="pc-applications.html">PC App-Games</a><span class="tilde"></span></li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -34,7 +32,7 @@
     </nav>
     <header class="hero">
         <div class="hero-content">
-            <h1>PC Applications</h1>
+            <h1>PC App-Games</h1>
             <p class="hero-subtitle">Discover powerful PC applications to boost your productivity and creativity!</p>
             <div class="social-icons" style="margin:6rem auto 0 auto;display:flex;gap:1rem;justify-content:center;align-items:center;">
                 <a href="https://www.youtube.com/@zaptechku" target="_blank" class="social-icon-link">
@@ -72,47 +70,32 @@
     <main>
         <section class="category">
             <div class="category-header">
-                <h2>Featured PC Apps <span class="accent-wave">💻</span></h2>
+                <h2>Featured PC App-Games <span class="accent-wave">💻</span></h2>
             </div>
-            <div class="items">
-                <div class="card">
-                    <div class="card-icon">
-                        <img src="https://archive.org/download/dwada/dwada.png" alt="Visual Code Icon" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="card-title">Visual Code</div>
-                    <div class="card-desc">Powerful code editor for developers</div>
-                    <a href="https://mega.nz/file/ipxC1QKb#AT4lBbG86n-RzhoUHXGb0_EyF8mDtKvU3EFKBeQkq24" target="_blank" class="card-btn">Download</a>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <img src="https://ia600904.us.archive.org/27/items/untitled-design_20250612/Untitled%20design.png" alt="Application Icon" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="card-title">Code Block</div>
-                    <div class="card-desc">perfect app for c++</div>
-                    <a href="https://mega.nz/file/G0hHHKQR#wwFw2l4FNMxgGT3-rHfxZe18WkwSnjleUMgUL6E4_rc" target="_blank" class="card-btn">Download</a>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <img src="https://ia600901.us.archive.org/10/items/photoshop_202506/photoshop.png" alt="Photoshop Icon" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="card-title">Adobe Photoshop</div>
-                    <div class="card-desc">Professional image editing software 2019</div>
-                    <a href="https://mega.nz/file/bkBVgDJa#5xGuD2Ieps7SMnzpkpRA_VVbbkoC6bzZdTKa63Ls2EI" target="_blank" class="card-btn">Download</a>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <img src="https://archive.org/download/dsgfsrf/dsgfsrf.png" alt="Premiere Pro Icon" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="card-title">Adobe Premiere Pro</div>
-                    <div class="card-desc">Professional video editing software 2023</div>
-                    <a href="https://mega.nz/file/ThZW2aoB#N0jMQInKg2gqQxD2zjXZ79aURD0ZhyJ5B0knjr6wCPw" target="_blank" class="card-btn">Download</a>
-                </div>
-                <!-- PC application cards go here -->
-            </div>
+            <div class="items" id="pc-applications-items"></div>
         </section>
     </main>
+    <script src="data.js"></script>
     <script>
+    function renderCards(containerId, items, maxItems) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        items.slice(0, maxItems).forEach(item => {
+            container.innerHTML += `
+                <div class="card">
+                    <div class="card-icon">
+                        <img src="${item.image}" alt="${item.title} Logo" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="card-title">${item.title}</div>
+                    <div class="card-desc">${item.desc}</div>
+                    <a href="${item.link}" target="_blank" class="card-btn">Download</a>
+                </div>
+            `;
+        });
+    }
     document.addEventListener('DOMContentLoaded', function() {
+        renderCards('pc-applications-items', window.PC_APPS, window.PC_APPS.length);
         // Hamburger menu functionality
         const hamburger = document.getElementById('hamburger');
         const navbar = document.querySelector('.navbar'); // Select the navbar
