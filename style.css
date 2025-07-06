@@ -841,3 +841,20 @@ main {
     }
 }
 
+.whats-anime-img {
+    display: block;
+    max-width: 220px;
+    height: auto;
+    max-height: 220px;
+    margin: 0 auto 1rem auto;
+}
+@media (max-width: 600px) {
+    .whats-anime-img {
+        width: 100%;
+        max-width: 140px;
+        max-height: 140px;
+        margin: 0.5rem auto;
+        box-sizing: border-box;
+        display: block;
+    }
+}
