@@ -8,6 +8,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    cursor: url('2.png') 0 0, auto;
 }
 
 .navbar {
