@@ -1,5 +1,11 @@
 window.PC_APPS = [
   {
+    title: "Financial App",
+    desc: "A powerful financial management tool for PC. Download and boost your productivity!",
+    image: "https://ia601702.us.archive.org/35/items/financial_202507/financial.png",
+    link: "https://mega.nz/file/v9wgRQbR#Qhl4sftU8LqREKeYYP1kcih7682ebLXk4V5S2bqGfW8"
+  },
+  {
     title: "Plutonium",
     desc: "A custom Call of Duty client. Play classic games with new features and anti-cheat. Official site download.",
     image: "https://dn721308.ca.archive.org/0/items/co-d-black-ops-cover/platunuim.png",
