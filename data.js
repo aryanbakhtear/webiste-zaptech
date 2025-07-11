@@ -1,9 +1,15 @@
 window.PC_APPS = [
   {
+    title: "Steam",
+    desc: "Popular gaming platform and store. Download Steam to access thousands of games and connect with friends.",
+    image: "https://ia903102.us.archive.org/7/items/steam-games/STEAM%20GAMES.png",
+    link: "https://mega.nz/file/joI1SYRC#k5IVTXG6RhI5AScmQWg4LpKth7tkrybIc4ljUF_aCZM"
+  },
+  {
     title: "Financial App",
     desc: "A powerful financial management tool for PC. Download and boost your productivity!",
     image: "https://ia601702.us.archive.org/35/items/financial_202507/financial.png",
-    link: "https://mega.nz/file/v9wgRQbR#Qhl4sftU8LqREKeYYP1kcih7682ebLXk4V5S2bqGfW8"
+    link: "https://mega.nz/file/joI1SYRC#k5IVTXG6RhI5AScmQWg4LpKth7tkrybIc4ljUF_aCZM"
   },
   {
     title: "Plutonium",
