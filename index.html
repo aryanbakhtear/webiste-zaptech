@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zap Tech</title>
     <link rel="icon" type="image/png" href="logo.png">
+    <!-- Performance optimizations for 144fps smooth experience -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#facc15">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="logo.png" as="image">
+    <link rel="preload" href="bg.png" as="image">
 </head>
 <body>
     <nav class="navbar">
@@ -18,12 +24,9 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="personality.html">کەسایەتی خۆت بناسە</a></li>
             </ul>
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search">
-                <button id="clearSearch" class="clear-search">×</button>
-                <div id="searchResults" class="search-results"></div>
-            </div>
+
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -33,7 +36,6 @@
     </nav>
     <header class="hero">
         <div class="hero-content">
-            <div id="visitor-counter" style="font-size:1.1rem;margin-bottom:1rem;color:#444;text-align:center;"></div>
             <!-- <img src="logo.svg" alt="Logo" class="hero-logo"> -->
             <h1>Making Your Life Easier and More Enjoyable</h1>
             <p class="hero-subtitle">Discover the latest websites, apps, games, and tutorials all in one place. Stay tuned and follow us on social media</p>
@@ -164,6 +166,72 @@
     </main>
     <script src="data.js"></script>
     <script>
+    // Sound effects for hover interactions
+    class SoundEffects {
+        constructor() {
+            this.audioContext = null;
+            this.clickAudio = null;
+            this.hoverAudio = null;
+            this.initAudio();
+        }
+
+        initAudio() {
+            try {
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                // Load audio files
+                this.loadClickAudio();
+                this.loadHoverAudio();
+            } catch (e) {
+                console.log('Web Audio API not supported');
+            }
+        }
+
+        loadClickAudio() {
+            this.clickAudio = new Audio('click.mp3');
+            this.clickAudio.preload = 'auto';
+            this.clickAudio.volume = 0.3; // Set volume to 30%
+        }
+
+        loadHoverAudio() {
+            this.hoverAudio = new Audio('hover.flac');
+            this.hoverAudio.preload = 'auto';
+            this.hoverAudio.volume = 0.25; // Set volume to 25%
+        }
+
+        playHoverSound() {
+            if (this.hoverAudio) {
+                // Reset audio to beginning and play
+                this.hoverAudio.currentTime = 0;
+                this.hoverAudio.play().catch(e => {
+                    console.log('Hover audio play failed:', e);
+                });
+            }
+        }
+
+        playClickSound() {
+            if (this.clickAudio) {
+                // Reset audio to beginning and play
+                this.clickAudio.currentTime = 0;
+                this.clickAudio.play().catch(e => {
+                    console.log('Audio play failed:', e);
+                });
+            }
+        }
+
+        playCardHoverSound() {
+            if (this.hoverAudio) {
+                // Reset audio to beginning and play
+                this.hoverAudio.currentTime = 0;
+                this.hoverAudio.play().catch(e => {
+                    console.log('Hover audio play failed:', e);
+                });
+            }
+        }
+    }
+
+    // Initialize sound effects
+    const soundEffects = new SoundEffects();
+
     document.addEventListener('DOMContentLoaded', function() {
         // Hamburger menu functionality
         const hamburger = document.getElementById('hamburger');
@@ -171,136 +239,118 @@
         
         hamburger.addEventListener('click', function() {
             navbar.classList.toggle('nav-open'); // Toggle 'nav-open' on the navbar
+            soundEffects.playClickSound();
         });
 
-        // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const searchResults = document.getElementById('searchResults');
-        const clearSearch = document.getElementById('clearSearch');
-        const cards = document.querySelectorAll('.card');
-
-        // Show/hide clear button based on input
-        searchInput.addEventListener('input', function() {
-            clearSearch.style.display = this.value ? 'block' : 'none';
-            const searchTerm = this.value.toLowerCase();
-            let results = [];
-            
-            cards.forEach(card => {
-                const title = card.querySelector('.card-title').textContent.toLowerCase();
-                const description = card.querySelector('.card-desc').textContent.toLowerCase();
-                const link = card.querySelector('.card-btn').href;
-                const cardType = card.getAttribute('data-type') || 'default';
-                const image = card.querySelector('img')?.src || '';
-                
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                    results.push({
-                        title: card.querySelector('.card-title').textContent,
-                        description: card.querySelector('.card-desc').textContent,
-                        link: link,
-                        type: cardType,
-                        image: image
-                    });
-                }
+        // Add hover sounds to navigation links
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                soundEffects.playHoverSound();
             });
-
-            // Display results
-            searchResults.innerHTML = '';
-            if (searchTerm.length > 0 && results.length > 0) {
-                searchResults.style.display = 'block';
-                results.forEach(result => {
-                    const resultItem = document.createElement('div');
-                    resultItem.className = 'search-result-item';
-                    
-                    // Determine icon based on type
-                    let iconClass = 'fas fa-file'; // default icon
-                    switch(result.type) {
-                        case 'website':
-                            iconClass = 'fas fa-globe';
-                            break;
-                        case 'app':
-                            iconClass = 'fas fa-mobile-alt';
-                            break;
-                        case 'game':
-                            iconClass = 'fas fa-gamepad';
-                            break;
-                        case 'video':
-                            iconClass = 'fas fa-video';
-                            break;
-                        case 'pc':
-                            iconClass = 'fas fa-desktop';
-                            break;
-                    }
-
-                    resultItem.innerHTML = `
-                        <div class="result-content">
-                            ${result.image ? `<img src="${result.image}" alt="${result.title}" class="result-image">` : `<i class="${iconClass}"></i>`}
-                            <div class="result-info">
-                                <div class="result-title">${result.title}</div>
-                                <div class="result-desc">${result.description}</div>
-                            </div>
-                        </div>
-                        <a href="${result.link}" class="result-link" target="_blank">Download</a>
-                    `;
-                    searchResults.appendChild(resultItem);
-                });
-            } else {
-                searchResults.style.display = 'none';
-            }
         });
 
-        // Clear search functionality
-        clearSearch.addEventListener('click', function() {
-            searchInput.value = '';
-            searchResults.style.display = 'none';
-            clearSearch.style.display = 'none';
-            searchInput.focus();
+        // Add hover sounds to social icons
+        const socialIcons = document.querySelectorAll('.social-icon-link');
+        socialIcons.forEach(icon => {
+            icon.addEventListener('mouseenter', () => {
+                soundEffects.playHoverSound();
+            });
         });
 
-        // Close search results when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.search-container')) {
-                searchResults.style.display = 'none';
-            }
+        // Add hover sounds to cards
+        const cards = document.querySelectorAll('.insane-card-link, .more-btn, .cta-btn');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                soundEffects.playCardHoverSound();
+            });
+        });
+
+        // Add click sounds to buttons
+        const buttons = document.querySelectorAll('.cta-btn, .more-btn');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                soundEffects.playClickSound();
+            });
+        });
+
+        // Add click sound to ALL elements (left click)
+        document.addEventListener('click', (e) => {
+            soundEffects.playClickSound();
+        });
+
+        // Add click sound to ALL elements (right click)
+        document.addEventListener('contextmenu', (e) => {
+            soundEffects.playClickSound();
+        });
+
+        // Add click sound to form inputs
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('click', () => {
+                soundEffects.playClickSound();
+            });
+        });
+
+        // Add click sound to all links
+        const allLinks = document.querySelectorAll('a');
+        allLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                soundEffects.playClickSound();
+            });
         });
 
         renderCards('pc-applications-items', window.PC_APPS, 6);
     });
 
+    // Performance optimized renderCards function for 144fps smooth rendering
     function renderCards(containerId, items, maxItems) {
         const container = document.getElementById(containerId);
-        if (!container) return;
-        container.innerHTML = '';
-        items.slice(0, maxItems).forEach(item => {
-            container.innerHTML += `
-                <a href="${item.link}" target="_blank" rel="noopener" class="insane-card-link">
-                  <div class="insane-card square">
-                      <div class="insane-card-image" style="background-image:url('${item.image}');"></div>
-                      <div class="insane-card-details">
-                          <div class="insane-title">${item.title}</div>
-                          <div class="insane-part">PC App/Game</div>
-                          <div class="insane-desc">${item.desc}</div>
-                      </div>
+        if (!container || !items) return;
+        
+        // Performance optimization: Use DocumentFragment for better performance
+        const fragment = document.createDocumentFragment();
+        const itemsToRender = items.slice(0, maxItems);
+        
+        // Performance optimization: Build HTML string once instead of multiple innerHTML operations
+        const cardsHTML = itemsToRender.map(item => `
+            <a href="${item.link}" target="_blank" rel="noopener" class="insane-card-link">
+              <div class="insane-card square">
+                  <div class="insane-card-image" style="background-image:url('${item.image}');"></div>
+                  <div class="insane-card-details">
+                      <div class="insane-title">${item.title}</div>
+                      <div class="insane-part">PC App/Game</div>
+                      <div class="insane-desc">${item.desc}</div>
                   </div>
-                </a>
-            `;
+              </div>
+            </a>
+        `).join('');
+        
+        // Performance optimization: Single DOM operation
+        container.innerHTML = cardsHTML;
+        
+        // Performance optimization: Use requestAnimationFrame for smooth rendering
+        requestAnimationFrame(() => {
+            // Force hardware acceleration for newly added cards
+            const cards = container.querySelectorAll('.insane-card');
+            cards.forEach(card => {
+                card.style.transform = 'translate3d(0, 0, 0)';
+                card.style.willChange = 'transform';
+            });
+            
+            // Add hover sounds to dynamically generated cards
+            const cardLinks = container.querySelectorAll('.insane-card-link');
+            cardLinks.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    soundEffects.playCardHoverSound();
+                });
+                card.addEventListener('click', () => {
+                    soundEffects.playClickSound();
+                });
+            });
         });
     }
 
-    // Visitor counter (local demo)
-    (function() {
-        const key = 'zaptech-visitor-count';
-        let count = localStorage.getItem(key);
-        if (!count) {
-            count = 1;
-        } else {
-            count = parseInt(count, 10) + 1;
-        }
-        localStorage.setItem(key, count);
-        const counterDiv = document.getElementById('visitor-counter');
-        if (counterDiv) {
-            counterDiv.textContent = `👁️ Visitors: ${count}`;
-        }
-    })();
     </script>
 </body>
 </html>

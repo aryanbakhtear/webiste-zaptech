@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ku">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تایبەتمەندی کەسایەتی خۆت ✨</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <!-- Performance optimizations for 144fps smooth experience -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#facc15">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="logo.png" as="image">
+    <link rel="preload" href="bg.png" as="image">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+        /* K24 Font */
+        @font-face {
+            font-family: 'K24';
+            src: url('K24.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Personality page specific styles */
+        .personality-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, opacity;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px) translateZ(0); }
+            to { opacity: 1; transform: translateY(0) translateZ(0); }
+        }
+
+        .personality-title {
+            text-align: center;
+            color: #000000;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-family: 'K24', 'Vazirmatn', sans-serif;
+            direction: rtl;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #fdefe2;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(252, 173, 173, 0.3);
+            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, box-shadow;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .question:hover {
+            transform: translateY(-2px) translateZ(0);
+            box-shadow: 0 4px 20px rgba(252, 173, 173, 0.4);
+        }
+
+        .question p {
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: #000000;
+            font-family: 'K24', 'Vazirmatn', sans-serif;
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .answers label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 6px;
+            background: #f5e6d8;
+            transition: background 0.15s cubic-bezier(0.4, 0, 0.2, 1), transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: background, transform;
+            font-family: 'K24', 'Vazirmatn', sans-serif;
+            font-size: 1.3rem;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .answers input[type="radio"] {
+            margin-left: 10px;
+            margin-right: 0;
+            transform: scale(1.2);
+        }
+
+        .answers label:hover {
+            background: #ffffff;
+            transform: translateX(-5px) translateZ(0);
+        }
+
+        .personality-buttons {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .personality-btn {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            background: #fdefe2;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, background;
+            font-family: 'K24', 'Vazirmatn', sans-serif;
+        }
+
+        .personality-btn:hover {
+            background: #ffd9b9;
+            transform: translateY(-2px) translateZ(0);
+            box-shadow: 0 4px 12px rgba(217, 162, 153, 0.3);
+        }
+
+        .personality-btn:active {
+            transform: translateY(0) translateZ(0);
+        }
+
+        .result {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #000000;
+            margin-top: 2rem;
+            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, opacity;
+            font-family: 'K24', 'Vazirmatn', sans-serif;
+            direction: rtl;
+        }
+
+        .result a {
+            display: block;
+            margin-top: 10px;
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: color;
+        }
+
+        .result a:hover {
+            color: #0056b3;
+        }
+
+        /* K24 font for personality navigation link */
+        .nav-links li a[href="personality.html"] {
+            font-family: 'K24', 'Vazirmatn', sans-serif;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 600px) {
+            .personality-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .personality-title {
+                font-size: 2rem;
+            }
+            
+            .personality-btn {
+                display: block;
+                margin: 10px auto;
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar - exact same as index page -->
+    <nav class="navbar">
+        <div class="container nav-split">
+            <div class="logo"><img src="logo.png" alt="Zap Tech Logo" class="logo-img"></div>
+            <ul class="nav-links">
+                <li><span class="tilde"></span> <a href="websites.html">Websites</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span><a href="video-tutorials.html">Video Tutorial</a><span class="tilde"></span></li>
+                <li><span class="tilde"></span><a href="pc-applications.html">PC App-Games</a><span class="tilde"></span></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="personality.html">کەسایەتی خۆت بناسە</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="personality-container">
+        <h1 class="personality-title">تایبەتمەندی کەسایەتی خۆت بزانە 💫</h1>
+        <form id="quizForm"></form>
+        <div class="personality-buttons">
+            <button type="button" class="personality-btn" onclick="submitQuiz()">ناردن</button>
+            <button type="button" class="personality-btn" onclick="resetQuiz()">ڕێکخستنەوە 🔄</button>
+            <button type="button" class="personality-btn" onclick="testAudio()" style="background: #ff6b6b;">Test Audio</button>
+        </div>
+        <div class="result" id="resultBox"></div>
+    </div>
+
+    <script src="sounds.js"></script>
+    <script>
+        // Performance optimization: Cache DOM elements
+        const quizForm = document.getElementById("quizForm");
+        const resultBox = document.getElementById("resultBox");
+        
+        const questions = [
+            { text: "دوای کات بەسەربردن لەگەڵ خەڵکی زۆر، وزە وەردەگرم", dimension: "EI" },
+            { text: "لە کۆبوونەوە گەورەکاندا، حەزم لەوەیە لە لایەک بمێنمەوە.", dimension: "EI", reverse: true },
+            { text: "دوای گفتوگۆی کۆمەڵەکان، پێویستم بە کاتی تەنیاییە بۆ ئەوەی وزەم بگەڕێتەوە", dimension: "EI", reverse: true },
+            { text: "زۆرجار قسە دەکەم بێ ئەوەی بیر بکەمەوە ", dimension: "EI" },
+            { text: "زۆر کۆمەڵایەتی بوون هەندێ جار وشکم دەکات", dimension: "EI", reverse: true },
+            { text: "چێژ لە خەون بینین و بیرۆکر گەورەکان و ئەگەرەکان وەردەگرم ", dimension: "NS" },
+            { text: "کاتێک بڕێار دەدەم زیاتر پشت دەبەستم بە ڕاستیەکان نەوەک تیۆریەکان", dimension: "NS", reverse: true },
+            { text: "زیاتر سەرنج دەخەمە سەر ئێستا و ئەوەی کە ڕاستە وەک لە بیرۆکە خەیاڵیەکان", dimension: "NS", reverse: true },
+            { text: "زیاتر حەزم لە شتە خەیاڵیەکانە", dimension: "NS" },
+            { text: "وردکاریە بچووکەکان لە شتانی گەورە زیاتر گرینگی پێدەدەم.", dimension: "NS", reverse: true },
+            { text: " بڕیارەکانم لەسەر شتی ڕاستی دەدەم.", dimension: "TF", reverse: true },
+            { text: "هەوڵ دەدەمدەدپەروەربم، نەک تەنیا خۆشحاڵ بم.", dimension: "TF" },
+            { text: "هەستەکانی کەسایەتی تر هەمیشە لە بڕیاردانم دا گرنگن.", dimension: "TF", reverse: true },
+            { text: "زۆرجار هەستەکانم نیشان دەدەم لە چارەسەرکردن.", dimension: "TF" },
+            { text: "ناتوانم شتێک بکەم کە لە دڵم هەڵە بێت هەتا ئەگەر ماناشی هەبێ لە ڕاستی دا.", dimension: "TF", reverse: true },
+            { text: "حەزم لە پلان دانان و لیستی کارەکانە", dimension: "JP" },
+            { text: " بە شێوەیەکی نەرم لەگەڵ کۆمەڵگا دەڕۆم", dimension: "JP", reverse: true },
+            { text: "کارەکانم پێش کاتی دیاریکراو تەواو دەکەم.", dimension: "JP" },
+            { text: "زۆرجار کارەکانم دوادەخەم بەڵآم پێش کاتی تەواو بوون ئەنجامیان دەدەم ", dimension: "JP", reverse: true },
+            { text: "پلاندانانی پێش وەخت وا دەکات هەست بە کۆنتڕۆڵکردنی زیاتر بکەم ", dimension: "JP" }
+        ];
+
+        const options = ["A", "B", "C", "D", "E"];
+        const values = { A: 2, B: 1, C: 0, D: -1, E: -2 };
+
+        // Performance optimization: Cache answer text mapping
+        const answerTextMap = {
+            "A": "زۆر پەسەند",
+            "B": "پەسەند", 
+            "C": "بێ لایەن",
+            "D": "پەسەند ناکەم",
+            "E": "زۆر پەسەند ناکەم"
+        };
+
+        function buildQuiz() {
+            // Performance optimization: Use DocumentFragment for better performance
+            const fragment = document.createDocumentFragment();
+            
+            questions.forEach((q, i) => {
+                const div = document.createElement("div");
+                div.className = "question";
+                div.innerHTML = `<p>${q.text}</p>`;
+                const answerDiv = document.createElement("div");
+                answerDiv.className = "answers";
+                
+                // Performance optimization: Build HTML string once
+                const answerHTML = options.map(letter => {
+                    const id = `q${i}_${letter}`;
+                    return `<label>
+                        <input type="radio" name="q${i}" value="${letter}" id="${id}">
+                        ${letter} - ${answerTextMap[letter]}
+                    </label>`;
+                }).join('');
+                
+                answerDiv.innerHTML = answerHTML;
+                div.appendChild(answerDiv);
+                fragment.appendChild(div);
+            });
+            
+            quizForm.appendChild(fragment);
+        }
+
+        const personalityDescriptions = {
+            ISTJ: "ئەوان ڕێکخەری بەرپرسن و پاڵپشتی دەکەن بۆ دروستکردنی و سەپاندنی فەرمان لەناو سیستەم و دامەزراوەکاندا",
+            ISFJ: "پارێزگاری لەو کەسانە دەکات کە بایەخیان پێدەدەن ",
+            INFJ: "خاوەن بینایی تێگەیشتوون، بە قووڵی تەرکیز دەکەنە سەر یارمەتیدانی کەسانی تر بۆ بەدیهێنانی تواناکانیان",
+            INTJ: "بیرمەندی ستراتیجی و بەهرەیان هەیە لە پلاندانانی درێژخایەن و داهێنان.",
+            ISTP: "سەرکێشی چارەسەرکەری کێشەکانن، کە چێژ لە تێگەیشتن لە چۆنیەتی کارکردنی شتەکان وەردەگرن و یەکلاکەرەوە هەڵسوکەوت دەکەن",
+            ISFP: "هونەرمەندی نەرمونیان، کە ئازادی تاکەکەسی و جوانی لە جیهانی دەوروبەریاندا بایەخ دەدەن",
+            INFP: "خەونبینێکی نمونەیین و پەرۆشن بۆ بەهاکان و پەیوەندییە مانادارەکان",
+            INTP: "بیرمەندێکی زانکۆن، بەردەوام بەدوای تێگەیشتن و شیکردنەوەی چەمکە ئاڵۆزەکاندا دەگەڕێن.",
+            ESTP: "ئەنجامدەری چالاکن، کە حەز دەکەن لە ساتدا بژین و کاری بوێرانە ئەنجام بدەن",
+            ESFP: "دڵخۆشکەرن و خۆشی و وزە دەهێنن بۆ هەر شوێنێک بڕۆن.",
+            ENFP: "داهێنەرێکی بە پەرۆشن و بە حەز و ئارەزوو و ئیلهام بەخشین بە ئەوانی تر.",
+            ENTP: "مشتومڕی زیرەکن، هەمیشە ئامادەن بەرەنگاری بیرۆکەکان ببنەوە و ئەگەرەکان بدۆزنەوە.",
+            ESTJ: "سەرکردەی ڕێکخراون، پابەندن بە کارایی و پاراستنی دابونەریت",
+            ESFJ: "بەخێوکەرێکی گەرمن و جەخت لەسەر تەبایی و پشتگیری کۆمەڵگاکەیان دەکەن",
+            ENFJ: "ئاسانکاری کاریزمایان، بەهرەدارن لە هاندان و ڕێنمایی کردنی ئەوانی تر.",
+            ENTJ: "فەرماندە سروشتییەکانن، سەرکردەی خاوەن بینایی کە لە پلاندانانی ستراتیجیدا نایابن"
+        };
+
+        function submitQuiz() {
+            const totalQuestions = questions.length;
+            let answeredQuestions = 0;
+            const scores = { E: 0, I: 0, N: 0, S: 0, T: 0, F: 0, J: 0, P: 0 };
+
+            // Performance optimization: Use more efficient iteration
+            for (let i = 0; i < totalQuestions; i++) {
+                const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selectedAnswer) {
+                    answeredQuestions++;
+                    const value = values[selectedAnswer.value];
+                    const question = questions[i];
+                    const actualValue = question.reverse ? -value : value;
+
+                    switch (question.dimension) {
+                        case "EI":
+                            if (actualValue > 0) scores.E += Math.abs(actualValue);
+                            else scores.I += Math.abs(actualValue);
+                            break;
+                        case "NS":
+                            if (actualValue > 0) scores.N += Math.abs(actualValue);
+                            else scores.S += Math.abs(actualValue);
+                            break;
+                        case "TF":
+                            if (actualValue > 0) scores.T += Math.abs(actualValue);
+                            else scores.F += Math.abs(actualValue);
+                            break;
+                        case "JP":
+                            if (actualValue > 0) scores.J += Math.abs(actualValue);
+                            else scores.P += Math.abs(actualValue);
+                            break;
+                    }
+                }
+            }
+
+            if (answeredQuestions < totalQuestions) {
+                alert("تکایە هەموو پرسیارەکان وەڵام بدەرەوە!");
+                return;
+            }
+
+            const personalityType = 
+                (scores.E > scores.I ? "E" : "I") +
+                (scores.N > scores.S ? "N" : "S") +
+                (scores.T > scores.F ? "T" : "F") +
+                (scores.J > scores.P ? "J" : "P");
+
+            const description = personalityDescriptions[personalityType] || "کەسایەتی تۆ بەردەست نییە لە سیستەمەکەدا.";
+
+            // Performance optimization: Use requestAnimationFrame for smooth display
+            requestAnimationFrame(() => {
+                resultBox.innerHTML = `
+                    <h2>کەسایەتی تۆ: ${personalityType}</h2>
+                    <p>${description}</p>
+                    <a href="index.html">بگەڕەوە بۆ پەڕەی سەرەکی</a>
+                `;
+                resultBox.style.display = "block";
+            });
+        }
+
+        function resetQuiz() {
+            // Performance optimization: Use more efficient form reset
+            const radioButtons = document.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(radio => radio.checked = false);
+            
+            requestAnimationFrame(() => {
+                resultBox.style.display = "none";
+            });
+        }
+
+        function testAudio() {
+            console.log('Testing audio...');
+            if (window.soundEffects) {
+                console.log('Sound effects found:', window.soundEffects);
+                console.log('Hover audio:', window.soundEffects.hoverAudio);
+                window.soundEffects.playHoverSound();
+            } else {
+                console.log('Sound effects not found');
+            }
+        }
+
+        // Performance optimization: Use DOMContentLoaded for better loading
+        document.addEventListener('DOMContentLoaded', function() {
+            buildQuiz();
+            
+            // Hamburger menu functionality - exact same as index page
+            const hamburger = document.getElementById('hamburger');
+            const navbar = document.querySelector('.navbar');
+            
+            hamburger.addEventListener('click', function() {
+                navbar.classList.toggle('nav-open');
+            });
+        });
+    </script>
+</body>
+</html>
