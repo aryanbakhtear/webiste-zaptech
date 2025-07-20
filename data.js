@@ -1,5 +1,11 @@
 window.PC_APPS = [
   {
+    title: "Minecraft Cracked Servers",
+    desc: "Find and join the best cracked Minecraft servers. Play Minecraft for free with a huge community!",
+    image: "https://ia903105.us.archive.org/33/items/minecraft-logo-behind-1/minecraft-logo-behind%20%281%29.jpg",
+    link: "https://topg.org/minecraft-servers/type/Cracked"
+  },
+  {
     title: "Steam",
     desc: "Popular gaming platform and store. Download Steam to access thousands of games and connect with friends.",
     image: "https://ia903102.us.archive.org/7/items/steam-games/STEAM%20GAMES.png",
