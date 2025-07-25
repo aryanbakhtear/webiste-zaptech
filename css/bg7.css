@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'NavbarFont';
+    src: url(/fonts/navbar.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.bg7{
+    background-color: #004183;
+}
+
+.bg7-container{
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    padding-top: 50px;
+}
+.b7header{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    color: #ffffff;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+}
