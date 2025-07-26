@@ -20,7 +20,7 @@
    
  
     text-align: center;
-    padding-top: 50px;
+   
  
 }
 .b5header{
@@ -28,8 +28,9 @@
     font-size: 50px;
     font-weight: bold;
     text-align: center;
-    padding-top: 50px;
+    padding-top: 75px;
     color: #ffffff;
+    padding-bottom: 75px;
 }
 .b5text{
     font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -204,18 +205,21 @@
   transform: scale(1.04);
 }
 .video-hover-title {
+  font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 1.18rem;
   font-weight: bold;
   margin-bottom: 8px;
   color: #000;
 }
 .video-hover-part {
+  font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 1.01rem;
   color: #000;
   font-weight: 600;
   margin-bottom: 6px;
 }
 .video-hover-desc {
+  font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 0.99rem;
   color: #000;
   line-height: 1.5;

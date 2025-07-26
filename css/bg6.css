@@ -11,9 +11,11 @@
  .bg6-container{margin: 0;
 mily: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
-    padding-top: 50px;
+    
  }
  .b6header{
+    padding-top: 75px;
+    padding-bottom: 75px;
     font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 50px;
     font-weight: bold;

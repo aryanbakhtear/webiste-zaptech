@@ -57,4 +57,14 @@ document.addEventListener('DOMContentLoaded', function() {
             isAnimating = false;
         }
     });
+
+    // Close navigation when About Us is clicked
+    const aboutUsLinks = document.querySelectorAll('a[href*="#bg8"], a[href*="index.html#bg8"]');
+    aboutUsLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (navbar.classList.contains('open')) {
+                animateNavbar(false);
+            }
+        });
+    });
 }); 

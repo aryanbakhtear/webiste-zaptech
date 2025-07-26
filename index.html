@@ -28,6 +28,7 @@
         </button>
         <div class="navbar-left">
             <ul>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="website.html">Website</a></li>
                 <li><a href="video-tutorial.html">Video Tutorial</a></li>
                 <li><a href="pc apps and games.html">Pc Apps & Games</a></li>
@@ -40,9 +41,7 @@
                 <li><a href="#" id="donate-btn">Donate $</a></li>
             </ul>
         </div>
-        <div class="navbar-copyright">
-            © 2025 Zap Tech. All rights reserved
-        </div>
+
     </div>
     <div class="navbar-blur-bg"></div>
 
@@ -207,6 +206,14 @@
     <p class="b5header">Pick Tutorial</p>
    </div>
   <div class="items">
+  <a href="https://www.youtube.com/shorts/j-J_9DiJyOw" target="_blank" rel="noopener" class="video-hover-card-link"><div class="video-hover-card">
+    <div class="video-hover-card-image" style="background-image:url('https://ia600902.us.archive.org/0/items/untitled-design-1-optimized-100/Untitled_design1_optimized_100.png');"></div>
+    <div class="video-hover-card-details">
+      <div class="video-hover-title">New Video Tutorial</div>
+      <div class="video-hover-part">Video Tutorial</div>
+      <div class="video-hover-desc">Check out our latest tutorial video with helpful tips and tricks</div>
+    </div>
+  </div></a>
   <a href="https://youtu.be/du9LlqevV84?si=CXArqggJP7UyOfTA" target="_blank" rel="noopener" class="video-hover-card-link"><div class="video-hover-card">
     <div class="video-hover-card-image" style="background-image:url('https://ia801901.us.archive.org/22/items/epic-game-adventure_20250721/Epic%20Game%20Adventure.png');"></div>
     <div class="video-hover-card-details">
@@ -231,14 +238,7 @@
       <div class="video-hover-desc">Learn how to safely remove cracked games from your main Steam account using SteamTools</div>
     </div>
   </div></a>
-  <a href="https://www.youtube.com/watch?v=aUd_KZn3sv4&t" target="_blank" rel="noopener" class="video-hover-card-link"><div class="video-hover-card">
-    <div class="video-hover-card-image" style="background-image:url('https://ia600704.us.archive.org/27/items/for-logo-yt-1/for%20logo%20yt%201.png');"></div>
-    <div class="video-hover-card-details">
-      <div class="video-hover-title">How to Download Black Ops 1 & Black Ops 2</div>
-      <div class="video-hover-part">Video Tutorial</div>
-      <div class="video-hover-desc">PLAY ZOMBIE, MULTIPLAYER ONLINE, FULL SERVERS AND WITH YOUR FRIENDS</div>
-    </div>
-  </div></a>
+
   <!--
   <a href="https://www.youtube.com/watch?v=IaudcJln0_U" target="_blank" rel="noopener" class="video-hover-card-link"><div class="video-hover-card">
     <div class="video-hover-card-image" style="background-image:url('https://ia903102.us.archive.org/7/items/steam-games/STEAM%20GAMES.png');"></div>
@@ -264,11 +264,12 @@
   </div>
 </div>
 
-<div class="bg7">
-  <div class="bg7-container">
-    <p class="bg7header">PC Apps & Games</p>
-    <p class="bg7header-text">We're all about sharing useful PC apps and games—no paywalls, no hassle. Just tools and fun that anyone can enjoy, totally free.</p>
+<div class="bgg7">
+  <div class="bgg7-container">
+    <p class="bgg7header" style="padding-top: 75px;">PC Apps & Games</p>
+    
     <div class="pc-apps-grid" id="pc-apps-grid-index"></div>
+    <a href="pc apps and games.html" class="modern-more-apps-btn" style="font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">More Apps & Games</a>
   </div>
 </div>
 <script>
@@ -424,11 +425,13 @@ if (showContactBtn && contactForm) {
   showContactBtn.addEventListener('click', function() {
     contactForm.style.display = 'flex';
     showContactBtn.style.display = 'none';
-    contactForm.scrollIntoView({behavior: 'smooth'});
   });
 }
 if (contactForm) {
   contactForm.addEventListener('submit', function(e) {
+    // Clear the form fields immediately when send button is pressed
+    contactForm.reset();
+    
     setTimeout(() => {
       window.open('about:blank', '_blank').document.write('<h2 style="font-family: Franklin Gothic Medium, Arial, sans-serif; color: #6F43FE; text-align:center; margin-top:40px;">Thank you!<br>Your message has been sent.</h2>');
       contactForm.style.display = 'none';
