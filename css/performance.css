@@ -180,7 +180,6 @@ video {
 /* Optimize floating images */
 .fp1-image, .fp2-image, .fp3-image, .ffp1-image, .ffp2-image {
     will-change: transform;
-    transform: translateZ(0);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
