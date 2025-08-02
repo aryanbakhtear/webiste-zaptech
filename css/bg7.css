@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'NavbarFont';
+    src: url(/fonts/navbar.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.bgg7{
+    background-color: #004183;
+}
+
+.bgg7-container{
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    padding-bottom: 40px;
+
+}
+.bgg7header{
+    
+    color: #ffffff;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.modern-more-apps-btn {
+  font-family: 'NavbarFont', 'navbar', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-display: swap;
+  width: 300px;
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 42px auto 0 auto;
+  background: #050505;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: 2.5px solid #111;
+  border-radius: 32px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+  transition: background 0.3s, color 0.3s, border 0.3s, box-shadow 0.3s, transform 0.18s;
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin-top: -20px;
+  
+  
+}
+
+.modern-more-apps-btn:hover, .modern-more-apps-btn:focus {
+  background: #020202;
+  color: #ffffff;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 0 16px 4px #ffffff99, 0 8px 32px rgba(255,214,0,0.18);
+  transform: scale(1.07) translateY(-2px);
+  outline: none;
+}

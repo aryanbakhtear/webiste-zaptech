@@ -1,0 +1,487 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+}
+
+.bg3 {
+    background-color: #000000;
+    font-family: 'NavbarFont', 'navbar', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-display: swap;
+    /* Make sure to define @font-face for navbar.tff elsewhere in your CSS */
+    width: 100vw;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+   
+}
+.b3header{
+  font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding-bottom: 75px;
+    font-size: 60px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+ margin: 30px;
+    padding-top: 75px;
+}
+.b3header-text{
+  padding: 30px;
+  font-size: 25px;
+  color: #fff;
+  font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  margin-bottom: 0;
+  
+   
+}
+.insane-card-image {
+    width: 100%;
+    height: 180px;
+    min-height: 120px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    background-color: #222; /* fallback for missing images */
+    border: 1px solid #333; /* for debugging, can be removed */
+}
+
+/* From Uiverse.io by joe-watson-sbf */
+.flip-card {
+  background-color: transparent;
+  width: 170px;
+  height: 254px;
+  perspective: 1000px;
+  font-family: sans-serif;
+  cursor: pointer;
+  margin: 16px 8px;
+  transition: box-shadow 0.18s;
+}
+
+.flip-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 1rem 1rem 0 0;
+  background: #ffffff;
+  display: block;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 900;
+  text-align: center;
+  margin: 0;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 1px solid coral;
+  border-radius: 1rem;
+}
+
+.flip-card-front {
+  background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%,
+     rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
+  color: coral;
+}
+
+.flip-card-back {
+  background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%,
+     bisque 40%, rgb(255, 185, 160) 78%);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+
+/* From Uiverse.io by ElSombrero2 */
+.card {
+  overflow: visible;
+  width: 190px;
+  height: 254px;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 300ms;
+  box-shadow: 0px 0px 10px 1px #000000ee;
+  border-radius: 5px;
+}
+
+.front, .back {
+  background-color: #151515;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.back {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.back::before {
+  position: absolute;
+  content: ' ';
+  display: block;
+  width: 160px;
+  height: 160%;
+  background: linear-gradient(90deg, transparent, #ff9966, #ff9966, #ff9966, #ff9966, transparent);
+  animation: rotation_481 5000ms infinite linear;
+}
+
+.back-content {
+  position: absolute;
+  width: 99%;
+  height: 99%;
+  background-color: #151515;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.card:hover .content {
+  transform: rotateY(180deg);
+}
+
+@keyframes rotation_481 {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  0% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.front {
+  transform: rotateY(180deg);
+  color: white;
+}
+
+.front .front-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.front-content .badge {
+  background-color: #00000055;
+  padding: 2px 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(2px);
+  width: fit-content;
+}
+
+.description {
+  box-shadow: 0px 0px 10px 5px #00000088;
+  width: 100%;
+  padding: 10px;
+  background-color: #00000099;
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+}
+
+.title {
+  font-size: 11px;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title p {
+  width: 50%;
+}
+
+.card-footer {
+  color: #ffffff88;
+  margin-top: 5px;
+  font-size: 8px;
+}
+
+.front .img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #ffbb66;
+  position: relative;
+  filter: blur(15px);
+  animation: floating 2600ms infinite linear;
+}
+
+#bottom {
+  background-color: #ff8866;
+  left: 50px;
+  top: 0px;
+  width: 150px;
+  height: 150px;
+  animation-delay: -800ms;
+}
+
+#right {
+  background-color: #ff2233;
+  left: 160px;
+  top: -80px;
+  width: 30px;
+  height: 30px;
+  animation-delay: -1800ms;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Remove old card styles and add new black/yellow card style */
+.card {
+  position: relative;
+  width:250px;
+  height: 400px;
+  min-width: 0;
+  min-height: 0;
+  margin: 20px;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px 0 #0008;
+  cursor: pointer;
+  transition: box-shadow 0.3s, transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  border: none;
+  background: none;
+}
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+}
+.card-title-overlay {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #FFD600;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.card-title-hover {
+    
+  display: none;
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #000000;
+  font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  z-index: 4;
+  pointer-events: none;
+}
+.card:hover .card-title-hover {
+  display: block;
+}
+.card-details {
+  background: #FFD600;
+  color: #111;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 64px 16px 16px 16px;
+  min-height: 0;
+  max-height: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.35s, transform 0.35s;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.card:hover {
+  box-shadow: 0 8px 32px 0 #FFD60088, 0 2px 8px 0 #0008;
+  transform: translateY(-6px) scale(1.03);
+}
+.card:hover .card-details {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.card:hover .card-image {
+  filter: blur(2px) brightness(0.7);
+}
+@media (max-width: 1200px) {
+  .card {
+    width: 200px;
+    height: 300px;
+    margin: 12px 2vw;
+    border-radius: 12px;
+  }
+  .card-image {
+    border-radius: 12px;
+  }
+  .card-title-hover {
+    font-size: 1.2rem;
+    top: 12px;
+  }
+  .card-details {
+    padding-top: 36px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+}
+@media (max-width: 900px) {
+  .card {
+    width: 200px;
+    height: 300px;
+    margin: 10px auto;
+    border-radius: 10px;
+  }
+  .card-image {
+    border-radius: 10px;
+  }
+  .card-title-hover {
+    font-size: 1rem;
+    top: 8px;
+  }
+  .card-details {
+    padding-top: 24px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .items {
+    display: flex;
+    padding: 20px;
+    gap: 8px;
+  }
+  .card {
+    width:130px;
+    height: 200px;
+    min-width: 0;
+    min-height: 0;
+    margin: 6px auto;
+    border-radius: 8px;
+  }
+  .card-image {
+    border-radius: 8px;
+  }
+  .card-title-hover {
+    font-size: 0.95rem;
+    top: 6px;
+  }
+  .card-details {
+    padding-top: 18px;
+    border-radius: 8px 8px 0 0;
+  }
+}
+
+.modern-more-websites-btn {
+  font-family: 'NavbarFont', 'navbar', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-display: swap;
+  /* Make sure to define @font-face for navbar.tff elsewhere in your CSS */
+  width: 200px;
+  display: block;
+padding-top: 10px;
+padding-bottom: 10px;
+margin: 42px auto 0 auto;
+  background: #ffffff;
+  color: #000000;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: 2.5px solid #111;
+  border-radius: 32px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+  transition: background 0.3s, color 0.3s, border 0.3s, box-shadow 0.3s, transform 0.18s;
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin-top: px;
+  margin-bottom: 20px;
+}
+.modern-more-websites-btn:hover, .modern-more-websites-btn:focus {
+  background: #020202;
+  color: #ffffff;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 0 16px 4px #ffffff99, 0 8px 32px rgba(255,214,0,0.18);
+  transform: scale(1.07) translateY(-2px);
+  outline: none;
+}
