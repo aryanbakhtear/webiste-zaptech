@@ -28,7 +28,7 @@
 .welcome-content {
     background: white;
     border-radius: 20px;
-    max-width: 500px;
+    max-width: 450px;
     width: 90%;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     overflow: hidden;
@@ -49,14 +49,14 @@
 .welcome-header {
     background: linear-gradient(135deg, #004183 0%, #0056b3 100%);
     color: white;
-    padding: 25px;
+    padding: 20px;
     text-align: center;
     position: relative;
 }
 
 .welcome-header h2 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -78,34 +78,34 @@
 }
 
 .welcome-body {
-    padding: 30px;
+    padding: 25px;
     text-align: center;
 }
 
 .welcome-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
+    font-size: 3rem;
+    margin-bottom: 15px;
 }
 
 .welcome-body p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.5;
     color: #333;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .welcome-features {
     display: grid;
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: 12px;
+    margin-bottom: 25px;
 }
 
 .feature {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 15px;
+    gap: 12px;
+    padding: 12px;
     background: #f8f9fa;
     border-radius: 10px;
     border-left: 4px solid #004183;
@@ -553,15 +553,16 @@
     
     .welcome-content {
         width: 95%;
-        margin: 20px;
+        margin: 15px;
+        max-width: 350px;
     }
     
     .welcome-header h2 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     .welcome-body {
-        padding: 20px;
+        padding: 18px;
     }
     
     .welcome-features {
@@ -596,6 +597,42 @@
 }
 
 @media (max-width: 400px) {
+    .welcome-content {
+        width: 98%;
+       
+        margin: 10px;
+        max-width: 300px;
+    }
+    
+    .welcome-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .welcome-body {
+        padding: 15px;
+    }
+    
+    .welcome-icon {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
+    
+    .welcome-body p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 15px;
+    }
+    
+    .welcome-features {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .feature {
+        padding: 10px;
+        gap: 10px;
+    }
+    
     .personality-container {
         margin: 90px 0.5rem 0.5rem 0.5rem;
         padding: 1rem;
@@ -643,6 +680,43 @@
     .view-full-btn, .share-btn, .retake-btn {
         padding: 10px 20px;
         font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .welcome-content {
+        width: 99%;
+        margin: 5px;
+        max-width: 280px;
+    }
+    
+    .welcome-header h2 {
+        font-size: 1rem;
+    }
+    
+    .welcome-body {
+        padding: 12px;
+    }
+    
+    .welcome-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    
+    .welcome-body p {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        margin-bottom: 12px;
+    }
+    
+    .welcome-features {
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .feature {
+        padding: 8px;
+        gap: 8px;
     }
 }
 

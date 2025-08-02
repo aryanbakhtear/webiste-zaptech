@@ -263,3 +263,51 @@
         padding: 12px 0;
     }
 }
+@media (max-width: 600px) {
+    .bg8-text {
+        font-size: 22;
+        margin-top: 25px;
+        padding: 12px 0;
+    }
+}
+@media (max-width: 530px) {
+    .bg8-text {
+        font-size: 18px;
+        margin-top: 25px;
+        padding: 12px 0;
+    }
+}
+@media (max-width: 475px) {
+    .bg8-text {
+        font-size: 16px;
+        margin-top: 25px;
+        padding: 12px 0;
+    }
+}
+@media (max-width: 376px) {
+    .bg8-text {
+        font-size: 14px;
+      
+      
+    }
+}
+@media (max-width: 768px) {
+    .bg8header{
+        font-size: 32px;
+    }
+    .bg8-text {
+        font-size: 12px;
+      
+      
+    }
+}
+@media (max-width: 473px) {
+    .bg8header{
+        font-size: 34px;
+    }
+    .bg8-text {
+        font-size: 11px;
+      padding: 12px;
+      
+    }
+}
