@@ -95,29 +95,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.documentElement.style.setProperty('--transition-timing', 'cubic-bezier(0.4, 0, 0.2, 1)');
     }
     
-    // Optimize hover animations for high fps - only for safe elements
-    const hoverElements = document.querySelectorAll('.video-hover-card, .card, .pc-app-card');
-    hoverElements.forEach(element => {
-        element.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-        });
-        
-        element.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-    });
+    // Optimize hover animations for high fps - using event delegation to prevent memory leaks
+    document.addEventListener('mouseenter', function(e) {
+        if (e.target.matches('.video-hover-card, .card, .pc-app-card, .contact-toggle-button, .modern-more-videos-btn, .modern-more-apps-btn')) {
+            e.target.style.transform = 'scale(1.05)';
+        }
+    }, true);
     
-    // Optimize buttons for high fps
-    const buttons = document.querySelectorAll('.contact-toggle-button, .modern-more-videos-btn, .modern-more-apps-btn');
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-        });
-        
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-    });
+    document.addEventListener('mouseleave', function(e) {
+        if (e.target.matches('.video-hover-card, .card, .pc-app-card, .contact-toggle-button, .modern-more-videos-btn, .modern-more-apps-btn')) {
+            e.target.style.transform = 'scale(1)';
+        }
+    }, true);
     
     console.log(`Smooth scrolling optimized for ${isHighRefreshRate ? 'high refresh rate' : 'standard'} display`);
 }); 

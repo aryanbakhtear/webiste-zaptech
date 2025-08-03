@@ -51,21 +51,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Add intersection observer for lazy loading optimization
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        if (img.dataset.src) {
-                            img.src = img.dataset.src;
-                            img.removeAttribute('data-src');
-                            observer.unobserve(img);
+        if ('IntersectionObserver' in window && img.dataset.src) {
+            // Create observer only for images that need lazy loading
+            if (!window.zapTechImageObserver) {
+                window.zapTechImageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                                observer.unobserve(img);
+                            }
                         }
-                    }
+                    });
                 });
-            });
+            }
             
-            imageObserver.observe(img);
+            window.zapTechImageObserver.observe(img);
         }
     });
     
@@ -211,10 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
+        /* Smooth scrolling handled by smooth-scroll.js */
         
         /* Optimize navbar for smooth transitions */
         .navbar {
@@ -264,38 +264,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ===== SCROLL OPTIMIZATIONS =====
     
-    // Smooth scroll for anchor links
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    anchorLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                const navbarHeight = 80;
-                const targetPosition = targetElement.offsetTop - navbarHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+    // Note: Smooth scroll functionality is handled by smooth-scroll.js
+    // This prevents duplicate implementations and conflicts
     
     // ===== LOADING STATE MANAGEMENT =====
     
-    // Show loading state for external links
-    const externalLinks = document.querySelectorAll('a[target="_blank"]');
-    externalLinks.forEach(link => {
-        link.addEventListener('click', function() {
+    // Show loading state for external links using event delegation
+    document.addEventListener('click', function(e) {
+        if (e.target.matches('a[target="_blank"]')) {
             // Add visual feedback
-            this.style.transform = 'scale(0.95)';
+            e.target.style.transform = 'scale(0.95)';
             setTimeout(() => {
-                this.style.transform = 'scale(1)';
+                e.target.style.transform = 'scale(1)';
             }, 150);
-        });
+        }
     });
     
     // ===== FINAL OPTIMIZATIONS =====
