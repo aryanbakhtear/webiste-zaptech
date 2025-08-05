@@ -359,13 +359,17 @@ function updateCards() {
         'photoGradient': 'Photo Gradient',
         'recraftAI': 'Recraft AI',
         'unscreen': 'Unscreen',
-        'whatsThisAnime': 'WHATS THIS ANIME'
+        'whatsThisAnime': 'WHATS THIS ANIME ',
+        'napkinAI': 'Napkin AI',
+        'pixie': 'Pixie'
     };
     
     Object.entries(cardTitles).forEach(([key, englishTitle]) => {
         const cards = document.querySelectorAll('.card-title-hover');
         cards.forEach(card => {
+            console.log(`Checking card: "${card.textContent.trim()}" against "${englishTitle}"`);
             if (card.textContent.trim() === englishTitle) {
+                console.log(`Found match for ${key}, updating to: ${getTranslation(`cards.${key}.title`)}`);
                 card.textContent = getTranslation(`cards.${key}.title`);
                 
                 // Update description
@@ -839,6 +843,12 @@ window.updateContactForm = function() {
         console.log('Sent span translation:', translation);
         sentSpan.textContent = translation;
     }
+};
+
+// Manual function to update website cards specifically
+window.updateWebsiteCards = function() {
+    console.log('Manual website cards update called');
+    updateCards();
 };
 
 // Manual function to update personality page specifically

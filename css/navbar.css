@@ -627,7 +627,7 @@ body[lang="ku"] .navbar-right ul {
             order: 1 !important;
             width: 100% !important;
             position: absolute;
-            top: 440px;
+            top: 470px;
             left: -18px;
         
         }
@@ -782,7 +782,7 @@ body[lang="ku"] .navbar-toggle {
     color: white !important;
     padding: 8px 16px !important;
     border-radius: 20px;
-    font-weight: 600;
+    font-weight: bold;
     text-decoration: none;
     transition: all 0.3s ease;
     border: 2px solid transparent;
@@ -790,6 +790,7 @@ body[lang="ku"] .navbar-toggle {
     font-size: 0.9rem;
     min-width: 80px;
     text-align: center;
+    font-family: 'K24', Arial, sans-serif !important;
 }
 
 .language-switcher-btn:hover {

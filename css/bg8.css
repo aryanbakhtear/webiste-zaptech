@@ -14,88 +14,98 @@
     margin: 0 auto;
     padding: 0 40px;
 }
-.bg8header{
-    margin-bottom: 40px;
+.bg8header {
+    margin-bottom: 2.5rem;
     font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 50px;
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: bold;
     text-align: center;
     color: #ffffff;
-    padding-top: 50px;
+    padding-top: clamp(1.5rem, 5vw, 3.5rem);
 }
-.bg8-text{
+.bg8-text {
     font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
+    font-size: clamp(1rem, 2vw, 1.25rem);
     color: #ffffff;
     white-space: pre-line;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
-.bg8-content{
+.bg8-content {
     display: flex;
     align-items: flex-start;
-    gap: 60px;
-    margin-top: 40px;
+    gap: clamp(1.5rem, 5vw, 3.75rem);
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    flex-wrap: wrap;
 }
-.bg8fp-container{
+.bg8fp-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: clamp(1rem, 3vw, 1.875rem);
     flex-shrink: 0;
-    width: 400px;
+    width: clamp(220px, 30vw, 400px);
+    min-width: 180px;
+    max-width: 100%;
 }
-.bg8fp1-image, .bg8fp2-image, .bg8fp3-image{
+.bg8fp1-image, .bg8fp2-image, .bg8fp3-image {
     width: 100%;
-    height: 250px;
+    height: clamp(120px, 20vw, 250px);
     object-fit: cover;
     border-radius: 15px;
-  
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.bg8fp1-image:hover, .bg8fp2-image:hover, .bg8fp3-image:hover{
+.bg8fp1-image:hover, .bg8fp2-image:hover, .bg8fp3-image:hover {
     transform: translateY(-5px);
-   
 }
 
-/* Responsive design */
-@media (max-width: 1200px) {
+/* Responsive adjustments */
+@media (max-width: 900px) {
     .bg8-content {
         flex-direction: column;
-        gap: 40px;
+        align-items: stretch;
+        gap: 2rem;
     }
     .bg8fp-container {
         width: 100%;
-        max-width: 500px;
-        margin: 0 auto;
+        max-width: 100%;
+        align-items: center;
+    }
+    .bg8fp1-image, .bg8fp2-image, .bg8fp3-image {
+        height: clamp(100px, 30vw, 180px);
+    }
+    .bg8header {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        padding-top: 2rem;
+    }
+    .bg8-text {
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
+        
     }
 }
 
-@media (max-width: 768px) {
-    .bg8-container {
-        padding: 0 20px;
+@media (max-width: 600px) {
+    .bg8-content {
+        gap: 1rem;
+        margin-top: 1.2rem;
     }
-    .bg8header {
-        font-size: 40px;
-        margin-bottom: 30px;
-    }
-    .bg8header-text {
-        font-size: 18px;
-    }
-    .bg8fp1-image, .bg8fp2-image, .bg8fp3-image {
-        height: 200px;
-    }
-}
-
-@media (max-width: 480px) {
-    .bg8header {
-        font-size: 32px;
-    }
-    .bg8header-text {
-        font-size: 16px;
+    .bg8fp-container {
+        width: 100%;
+        gap: 0.8rem;
+        min-width: 0;
     }
     .bg8fp1-image, .bg8fp2-image, .bg8fp3-image {
-        height: 180px;
+        height: clamp(80px, 40vw, 120px);
+        border-radius: 10px;
     }
+    .bg8header {
+        font-size: clamp(1.1rem, 8vw, 1.7rem);
+        padding-top: 1rem;
+        margin-bottom: 1.2rem;
+    }
+    .bg8-text {
+        font-size: clamp(0.85rem, 4vw, 1rem);
+        margin-bottom: 0.8rem;
+    width: 100%;
 }
 
 /* Social Media Buttons */
@@ -199,43 +209,6 @@
     transform: scale(1.2);
 }
 
-
-
-/* Responsive design for social buttons */
-@media (max-width: 768px) {
-    .social-buttons {
-        gap: 15px;
-    }
-    
-    .social-btn {
-        padding: 10px 16px;
-        font-size: 14px;
-        min-width: 120px;
-    }
-    
-    .social-title {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .social-buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-    }
-    
-    .social-btn {
-        width: 200px;
-        min-width: 200px;
-    }
-    
-    .social-title {
-        font-size: 20px;
-    }
-}
-
 /* Copyright Section */
 .bg8-copyright {
     text-align: center;
@@ -246,68 +219,4 @@
     color: #ffffff;
     opacity: 0.8;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-@media (max-width: 768px) {
-    .bg8-copyright {
-        font-size: 14px;
-        margin-top: 30px;
-        padding: 15px 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .bg8-copyright {
-        font-size: 12px;
-        margin-top: 25px;
-        padding: 12px 0;
-    }
-}
-@media (max-width: 600px) {
-    .bg8-text {
-        font-size: 22;
-        margin-top: 25px;
-        padding: 12px 0;
-    }
-}
-@media (max-width: 530px) {
-    .bg8-text {
-        font-size: 18px;
-        margin-top: 25px;
-        padding: 12px 0;
-    }
-}
-@media (max-width: 475px) {
-    .bg8-text {
-        font-size: 16px;
-        margin-top: 25px;
-        padding: 12px 0;
-    }
-}
-@media (max-width: 376px) {
-    .bg8-text {
-        font-size: 14px;
-      
-      
-    }
-}
-@media (max-width: 768px) {
-    .bg8header{
-        font-size: 32px;
-    }
-    .bg8-text {
-        font-size: 12px;
-      
-      
-    }
-}
-@media (max-width: 473px) {
-    .bg8header{
-        font-size: 34px;
-    }
-    .bg8-text {
-        font-size: 11px;
-      padding: 12px;
-      
-    }
 }

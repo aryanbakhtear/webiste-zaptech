@@ -60,3 +60,13 @@
   transform: scale(1.07) translateY(-2px);
   outline: none;
 }
+
+
+@media (max-width: 600px) {
+    .bgg7header{
+    width: 75%;
+    text-align: center;
+    justify-content: center;
+    margin: 0 auto;
+    }
+}
