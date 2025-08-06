@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bg6{
+    background-color: #E8EAEC;
+}
+
+ .bg6-container{margin: 0;
+mily: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    
+ }
+ .b6header{
+    padding-top: 75px;
+    padding-bottom: 75px;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+ }
+    .b6header-text{
+        font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 25px;
+        color: #000000;
+        text-align: center;
+      padding: 20px;
+    }
+    .bg6fp-container{
+       
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        gap: 20px;
+    }
+    .bg6fp1-image,
+.bg6fp2-image {
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .bg6fp1-image,
+  .bg6fp2-image {
+    width: 260px;
+  }
+}
+@media (max-width: 600px) {
+  .b6header{
+  width: 75%;
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
+  }
+
+  .bg6fp-container {
+   
+    gap: 12px;
+    padding: 10px;
+    align-items: stretch;
+  }
+  .bg6fp1-image,
+  .bg6fp2-image {
+    width: 180px;
+    max-width: 95vw;
+    height: auto;
+  }
+}
+
+
+
+
+

@@ -1,0 +1,504 @@
+{
+  "en": {
+    "nav": {
+      "home": "Home",
+      "website": "Website",
+      "videoTutorial": "Video Tutorial",
+      "pcAppsGames": "Pc Apps & Games",
+      "personality": "personality",
+      "aboutUs": "About Us",
+      "donate": "Donate $"
+    },
+    "home": {
+      "welcomeTitle": "Welcome to Zap Tech",
+      "welcomeDescription": "We provide free tools, showcase AI creators, and share useful tutorials all 100% free.",
+      "contactText": "SHARE YOUR IDEA OR WHAT YOU ARE SEARCHING FOR , SEND US MESSAGE",
+      "sendMessage": "SendMessage",
+      "sent": "Sent",
+      "contactForm": {
+        "namePlaceholder": "Your Name",
+        "messagePlaceholder": "Your Message",
+        "sendButton": "Send Message"
+      }
+    },
+    "sections": {
+      "websites": {
+        "title": "Websites",
+        "description": "We create and share useful websites and tools designed to simplify daily tasks and save you time. Our goal is to make everyday life more efficient through smart, easy to use solutions.",
+        "chooseTitle": "Choose Website",
+        "chooseDescription": "Our website is designed to be easy to use and navigate. We have a variety of websites to choose from, and we are always adding new ones. We are a team of developers who are passionate about creating useful websites and tools.",
+        "moreButton": "More Websites"
+      },
+      "videoTutorial": {
+        "title": "Video Tutorial",
+        "description": "We share video tutorials that solve common tech problems and provide access to modified versions of popular applications to help you get the most out of your digital tools.",
+        "pickTitle": "Pick Tutorial",
+        "pickDescription": "Our video tutorials are designed to be easy to follow and understand. We have a variety of tutorials to choose from, and we are always adding new ones. We are a team of developers who are passionate about creating useful tutorials and guides.",
+        "moreButton": "More Videos"
+      },
+      "pcAppsGames": {
+        "title": "Pc Apps & Games",
+        "description": "We're all about sharing useful PC apps and games no paywalls, no hassle. Just tools and fun that anyone can enjoy, totally free.",
+        "moreButton": "More Apps & Games"
+      },
+      "aboutUs": {
+        "title": "About us",
+        "description": "Welcome to Zap Tech, a dedicated platform offering curated PC applications, games, and digital tools. <br> <br> Our goal is to make high-quality software and practical tech solutions accessible to everyone. <br> <br> <br> We specialize in providing reliable resources, step-by-step tutorials, and clear solutions to everyday digital challenges. <br> Whether you're a gamer, a creative professional, or someone looking to get more from your PC, Zap Tech is here to support your journey. <br> <br> <br> <br> <div style=\"font-size: 25px; font-weight: bold; color: #fa7b7b;\">Our Team</div> Zap Tech is managed by a focused two-person team:<br> <br> <div style=\"font-size: 20px; font-weight: bold; color: #fa7b7b;\">Aryan Bakhtyar Jameel</div> – Web Publisher & Designer <br> <br> <div style=\"font-size: 20px; font-weight: bold; color: #fa7b7b;\">Ronya Hemn Abdulqahar</div> – Research Assistant & English Content Specialist <br> .................................................................................................................................. <br> Together, we combine design, publishing, and multilingual content research to deliver a user-friendly and informative experience. <br> <br> <br> Thank you for being part of the Zap Tech community. <br> <br> <br>",
+        "followUs": "Follow Us",
+        "copyright": "© 2025 Zap Tech. All rights reserved"
+      }
+    },
+    "cards": {
+      "onlineFix": {
+        "title": "Online Fix",
+        "description": "Professional game fixes and patches for seamless gaming experience",
+        "category": "Game Fixes"
+      },
+      "tempMail": {
+        "title": "Temp Mail",
+        "description": "Get a free temporary email address instantly for signups and privacy",
+        "category": "Free Temp Email"
+      },
+      "photoGradient": {
+        "title": "Photo Gradient",
+        "description": "Create stunning gradient effects for your photos online",
+        "category": "Gradient Photo Tool"
+      },
+      "recraftAI": {
+        "title": "Recraft AI",
+        "description": "AI-powered design and illustration tool for creators",
+        "category": "AI Design Tool"
+      },
+      "unscreen": {
+        "title": "Unscreen",
+        "description": "Remove video background automatically, free & online",
+        "category": "Video BG Remover"
+      },
+      "whatsThisAnime": {
+        "title": "WHATS THIS ANIME",
+        "description": "Anime scene search engine by screenshot",
+        "category": "Anime Scene Search"
+      },
+      "napkinAI": {
+        "title": "Napkin AI",
+        "description": "AI-powered presentation and graph creation tool",
+        "category": "AI Presentation Tool"
+      },
+      "pixie": {
+        "title": "Pixie",
+        "description": "AI Pixel Art Generator<br>For making logo or any idea in your mind",
+        "category": "Pixel Art Generator"
+      }
+    },
+    "videos": {
+      "newVideoTutorial": {
+        "title": "New Video Tutorial",
+        "description": "Check out our latest tutorial video with helpful tips and tricks"
+      },
+      "newEpicGameTutorial": {
+        "title": "New Epic Game Tutorial",
+        "description": "Learn the latest gaming techniques and strategies in this epic tutorial"
+      },
+      "iosAppsGames": {
+        "title": "How to Install Paid Apps and Games on iOS Devices",
+        "description": "Learn how to install paid apps and games on your iOS devices safely and easily"
+      },
+      "steamTools": {
+        "title": "How to Delete Crack Games on Main Account by SteamTools by Mistake",
+        "description": "Learn how to safely remove cracked games from your main Steam account using SteamTools"
+      },
+      "blackOpsTutorial": {
+        "title": "How to Download Black Ops 1 & Black Ops 2",
+        "description": "PLAY ZOMBIE, MULTIPLAYER ONLINE, FULL SERVERS AND WITH YOUR FRIENDS"
+      },
+      "pcGamesFree": {
+        "title": "How to Download PC Games for Free and Very Safe",
+        "description": "Step-by-step guide to download PC games safely and for free. Watch for trusted sources and tips!"
+      }
+    },
+    "apps": {
+      "minecraftServers": {
+        "title": "Minecraft Cracked Servers",
+        "description": "Find and join the best cracked Minecraft servers. Play Minecraft for free with a huge community!"
+      },
+      "steamFix": {
+        "title": "Steam fix",
+        "description": "Popular gaming platform and store. Download Steam to access thousands of games and connect with friends."
+      },
+      "plutonium": {
+        "title": "Plutonium",
+        "description": "A custom Call of Duty client. Play classic games with new features and anti-cheat. Official site download."
+      },
+      "blackOps1": {
+        "title": "Black Ops 1",
+        "description": "BLACK OPS 1 FULL FREE GAME online server and play with your friends."
+      },
+      "blackOps2": {
+        "title": "Black Ops 2",
+        "description": "BLACK OPS 2 FULL FREE GAME online server and play with your friends."
+      },
+      "visualCode": {
+        "title": "Visual Code",
+        "description": "Powerful code editor for developers"
+      },
+      "codeBlock": {
+        "title": "Code Block",
+        "description": "perfect app for c++"
+      },
+      "adobePhotoshop": {
+        "title": "Adobe Photoshop",
+        "description": "Professional image editing software 2019"
+      },
+      "adobePremiere": {
+        "title": "Adobe Premiere Pro",
+        "description": "Professional video editing software 2023"
+      }
+    },
+    "donate": {
+      "title": "Support Zap Tech",
+      "description": "Help us continue providing free tools, tutorials, and resources to the community.",
+      "fastPay": "Donate via Fastpay",
+      "fib": "Donate via FIB",
+      "qiCard": "Donate via Qi card"
+    },
+    "personality": {
+      "welcomeTitle": "🌟 Let's Discover Your Personality!",
+      "welcomeDescription": "Welcome to our comprehensive personality assessment! This test will help you understand your unique personality traits and discover your personality type.",
+      "features": {
+        "questions": "20 carefully crafted questions",
+        "quick": "Quick and easy to complete",
+        "analysis": "Detailed personality analysis",
+        "cards": "Swipe through beautiful cards"
+      },
+      "startButton": "🚀 Start Your Journey",
+      "mainTitle": "🌟 Personality Discovery",
+      "progressText": "Question",
+      "resultsTitle": "🎉 Your Personality Results",
+      "personalityType": "Your Type",
+      "description": "Description will appear here",
+      "categoryBreakdown": "📊 Category Breakdown",
+      "introvertExtrovert": "Introvert vs Extrovert",
+      "thinkingFeeling": "Thinking vs Feeling",
+      "judgingPerceiving": "Judging vs Perceiving",
+      "sensingIntuition": "Sensing vs Intuition",
+      "planningSpontaneous": "Planning vs Spontaneous",
+      "shareResults": "Share Results",
+      "congratulations": "🎉 Congratulations!",
+      "takeTestAgain": "🔄 Take Test Again",
+      "answerOptions": [
+        "Strongly Agree",
+        "Agree",
+        "Neutral",
+        "Disagree",
+        "Strongly Disagree"
+      ],
+      "questions": [
+        "I enjoy spending time alone.",
+        "I make decisions based on logic, not emotions.",
+        "I often plan things in advance rather than being spontaneous.",
+        "I feel drained after being in a social setting for too long.",
+        "I enjoy trying new things and taking risks.",
+        "I tend to notice small details that others miss.",
+        "I prefer deep conversations over small talk.",
+        "I trust my intuition more than hard evidence.",
+        "I get stressed when things are unorganized.",
+        "I enjoy helping others solve their problems.",
+        "I get energized by being around people.",
+        "I like sticking to routines.",
+        "I analyze situations before acting.",
+        "I often think about the future.",
+        "I handle conflict by staying calm and logical.",
+        "I often reflect on my own thoughts and feelings.",
+        "I am more creative than practical.",
+        "I value honesty over keeping the peace.",
+        "I am driven by personal goals more than group success.",
+        "I adapt quickly to new situations."
+      ],
+      "personalityTypes": {
+        "INTJ": {
+          "name": "The Strategist",
+          "description": "Analytical, strategic, and independent. You excel at long-term planning and complex problem-solving. You value competence and have high standards for yourself and others."
+        },
+        "INFP": {
+          "name": "The Idealist",
+          "description": "Creative, empathetic, and values-driven. You seek meaning and authenticity in everything you do. You have a rich inner world and are deeply caring about others."
+        },
+        "ESTJ": {
+          "name": "The Executive",
+          "description": "Practical, organized, and decisive. You excel at managing people and projects. You value tradition and structure, and you're a natural leader."
+        },
+        "ENFP": {
+          "name": "The Inspirer",
+          "description": "Enthusiastic, creative, and sociable. You see possibilities everywhere and inspire others with your energy. You're adaptable and love helping people grow."
+        },
+        "ISTP": {
+          "name": "The Craftsman",
+          "description": "Practical, analytical, and flexible. You excel at hands-on problem-solving and enjoy working with tools and systems. You're calm under pressure."
+        },
+        "ISFJ": {
+          "name": "The Protector",
+          "description": "Loyal, practical, and caring. You have a strong sense of duty and are excellent at taking care of others. You value stability and harmony."
+        },
+        "ENTP": {
+          "name": "The Debater",
+          "description": "Innovative, strategic, and quick-witted. You love intellectual challenges and exploring new ideas. You're excellent at seeing multiple perspectives."
+        },
+        "INFJ": {
+          "name": "The Advocate",
+          "description": "Insightful, principled, and compassionate. You have a strong sense of purpose and are deeply committed to helping others. You're creative and intuitive."
+        }
+      }
+    }
+  },
+  "ku": {
+    "nav": {
+      "home": "سەرەکی",
+      "website": "وێبسایت",
+      "videoTutorial": "ڤیدیۆ فێرکاری",
+      "pcAppsGames": "ئەپ و یاری کۆمپیوتەر",
+      "personality": " تاقیکردنەوەی کەسایەتی",
+      "aboutUs": " دەربارەی ئێمە",
+      "donate": " ناردنی هاوکاری $"
+    },
+    "home": {
+      "welcomeTitle": "  بەخێربێیت بۆ Zap Tech ",
+      "welcomeDescription": "ئێمە ئامرازی بەخۆڕایی پێشکەش دەکەین، دروستکەرانی AI تیشک دەخەینە سەر و فێرکاری بەسوود پێشکەش دەکەین، هەموویان بەتەواوی بێ بەرامبەر.",
+      "contactText": "بیرۆکەکەت یان ئەوەی بەدوایدا دەگەڕێیت هاوبەش بکە، پەیاممان بۆ بنێرە",
+      "sendMessage": "پەیام بنێرە",
+      "sent": "نێردرا",
+      "contactForm": {
+        "namePlaceholder": "ناوی تۆ",
+        "messagePlaceholder": "پەیامەکەت",
+        "sendButton": "پەیام بنێرە"
+      }
+    },
+    "sections": {
+      "websites": {
+        "title": "وێبسایتەکان",
+        "description": "ئێمە وێبسایت و ئامرازە بەسوودەکان  هاوبەش دەکەین کە دیزاین کراون بۆ ئاسانکردنی کاری ڕۆژانە و کات هەڵەگرتن. ئامانجمان ئەوەیە ژیانی ڕۆژانە کاراتر بکەین لە ڕێگەی چارەسەرە زیرەک و بەکارهێنانی ئاسانەوە.",
+        "chooseTitle": "وێبسایت هەڵبژێرە",
+        "chooseDescription": "وێبسایتەکەمان دیزاین کراوە بۆ بەکارهێنانی ئاسان و ڕێنیشاندان. ئێمە جۆرەها وێبسایتمان هەیە بۆ هەڵبژاردن، و ئێمە بەردەوام نوێیەکان زیاد دەکەین. ئێمە تیمێکی پەرەپێدەرین  لە بەخشینی زانیاری    .",
+        "moreButton": " وێبسایتی زیاتر"
+      },
+      "videoTutorial": {
+        "title": "ڤیدیۆی فێرکاری",
+        "description": "ئێمە ڤیدیۆ فێرکاریەکان هاوبەش دەکەین کە کێشە تەکنەلۆجیایە ئاساییەکان چارەسەر دەکەن و دەستگەیشتن بە وەشانە گۆڕدراوەکانی ئەپە بەناوبانگەکان دەدەن بۆ یارمەتیدانت لە بەکارهێنانی ئامرازە دیجیتاڵیەکانت.",
+        "pickTitle": "فێرکاری هەڵبژێرە",
+        "pickDescription": "ڤیدیۆ فێرکاریەکانمان دیزاین کراون بۆ شوێنکەوتنی ئاسان و تێگەیشتن. ئێمە جۆرەها فێرکاریمان هەیە بۆ هەڵبژاردن، و ئێمە بەردەوام نوێیەکان زیاد دەکەین. ئێمە تیمێکی پەرەپێدەرین کە ئارەزومەندانەن لە دروستکردنی فێرکاری و ڕێنمایی بەکاربردنەکان.",
+        "moreButton": " ڤیدیۆی "
+      },
+      "pcAppsGames": {
+        "title": "  ئەپ و یاری کۆمپیوتەر",
+        "description": "ئێمە جەخت لەسەر دابینکردنی کاربەرنامە و یاریە بەسوودەکانی کۆمپیوتەر دەکەین بەبێ هیچ دیوارێکی پارەدان یان ئاڵۆزی. بە سادەیی چێژ لە ئامراز و خۆشی وەربگرە کە بەتەواوی بۆ هەمووان بەخۆڕاییە..",
+        "moreButton": "ئەپ و یاری زیاتر"
+      },
+      "aboutUs": {
+        "title": "دەربارەی ئێمە",
+        "description": "بەخێربێیت بۆ زاپ تێک، پلاتفۆرمێکی تایبەت کە پرۆگرام و یاری و ئامرازە دیجیتاڵیەکانی PC پێشکەش دەکات <br> <br> ئامانجمان ئەوەیە کە سۆفتوێر و چارەسەرە تەکنەلۆجییە پڕاکتیکییەکان بە هەموو کەسێک بگەن <br> <br> <br> ئێمە تایبەتین بە پێشکەشکردنی سەرچاوە بەڕێوەبردنەکان، وانەکانی هەنگاو بە هەنگاو، و چارەسەرە ڕوونەکان بۆ بەرەنگاربوونەوەکانی ڕۆژانەی دیجیتاڵ <br> ئەگەر یاریزانێک، پیشەیەکی داهێنەر، یان کەسێکیت کە دەتەوێت لە PC-ەکەت زیاتر بەدەست بهێنیت، زاپ تێک لێرەیە بۆ پشتگیریکردنی گەشتەکەت <br> <br> <br> <br> <div style=\"font-size: 25px; font-weight: bold; color: #fa7b7b;\"> تیمی ئێمە </div> زاپ تێک لەلایەن تیمێکی دوو کەسییەوە بەڕێوە دەبرێت: <br> <br> <div style=\"font-size: 20px; font-weight: bold; color: #fa7b7b;\">ئاریان بەختیار جەمیل</div> – بڵاوکەرەوە و دیزاینەری وێب <br> <br> <div style=\"font-size: 20px; font-weight: bold; color: #fa7b7b;\">ڕۆنیا هێمن عبدالقھار </div>– یاریدەدەری توێژینەوە و پسپۆڕی ناوەڕۆکی ئینگلیزی <br> .................................................................................................................................. <br> پێکەوە، ئێمە دیزاین، بڵاوکردنەوە، و توێژینەوەی ناوەڕۆکی فرەزمانی تێکەڵ دەکەین بۆ پێشکەشکردنی زۆرترین زانیاری <br> <br> <br> سوپاس بۆ بەشداریکردنت لە زاپ تێک <br> <br> <br>",
+        "followUs": " لەگەلمان بە لە سۆشیاڵ میدیاکان",
+        "copyright": "© ٢٠٢٥ زاپ تێک. هەموو مافەکان پارێزراون"
+      }
+    },
+    "cards": {
+      "onlineFix": {
+        "title": "ئۆنلاین فیکس",
+        "description": "چارەسەر و پەڕەی یاری پیشەیی بۆ ئەزموونی یاری بێ کێشە",
+        "category": "چارەسەری یاری"
+      },
+      "tempMail": {
+        "title": "تێمپ مەیڵ",
+        "description": "ناونیشانی ئیمەیڵی کاتی خۆڕایی بەخێرایی بۆ دانان و تایبەتمەندی",
+        "category": "ئیمەیڵی کاتی خۆڕایی"
+      },
+      "photoGradient": {
+        "title": "فۆتۆ گرادیەنت",
+        "description": "کاریگەری گرادیەنت سەرنجڕاکۆ بۆ وێنەکانت لەسەر ئینتەرنێت دروست بکە",
+        "category": "ئامرازی گرادیەنت فۆتۆ"
+      },
+      "recraftAI": {
+        "title": "ڕیکرافت AI",
+        "description": "ئامرازی دیزاین و وێنەکێشانی AI بۆ داهێنەرەکان",
+        "category": "ئامرازی دیزاین AI"
+      },
+      "unscreen": {
+        "title": "ئەنسکرین",
+        "description": "پاشبنەمای ڤیدیۆ بە شێوەیەکی خۆکار لابە، خۆڕایی و لەسەر ئینتەرنێت",
+        "category": "لابردنی پاشبنەمای ڤیدیۆ"
+      },
+      "whatsThisAnime": {
+        "title": "ئەمە چی ئەنیمەیە",
+        "description": "مەکینەی گەڕان بۆ دەرکەوتنی ئەنیمە بە پێی وێنەی شاشە",
+        "category": "گەڕان بۆ دەرکەوتنی ئەنیمە"
+      },
+      "napkinAI": {
+        "title": "نەپکین AI",
+        "description": "ئامرازی دروستکردنی پرێزێنتەیشن و گراف بە AI",
+        "category": "ئامرازی پرێزێنتەیشنی AI"
+      },
+      "pixie": {
+        "title": "پیکسی",
+        "description": "داهێنەری پیکسەل ئارت بە AI<br>بۆ دروستکردنی لۆگۆ یان هەر بیرۆکەیەک لە مێشکت",
+        "category": "داهێنەری پیکسەل ئارت"
+      }
+    },
+    "videos": {
+      "newVideoTutorial": {
+        "title": "ڤیدیۆ فێرکاریی نوێ",
+        "description": "دەستکەوتە ڤیدیۆ فێرکاریە نوێیەکانمان ببین بە ڕێنمایی و تەکنیکە یارمەتیدەرەکان"
+      },
+      "newEpicGameTutorial": {
+        "title": "فێرکاریی یاری ئیپیک نوێ",
+        "description": "تەکنیک و ستراتیجی یاری نوێ لەم فێرکاریە ئیپیکەدا فێربە"
+      },
+      "iosAppsGames": {
+        "title": "چۆن ئەپ و یاری پارەدراو لەسەر ئامێری iOS دابنێیت",
+        "description": "فێربە چۆن ئەپ و یاری پارەدراو لەسەر ئامێری iOS بە شێوەیەکی پارێزراو و ئاسان دابنێیت"
+      },
+      "steamTools": {
+        "title": "چۆن یاری کڕاک لە ئەکاونتە سەرەکیەکەت بە SteamTools بە هەڵە لابەیت",
+        "description": "فێربە چۆن یاری کڕاک لە ئەکاونتە ستییمە سەرەکیەکەت بە شێوەیەکی پارێزراو بە SteamTools لابەیت"
+      },
+      "blackOpsTutorial": {
+        "title": "چۆن بلاک ئۆپس ١ و بلاک ئۆپس ٢ داونڵۆد بکەیت",
+        "description": "یاری زۆمبی، مەلتیپلەیەر لەسەر ئینتەرنێت، سێرڤەری تەواو و لەگەڵ هاوڕێکانت"
+      },
+      "pcGamesFree": {
+        "title": "چۆن یاری PC بە خۆڕایی و بە شێوەیەکی زۆر پارێزراو داونڵۆد بکەیت",
+        "description": "ڕێنمایی بەپێی هەنگاو بۆ داونڵۆدکردنی یاری PC بە شێوەیەکی پارێزراو و خۆڕایی. سەیر بکە بۆ سەرچاوە بەوێنەکان و ڕێنماییەکان!"
+      }
+    },
+    "apps": {
+      "minecraftServers": {
+        "title": "سێرڤەری ماینکرافت کڕاک",
+        "description": "باشترین سێرڤەری ماینکرافت کڕاک بدۆزەوە و پەیوەندی پێکەوە. ماینکرافت بە خۆڕایی یاری بکە لەگەڵ کۆمەڵگەیەکی گەورە!"
+      },
+      "steamFix": {
+        "title": "ستیم فیکس",
+        "description": "پلاتفۆرم و دووکانی یاری بەناوبانگ. ستیم داونڵۆد بکە بۆ دەستگەیشتن بە هەزاران یاری و پەیوەندی لەگەڵ هاوڕێکانت."
+      },
+      "plutonium": {
+        "title": "پلوتۆنیوم",
+        "description": "کڵایەنتێکی تایبەتی کاڵ ئۆف دیوتی. یاری کلاسیک بە تایبەتمەندی نوێ و دژی چیت یاری بکە. داونڵۆدی سایتی فەرمی."
+      },
+      "blackOps1": {
+        "title": "بلاک ئۆپس ١",
+        "description": "بلاک ئۆپس ١ یاری تەواوی خۆڕایی سێرڤەری ئینتەرنێت و لەگەڵ هاوڕێکانت یاری بکە."
+      },
+      "blackOps2": {
+        "title": "بلاک ئۆپس ٢",
+        "description": "بلاک ئۆپس ٢ یاری تەواوی خۆڕایی سێرڤەری ئینتەرنێت و لەگەڵ هاوڕێکانت یاری بکە."
+      },
+      "visualCode": {
+        "title": "ڤیژواڵ کۆد",
+        "description": "دەستکاریکەری کۆدی بەهێز بۆ گەشەپێدەرەکان"
+      },
+      "codeBlock": {
+        "title": "کۆد بڵۆک",
+        "description": "ئەپێکی تەواو بۆ c++"
+      },
+      "adobePhotoshop": {
+        "title": "ئەدۆب فۆتۆشۆپ",
+        "description": "نەرمەکاڵای دەستکاریکردنی وێنەی پیشەیی ٢٠١٩"
+      },
+      "adobePremiere": {
+        "title": "ئەدۆب پریمیەر پرۆ",
+        "description": "نەرمەکاڵای دەستکاریکردنی ڤیدیۆی پیشەیی ٢٠٢٣"
+      }
+    },
+    "donate": {
+      "title": "پشتگیری زاپ تێک",
+      "description": "یارمەتیمان بدە بۆ بەردەوامبوون لە دابینکردنی ئامرازە خۆڕاییەکان، فێرکاری، و سەرچاوەکان بۆ کۆمەڵگەکە.",
+      "fastPay": "پارە بدە بە فاست پەی",
+      "fib": "پارە بدە بە FIB",
+      "qiCard": "پارە بدە بە کارتی Qi"
+    },
+    "personality": {
+      "welcomeTitle": "🌟 با کەسایەتیەکەت بدۆزینەوە!",
+      "welcomeDescription": "بەخێربێیت بۆ هەڵسەنگاندنی کەسایەتییە تەواوەکەمان! ئەم تێستە یارمەتیت دەدات لە تێگەیشتنی تایبەتمەندی کەسایەتی تایبەتەکەت و دۆزینەوەی جۆری کەسایەتیەکەت.",
+      "features": {
+        "questions": "٢٠ پرسیاری بە وردەکاری دروستکراوە",
+        "quick": "خێرای و ئاسان بۆ تەواوکردن",
+        "analysis": "شیکردنەوەی کەسایەتی وردەکاری",
+        "cards": "سوایپ لە ناو کارتە جوانەکاندا"
+      },
+      "startButton": "🚀 گەشتەکەت دەست پێبکە",
+      "mainTitle": "🌟 دۆزینەوەی کەسایەتی",
+      "progressText": "پرسیار",
+      "resultsTitle": "🎉 ئەنجامی کەسایەتیەکەت",
+      "personalityType": "جۆری تۆ",
+      "description": "وەسف لێرە دەردەکەوێت",
+      "categoryBreakdown": "📊 شیکردنەوەی پۆلەکان",
+      "introvertExtrovert": "گۆشەگیر vs دەرەکی",
+      "thinkingFeeling": "بیرکردنەوە vs هەست",
+      "judgingPerceiving": "داواڕەژاندن vs تێگەیشتن",
+      "sensingIntuition": "هەست vs پێشبینی",
+      "planningSpontaneous": "پلاندانان vs خۆجوشی",
+      "shareResults": "هاوبەشکردنی ئەنجامەکان",
+      "congratulations": "🎉 پیرۆزبێت!",
+      "takeTestAgain": "🔄 تێستەکە دووبارە بکەرەوە",
+      "answerOptions": [
+        "زۆر پەسەند",
+        "پەسەند",
+        "بێ لایەن",
+        "پەسەند ناکەم",
+        "زۆر پەسەند ناکەم"
+      ],
+      "questions": [
+        "من چێژ لە بەسەربردنی کات بە تەنیا وەردەگرم.",
+        "من بڕیار لەسەر بنەمای مەنتیق دەدەم نەک هەست.",
+        "من زۆرجار پێشوەخت پلانی شتەکان دادەنێم نەک لەخۆوە بم.",
+        "هەست بە ماندووبوون دەکەم پاش ماوەیەکی زۆر لە شوێنێکی کۆمەڵایەتی.",
+        "من چێژ لە تاقیکردنەوەی شتی نوێ وەردەگرم و مەترسی دەکەم.",
+        "من سەرنجی وردەکارییە بچووکەکان دەدەم کە کەسانی تر بیری دەکەن.",
+        "من گفتوگۆی قووڵم پێ باشترە لە قسەی بچووک.",
+        "من زیاتر متمانەم بە هەستی خۆم هەیە وەک لە بەڵگەی بەهێز.",
+        "کاتێک شتەکان ڕێک نەخراون تووشی دڵەڕاوکێ دەبم.",
+        "من چێژ لە یارمەتیدانی کەسانی تر وەردەگرم بۆ چارەسەرکردنی کێشەکانیان.",
+        "هەست بە وزە دەکەم کاتێک لەگەڵ ئەوانی ترم.",
+        "من پێم باشترە پابەند بم بە ڕۆتینی دامەزراو.",
+        "من بارودۆخەکە هەڵدەسەنگێنم پێش ئەوەی هەنگاو بنێم.",
+        "من زۆر جار بیر لەوە دەکەمەوە کە چی لە داهاتوودایە.",
+        "من بە هەڵسوکەوتێکی هێمن و عەقڵانی لە ململانێکان نزیک دەکەمەوە.",
+        "من بە بەردەوامی بیر لە بیر و هەستەکانی خۆم دەکەمەوە.",
+        "من زیاتر خەیاڵم هەیە وەک لە پراگماتیک.",
+        "من ڕاستگۆیی ئەولەویەت دەدەم بەسەر پاراستنی هاوئاهەنگی.",
+        "من بە خواستی تاکەکەسی هاندراوم نەک دەستکەوتە بەکۆمەڵەکان.",
+        "من بەخێرایی خۆم لەگەڵ بارودۆخی نەناسراو دەگونجێنم."
+      ],
+      "personalityTypes": {
+        "INTJ": {
+          "name": "ستراتیژستەکە",
+          "description": "شیکردنەوەکار، ستراتیژیک، و سەربەخۆ. تۆ لە پلاندانانی ماوەی درێژ و چارەسەرکردنی کێشەی ئاڵۆز باشیت. تۆ بەهای لێهاتوویی دەدەیت و ستانداردی بەرزت هەیە بۆ خۆت و ئەوانی تر."
+        },
+        "INFP": {
+          "name": "ئایدیالیستەکە",
+          "description": "داهێنەر، هاوسۆز، و بەهای-دەرایەخ. تۆ بەدوای مانا و ڕاستگۆزی لە هەموو شتێکدا دەگەڕێیت. تۆ جیهانێکی ناوەکی دەوڵەمەندت هەیە و زۆر گرنگیت بە ئەوانی تر."
+        },
+        "ESTJ": {
+          "name": "بەڕێوەبەرەکە",
+          "description": "پراکتیکی، ڕێکخراوە، و بڕیاردەر. تۆ لە بەڕێوەبردنی خەڵک و پڕۆژەکان باشیت. تۆ بەهای نەریت و پێکهاتە دەدەیت، و سەرکردەیەکی سروشتیت."
+        },
+        "ENFP": {
+          "name": "هاندەرەکە",
+          "description": "پڕۆژەی، داهێنەر، و کۆمەڵایەتی. تۆ ئەگەرەکان لە هەموو شوێنێک دەبینیت و ئەوانی تر بە وزەکەت هاندەدەیت. تۆ گونجاویت و حەز لە یارمەتیدانی خەڵک لە گەشەکردن دەکەیت."
+        },
+        "ISTP": {
+          "name": "هونەرمەندەکە",
+          "description": "پراکتیکی، شیکردنەوەکار، و گونجاو. تۆ لە چارەسەرکردنی کێشەی دەستی باشیت و چێژ لە کارکردن لەگەڵ ئامراز و سیستەمەکان دەبینیت. تۆ لە ژێر فشار بێدەنگیت."
+        },
+        "ISFJ": {
+          "name": "پارێزەرەکە",
+          "description": "دڵسۆز، پراکتیکی، و گرنگ. تۆ هەستێکی بەهێزی ئەرکەت هەیە و لە گرنگیدان بە ئەوانی تر باشیت. تۆ بەهای جێگیربوون و هارمۆنی دەدەیت."
+        },
+        "ENTP": {
+          "name": "گفتوگۆکارەکە",
+          "description": "نوێگەر، ستراتیژیک، و خێرای بیر. تۆ حەز لە بەرەنگاربوونەوەی فەکری و گەڕان بەدوای بیرۆکەی نوێ دەکەیت. تۆ لە بینینی چەندین ڕوانین باشیت."
+        },
+        "INFJ": {
+          "name": "هاندەرەکە",
+          "description": "تێگەیشتوو، پڕینسیپ، و هاوسۆز. تۆ هەستێکی بەهێزی ئامانجت هەیە و بەشداری لە یارمەتیدانی ئەوانی تر دەکەیت. تۆ داهێنەر و پێشبینیت."
+        }
+      }
+    }
+  }
+} 

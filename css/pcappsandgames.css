@@ -1,0 +1,198 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.body{
+    background-color: #004183;
+}
+
+.bg7-container{
+    color: #ffffff;
+    margin-top: 100px;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.bgb7header{
+   margin-bottom: 100px;
+
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 75px;
+    color: #ffffff;
+}
+.bgb7header-text{
+   
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+    text-align: center;
+    color: #ffffff;
+
+    padding-top: 20px;
+  
+}
+.pc-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-items: center;
+  align-items: stretch;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 32px 0;
+}
+.pc-app-card {
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  width: 320px;
+  height: 320px;
+  max-width: 400px;
+  max-height: 400px;
+  min-width: 220px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.18s;
+  position: relative;
+  overflow: visible;
+  margin: 18px auto;
+}
+.pc-app-card:hover, .pc-app-card:focus {
+  transform: scale(1.08);
+  z-index: 2;
+}
+.pc-app-card::before,
+.pc-app-card:hover::before,
+.pc-app-card:focus::before {
+  display: none;
+}
+.pc-app-image {
+  width: 260px;
+  height: 260px;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: none;
+  background: none;
+  z-index: 2;
+  transition: filter 0.18s, transform 0.18s;
+  display: block;
+}
+.pc-app-card:hover .pc-app-image,
+.pc-app-card:focus .pc-app-image {
+  filter: brightness(1.12) drop-shadow(0 0 8px #00418388);
+  transform: scale(1.08) rotate(-2deg);
+}
+.pc-app-overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) scale(0.92);
+  min-width: 320px;
+  min-height: 180px;
+  max-width: 480px;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 65, 131, 0.88);
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s cubic-bezier(.4,0,.2,1), transform 0.18s;
+  z-index: 10;
+  padding: 40px 32px 24px 32px;
+  text-align: center;
+  border-radius: 28px;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.pc-app-card:hover .pc-app-overlay,
+.pc-app-card:focus .pc-app-overlay {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%,-50%) scale(1.04);
+}
+.pc-app-title {
+  font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.09rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #fff;
+  z-index: 2;
+}
+.pc-app-desc {
+  font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 0.97rem;
+  color: #e0e0e0;
+  text-align: center;
+  z-index: 2;
+}
+@media (max-width: 1200px) {
+  .pc-apps-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+}
+@media (max-width: 900px) {
+  .pc-apps-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 100vw;
+  }
+  .pc-app-card {
+    max-width: 260px;
+    min-width: 160px;
+    min-height: 160px;
+    width: 260px;
+    height: 260px;
+  }
+  .pc-app-image {
+    width: 180px;
+    height: 180px;
+  }
+  .pc-app-overlay {
+    min-width: 180px;
+    max-width: 90vw;
+    min-height: 90px;
+    max-height: 260px;
+    padding: 24px 14px 14px 14px;
+    border-radius: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .pc-apps-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    max-width: 100vw;
+  }
+  .pc-app-card {
+    max-width: 60vw;
+    min-width: 60px;
+    min-height: 60px;
+    width: 60vw;
+    height: 60vw;
+  }
+  .pc-app-image {
+    max-width: 50vw;
+    max-height: 50vw;
+    width: 50vw;
+    height: 50vw;
+  }
+  .pc-app-overlay {
+    min-width: 40vw;
+    max-width: 60vw;
+    min-height: 30px;
+    max-height: 60vw;
+    padding: 8px 2vw 8px 2vw;
+    border-radius: 12px;
+  }
+}
