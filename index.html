@@ -529,6 +529,37 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// Close donate modal function
+function closeDonateModal() {
+  const donateModal = document.getElementById('donate-modal');
+  if (donateModal) {
+    donateModal.classList.remove('show');
+    setTimeout(() => {
+      donateModal.style.display = 'none';
+    }, 300);
+  }
+}
+
+// Copy to clipboard function
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(function() {
+    // Show success message
+    const element = event.target;
+    const originalText = element.textContent;
+    const originalColor = element.style.color;
+    
+    element.textContent = 'Copied!';
+    element.style.color = '#00A651';
+    
+    setTimeout(() => {
+      element.textContent = originalText;
+      element.style.color = originalColor;
+    }, 2000);
+  }).catch(function(err) {
+    console.error('Could not copy text: ', err);
+  });
+}
+
 </script>
 
     </div>
@@ -537,34 +568,59 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="donate-modal" id="donate-modal">
         <div class="donate-modal-content">
             <div class="donate-header">
-                <h2>Support Zap Tech</h2>
-                <button class="donate-close" id="donate-close">&times;</button>
             </div>
             <div class="donate-body">
-                <p>Help us continue providing free tools, tutorials, and resources to the community.</p>
+                <p class="donate-message">Help us continue providing free tools, tutorials, and resources to the community.</p>
                 <div class="donate-options">
-                    <div class="donate-option">
-                        <h3>fast pay</h3>
-                        <p>+964750 901 91 66</p>
-                        >
-                          
-                            Donate via Fastpay
-                        </a>
+                    <button class="card-close-btn" onclick="closeDonateModal()">
+                        ×
+                    </button>
+                    <div class="donate-card fastpay-card">
+                        <div class="card-background" style="background-image: url('/images/fastpay.png');">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>Fastpay</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number clickable" onclick="copyToClipboard('+964750 901 91 66')">
+                                    <i class="fas fa-phone"></i> +964750 901 91 66
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="donate-option">
-                        <h3>FIB</h3>
-                        <p>+964750 901 91 66</p>
-                       
-                        Donate via FIB
-                        </a>
+                    
+                    <div class="donate-card fib-card">
+                        <div class="card-background" style="background-image: url('/images/fib.png');">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>FIB Bank</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number clickable" onclick="copyToClipboard('+964750 901 91 66')">
+                                    <i class="fas fa-phone"></i> +964750 901 91 66
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="donate-option">
-                        <h3>Qi card</h3>
-                        <p>+964750 901 91 66 <br>
-                       Qi card number : 7111541806 </p>
-                        
-                       Donate via Qi card
-                        </a>
+                    
+                    <div class="donate-card qi-card">
+                        <div class="card-background" style="background-image: url('/images/qi card.png');">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>Qi Card</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number clickable" onclick="copyToClipboard('+964750 901 91 66')">
+                                    <i class="fas fa-phone"></i> +964750 901 91 66
+                                </p>
+                                <p class="card-number clickable" onclick="copyToClipboard('7111541806')">
+                                    <i class="fas fa-credit-card"></i> 71 11 54 18 06
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
