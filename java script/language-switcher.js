@@ -102,6 +102,8 @@ function getTranslation(keyPath) {
 
 // Function to update all text content on the page
 function updatePageLanguage() {
+    console.log('updatePageLanguage called, current language:', currentLanguage);
+    
     // Update navigation
     updateNavigation();
     
@@ -353,6 +355,12 @@ if (websiteDescription) {
 
 // Update cards
 function updateCards() {
+    console.log('updateCards called');
+    
+    // First, update cards with data-translate attributes
+    updateCardsWithDataTranslate();
+    
+    // Then update cards by text content (for backward compatibility)
     const cardTitles = {
         'onlineFix': 'Online Fix',
         'tempMail': 'Temp Mail',
@@ -361,11 +369,13 @@ function updateCards() {
         'unscreen': 'Unscreen',
         'whatsThisAnime': 'WHATS THIS ANIME ',
         'napkinAI': 'Napkin AI',
-        'pixie': 'Pixie'
+        'pixie': 'Pixie',
+        'suno': 'Suno'
     };
     
     Object.entries(cardTitles).forEach(([key, englishTitle]) => {
         const cards = document.querySelectorAll('.card-title-hover');
+        console.log(`Looking for cards with title: "${englishTitle}", found ${cards.length} cards`);
         cards.forEach(card => {
             console.log(`Checking card: "${card.textContent.trim()}" against "${englishTitle}"`);
             if (card.textContent.trim() === englishTitle) {
@@ -385,6 +395,21 @@ function updateCards() {
                 }
             }
         });
+    });
+}
+
+// Update cards with data-translate attributes
+function updateCardsWithDataTranslate() {
+    console.log('updateCardsWithDataTranslate called');
+    const cardElements = document.querySelectorAll('[data-translate^="cards."]');
+    console.log(`Found ${cardElements.length} card elements with data-translate attributes`);
+    
+    cardElements.forEach(element => {
+        const translationKey = element.getAttribute('data-translate');
+        console.log(`Updating element with translation key: ${translationKey}`);
+        const translation = getTranslation(translationKey);
+        console.log(`Translation for ${translationKey}: ${translation}`);
+        element.textContent = translation;
     });
 }
 
@@ -611,7 +636,9 @@ function updatePageTitle() {
 
 // Toggle language function
 function toggleLanguage() {
+    console.log('toggleLanguage called, current language:', currentLanguage);
     currentLanguage = currentLanguage === 'en' ? 'ku' : 'en';
+    console.log('Language switched to:', currentLanguage);
     updatePageLanguage();
     
     // Update language button text and data attribute
@@ -704,7 +731,18 @@ async function initLanguageSystem() {
 }
 
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initLanguageSystem);
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Language switcher script loaded');
+    initLanguageSystem();
+});
+
+// Also try to initialize immediately if DOM is already loaded
+if (document.readyState === 'loading') {
+    console.log('DOM still loading, waiting for DOMContentLoaded');
+} else {
+    console.log('DOM already loaded, initializing immediately');
+    initLanguageSystem();
+}
 
 // Export functions for global access
 window.toggleLanguage = toggleLanguage;

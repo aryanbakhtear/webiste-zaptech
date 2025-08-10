@@ -88,6 +88,11 @@
         "title": "Pixie",
         "description": "AI Pixel Art Generator<br>For making logo or any idea in your mind",
         "category": "Pixel Art Generator"
+      },
+      "suno": {
+        "title": "Suno",
+        "description": "AI-powered music creation platform for generating original songs and melodies",
+        "category": "AI Music Creator"
       }
     },
     "videos": {
@@ -326,7 +331,7 @@
         "category": "لابردنی پاشبنەمای ڤیدیۆ"
       },
       "whatsThisAnime": {
-        "title": "ئەمە چی ئەنیمەیە",
+        "title": "دۆزینەوەی ئەنیمە",
         "description": "مەکینەی گەڕان بۆ دەرکەوتنی ئەنیمە بە پێی وێنەی شاشە",
         "category": "گەڕان بۆ دەرکەوتنی ئەنیمە"
       },
@@ -339,6 +344,11 @@
         "title": "پیکسی",
         "description": "داهێنەری پیکسەل ئارت بە AI<br>بۆ دروستکردنی لۆگۆ یان هەر بیرۆکەیەک لە مێشکت",
         "category": "داهێنەری پیکسەل ئارت"
+      },
+      "suno": {
+        "title": "سۆنۆ",
+        "description": "پلاتفۆرمی دروستکردنی مۆسیقا بە AI بۆ دروستکردنی گۆرانی و مێڵۆدییە ڕەسەنەکان",
+        "category": "داهێنەری مۆسیقای AI"
       }
     },
     "videos": {
