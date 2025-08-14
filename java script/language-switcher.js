@@ -443,6 +443,7 @@ function updateVideos() {
 // Update apps
 function updateApps() {
     const appTitles = {
+        'efficientRamCleaner': 'Efficient RAM Cleaner',
         'minecraftServers': 'Minecraft Cracked Servers',
         'steamFix': 'Steam fix',
         'plutonium': 'Plutonium',
