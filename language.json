@@ -96,6 +96,13 @@
       }
     },
     "videos": {
+<<<<<<< HEAD
+=======
+      "fixLagGamesRender": {
+        "title": "FIX LAG IN GAMES AND RENDER",
+        "description": "how to fix lag in games and render by clearing you ram cache"
+      },
+>>>>>>> v0.05
       "newVideoTutorial": {
         "title": "New Video Tutorial",
         "description": "Check out our latest tutorial video with helpful tips and tricks"
@@ -294,7 +301,11 @@
         "description": "ئێمە ڤیدیۆ فێرکاریەکان هاوبەش دەکەین کە کێشە تەکنەلۆجیایە ئاساییەکان چارەسەر دەکەن و دەستگەیشتن بە وەشانە گۆڕدراوەکانی ئەپە بەناوبانگەکان دەدەن بۆ یارمەتیدانت لە بەکارهێنانی ئامرازە دیجیتاڵیەکانت.",
         "pickTitle": "فێرکاری هەڵبژێرە",
         "pickDescription": "ڤیدیۆ فێرکاریەکانمان دیزاین کراون بۆ شوێنکەوتنی ئاسان و تێگەیشتن. ئێمە جۆرەها فێرکاریمان هەیە بۆ هەڵبژاردن، و ئێمە بەردەوام نوێیەکان زیاد دەکەین. ئێمە تیمێکی پەرەپێدەرین کە ئارەزومەندانەن لە دروستکردنی فێرکاری و ڕێنمایی بەکاربردنەکان.",
+<<<<<<< HEAD
         "moreButton": " ڤیدیۆی "
+=======
+        "moreButton": "  ڤیدیۆی زیاتر "
+>>>>>>> v0.05
       },
       "pcAppsGames": {
         "title": "  ئەپ و یاری کۆمپیوتەر",
@@ -356,6 +367,13 @@
       }
     },
     "videos": {
+<<<<<<< HEAD
+=======
+      "fixLagGamesRender": {
+        "title": "چارەسەرکردنی لەگ لە یاری و ڕێندەر",
+        "description": "چۆن لەگ لە یاری و ڕێندەر چارەسەر بکەیت بە پاککردنەوەی کەشی RAM-ەکەت"
+      },
+>>>>>>> v0.05
       "newVideoTutorial": {
         "title": "ڤیدیۆ فێرکاریی نوێ",
         "description": "دەستکەوتە ڤیدیۆ فێرکاریە نوێیەکانمان ببین بە ڕێنمایی و تەکنیکە یارمەتیدەرەکان"

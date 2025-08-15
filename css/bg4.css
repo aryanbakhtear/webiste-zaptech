@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *{
     margin: 0;
     padding: 0;
@@ -99,4 +100,107 @@
       border-radius: 10px;
       display: block;
     }
+=======
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bg4{
+    background-color: #E8EAEC;
+    padding: 20px;
+  font-family: 'NavbarFont', 'navbat', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.b4header{
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 75px;
+    color: #000000;
+    padding-bottom: 75px;
+}
+.b4header-text{
+    font-size: 25px;
+    color: #000000;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 75px;
+    padding-right: 75px;
+}
+.bg4fp-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.bg4fp1-image{      
+    margin-top: 30px;
+    width: 400px;
+    border-radius: 10px;
+
+}
+.bg4fp2-image{
+    width: 400px;
+    border-radius: 10px;
+}
+.bg4fp3-image{
+    margin-top: 30px;
+    width: 400px;
+    border-radius: 10px;
+}
+
+.bg4fp1, .bg4fp2, .bg4fp3 {
+    width: 220px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    margin: 18px auto;
+  }
+  @media (max-width: 600px) {
+    .bg4fp-container {
+  
+      gap: 12px;
+      align-items: stretch;
+    }
+    .bg4fp1, .bg4fp2, .bg4fp3 {
+      width: 20px;
+      max-width: 100%;
+      margin: 12px auto;
+    }
+    .bg4fp1-image,
+    .bg4fp2-image,
+    .bg4fp3-image {
+      width: 30%;
+      max-width: 98vw;
+      min-width: 0;
+      margin-top: 0;
+      border-radius: 10px;
+      display: block;
+    }
+  }
+  @media (max-width: 1200px) {
+    .bg4fp-container {
+  
+      gap: 12px;
+      align-items: stretch;
+    }
+    .bg4fp1, .bg4fp2, .bg4fp3 {
+      width: 20px;
+      max-width: 100%;
+      margin: 12px auto;
+    }
+    .bg4fp1-image,
+    .bg4fp2-image,
+    .bg4fp3-image {
+      width: 30%;
+      max-width: 98vw;
+      min-width: 0;
+      margin-top: 0;
+      border-radius: 10px;
+      display: block;
+    }
+>>>>>>> v0.05
   }
