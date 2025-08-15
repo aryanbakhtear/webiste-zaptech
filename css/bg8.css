@@ -1,0 +1,229 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.bg8{
+    background-color: #000000;
+    min-height: 100vh;
+    padding: 50px 0;
+}
+.bg8-container{
+    color: #ffffff;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+.bg8header {
+    margin-bottom: 2.5rem;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    padding-top: clamp(1.5rem, 5vw, 3.5rem);
+}
+.bg8-text {
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #ffffff;
+    white-space: pre-line;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+.bg8-content {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(1.5rem, 5vw, 3.75rem);
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    flex-wrap: wrap;
+}
+.bg8fp-container {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 3vw, 1.875rem);
+    flex-shrink: 0;
+    width: clamp(220px, 30vw, 400px);
+    min-width: 180px;
+    max-width: 100%;
+}
+.bg8fp1-image, .bg8fp2-image, .bg8fp3-image {
+    width: 100%;
+    height: clamp(120px, 20vw, 250px);
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.bg8fp1-image:hover, .bg8fp2-image:hover, .bg8fp3-image:hover {
+    transform: translateY(-5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .bg8-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2rem;
+    }
+    .bg8fp-container {
+        width: 100%;
+        max-width: 100%;
+        align-items: center;
+    }
+    .bg8fp1-image, .bg8fp2-image, .bg8fp3-image {
+        height: clamp(100px, 30vw, 180px);
+    }
+    .bg8header {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        padding-top: 2rem;
+    }
+    .bg8-text {
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
+        
+    }
+}
+
+@media (max-width: 600px) {
+    .bg8-content {
+        gap: 1rem;
+        margin-top: 1.2rem;
+    }
+    .bg8fp-container {
+        width: 100%;
+        gap: 0.8rem;
+        min-width: 0;
+    }
+    .bg8fp1-image, .bg8fp2-image, .bg8fp3-image {
+        height: clamp(80px, 40vw, 120px);
+        border-radius: 10px;
+    }
+    .bg8header {
+        font-size: clamp(1.1rem, 8vw, 1.7rem);
+        padding-top: 1rem;
+        margin-bottom: 1.2rem;
+    }
+    .bg8-text {
+        font-size: clamp(0.85rem, 4vw, 1rem);
+        margin-bottom: 0.8rem;
+        width: 100%;
+    }
+}
+
+/* Social Media Buttons */
+.social-media-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.social-title {
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    min-width: 140px;
+    justify-content: center;
+    border: 2px solid transparent;
+}
+
+.social-btn i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.social-btn span {
+    transition: transform 0.3s ease;
+}
+
+/* YouTube Button */
+.youtube-btn {
+    background: #FF0000;
+    color: white;
+    border: 2px solid #FF0000;
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+}
+
+.youtube-btn:hover {
+    background: #CC0000;
+    border-color: #CC0000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+}
+
+.youtube-btn:hover i {
+    transform: scale(1.1);
+}
+
+/* TikTok Button */
+.tiktok-btn {
+    background: #000000;
+    color: white;
+    border: 2px solid #25F4EE;
+    box-shadow: 0 2px 8px rgba(37, 244, 238, 0.3);
+}
+
+.tiktok-btn:hover {
+    background: #25F4EE;
+    border-color: #25F4EE;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 244, 238, 0.4);
+}
+
+.tiktok-btn:hover i {
+    transform: scale(1.1);
+}
+
+/* Instagram Button */
+.instagram-btn {
+    background: #E4405F;
+    color: white;
+    border: 2px solid #E4405F;
+    box-shadow: 0 2px 8px rgba(228, 64, 95, 0.3);
+}
+
+.instagram-btn:hover {
+    background: #C13584;
+    border-color: #C13584;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(228, 64, 95, 0.4);
+}
+
+.instagram-btn:hover i {
+    transform: scale(1.1);
+}
+
+/* Copyright Section */
+.bg8-copyright {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+    opacity: 0.8;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
