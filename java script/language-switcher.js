@@ -416,10 +416,7 @@ function updateCardsWithDataTranslate() {
 // Update videos
 function updateVideos() {
     const videoTitles = {
-<<<<<<< HEAD
-=======
         'fixLagGamesRender': 'FIX LAG IN GAMES AND RENDER',
->>>>>>> v0.05
         'newVideoTutorial': 'New Video Tutorial',
         'newEpicGameTutorial': 'New Epic Game Tutorial',
         'iosAppsGames': 'How to Install Paid Apps and Games on iOS Devices',
