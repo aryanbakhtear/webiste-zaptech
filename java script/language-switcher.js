@@ -26,7 +26,9 @@ async function loadTranslations() {
                     website: "Website",
                     videoTutorial: "Video Tutorial",
                     pcAppsGames: "Pc Apps & Games",
-                    personality: "personality",
+                    tools: "Tools",
+                    personality: "Personality",
+                    kurdishImageAI: "Kurdish Image AI",
                     aboutUs: "About Us",
                     donate: "Donate $"
                 },
@@ -145,7 +147,6 @@ function updateNavigation() {
         'website': 'a[href="website.html"]',
         'videoTutorial': 'a[href="video-tutorial.html"]',
         'pcAppsGames': 'a[href="pc apps and games.html"]',
-        'personality': 'a[href="personality.html"]',
         'aboutUs': 'a[href="#bg8"], a[href="index.html#bg8"]',
         'donate': '#donate-btn'
     };
@@ -156,6 +157,24 @@ function updateNavigation() {
             element.textContent = getTranslation(`nav.${key}`);
         });
     });
+    
+    // Update Tools dropdown specifically
+    const toolsDropdown = document.querySelector('.dropdown-toggle[data-translate="navbar.tools"]');
+    if (toolsDropdown) {
+        toolsDropdown.textContent = getTranslation('nav.tools');
+    }
+    
+    // Update Personality link in dropdown
+    const personalityLink = document.querySelector('.dropdown-menu a[data-translate="navbar.personality"]');
+    if (personalityLink) {
+        personalityLink.textContent = getTranslation('nav.personality');
+    }
+    
+    // Update Kurdish Image AI link in dropdown
+    const kurdishImageAILink = document.querySelector('.dropdown-menu a[data-translate="navbar.kurdishImageAI"]');
+    if (kurdishImageAILink) {
+        kurdishImageAILink.textContent = getTranslation('nav.kurdishImageAI');
+    }
 }
 
 // Update home page content
@@ -670,26 +689,8 @@ function createLanguageSwitcher() {
         return;
     }
     
-    const navbarRight = document.querySelector('.navbar-right ul');
-    console.log('Navbar right element found:', navbarRight);
-    if (navbarRight) {
-        const langLi = document.createElement('li');
-        const langBtn = document.createElement('a');
-        langBtn.href = '#';
-        langBtn.className = 'language-switcher-btn';
-        langBtn.setAttribute('data-lang', currentLanguage);
-        langBtn.textContent = currentLanguage === 'en' ? 'کوردی' : 'English';
-        langBtn.onclick = function(e) {
-            e.preventDefault();
-            toggleLanguage();
-        };
-        
-        langLi.appendChild(langBtn);
-        navbarRight.appendChild(langLi);
-        console.log('Language switcher button created successfully');
-    } else {
-        console.error('Navbar right element not found');
-    }
+    // Language switcher button is now handled in HTML, no need to create dynamically
+    console.log('Language switcher button already exists in HTML');
 }
 
 // Preload K24 font for Kurdish

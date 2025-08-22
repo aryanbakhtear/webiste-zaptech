@@ -5,7 +5,9 @@
       "website": "Website",
       "videoTutorial": "Video Tutorial",
       "pcAppsGames": "Pc Apps & Games",
-      "personality": "personality",
+      "tools": "Tools",
+      "personality": "Personality",
+      "kurdishImageAI": "Kurdish Image AI",
       "aboutUs": "About Us",
       "donate": "Donate $"
     },
@@ -269,7 +271,9 @@
       "website": "وێبسایت",
       "videoTutorial": "ڤیدیۆ فێرکاری",
       "pcAppsGames": "ئەپ و یاری کۆمپیوتەر",
-      "personality": " تاقیکردنەوەی کەسایەتی",
+      "tools": "ئامرازەکان",
+      "personality": "تاقیکردنەوەی کەسایەتی",
+      "kurdishImageAI": "AI وێنەی کوردی",
       "aboutUs": " دەربارەی ئێمە",
       "donate": " ناردنی هاوکاری $"
     },
