@@ -1111,6 +1111,9 @@ body.personality-page .navbar.open .language-switcher-btn {
     transition: all 0.3s ease;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -1133,6 +1136,9 @@ body.personality-page .navbar.open .language-switcher-btn {
     font-size: 1rem;
     transition: all 0.2s ease;
     border-radius: 0;
+    width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 .dropdown-menu li a:hover {
@@ -1198,6 +1204,9 @@ body[lang="ku"] .dropdown.active .dropdown-toggle::after {
     transform: translateY(0);
     max-height: 200px;
     padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .navbar.open .dropdown-menu {
@@ -1227,6 +1236,7 @@ body[lang="ku"] .dropdown.active .dropdown-toggle::after {
     display: block;
     margin: 5px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
 }
 
 .navbar.open .dropdown-menu li a:hover {
@@ -1240,6 +1250,9 @@ body[lang="ku"] .dropdown.active .dropdown-toggle::after {
 body[lang="ku"] .dropdown-menu {
     left: auto;
     right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 body[lang="ku"] .navbar.open .dropdown-toggle {
@@ -1292,6 +1305,9 @@ body[lang="ku"] .navbar.open .dropdown-menu li a:hover {
         transform: translateY(0);
         max-height: 200px;
         padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
     }
     
     .dropdown-menu li a {
@@ -1304,6 +1320,7 @@ body[lang="ku"] .navbar.open .dropdown-menu li a:hover {
         display: block;
         margin: 5px 0;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex-shrink: 0;
     }
     
     .dropdown-menu li a:hover {
