@@ -18,17 +18,17 @@
             align-items: center;
             text-align: center;
             padding: 2rem;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            color: white;
+            background: white;
+            color: black;
         }
         
         .error-content {
             max-width: 600px;
-            background: rgba(255, 255, 255, 0.1);
+            background: #f8f9fa;
             padding: 3rem;
             border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid #e9ecef;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         .error-code {
@@ -41,7 +41,7 @@
         .error-title {
             font-size: 2rem;
             margin: 1rem 0;
-            color: #ffd700;
+            color: #6F43FE;
         }
         
         .error-message {
@@ -76,26 +76,28 @@
         }
         
         .error-btn.secondary {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: black;
+            border: 1px solid black;
+            color: white;
         }
         
         .error-btn.secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: #333;
+            border: 1px solid #333;
         }
         
         .retry-section {
             margin-top: 2rem;
             padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: #f8f9fa;
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid #e9ecef;
         }
         
         .retry-title {
             font-size: 1.1rem;
             margin-bottom: 1rem;
-            color: #ffd700;
+            color: #6F43FE;
         }
         
         .retry-options {
@@ -107,17 +109,17 @@
         
         .retry-btn {
             padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+            background: #f8f9fa;
+            color: black;
             text-decoration: none;
             border-radius: 20px;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid #e9ecef;
             font-size: 0.9rem;
         }
         
         .retry-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: #e9ecef;
             transform: translateY(-1px);
         }
         
@@ -147,7 +149,7 @@
         }
     </style>
 </head>
-<body>
+<body class="home-page">
     <div class="navbar" id="navbar">
         <div class="logo-container">
             <img src="/images/logo.png" alt="LOGO OF WEBSITE" class="logo">
@@ -171,7 +173,8 @@
                     </ul>
                 </li>
                 <li><a href="/index.html#bg8">About Us</a></li>
-                <li><a href="#" id="donate-btn">Donate $</button></li>
+                <li><a href="#" id="donate-btn">Donate $</a></li>
+                <li><button class="language-switcher-btn" onclick="toggleLanguage()">کوردی</button></li>
             </ul>
         </div>
     </div>
@@ -208,7 +211,69 @@
     </div>
 
     <script src="/java script/navbar.js"></script>
+    <script src="/java script/language-switcher.js"></script>
     <script>
+        // Language data for 500 page
+        const translations = {
+            en: {
+                'error-title': 'Server Error',
+                'error-message': 'Something went wrong on our end. We\'re working to fix this issue. Please try again in a few moments.',
+                'go-home': 'Go Home',
+                'try-again': 'Try Again',
+                'quick-actions': 'Quick Actions',
+                'home': 'Home',
+                'website-tools': 'Website Tools',
+                'tutorials': 'Tutorials',
+                'apps-games': 'Apps & Games'
+            },
+            ku: {
+                'error-title': 'هەڵەی سێرڤەر',
+                'error-message': 'شتێک هەڵە بوو لە لایەن ئێمە. ئێمە کار دەکەین بۆ چارەسەرکردنی ئەم کێشەیە. تکایە دواتر هەوڵ بدەوە.',
+                'go-home': 'بڕۆ بۆ ماڵەوە',
+                'try-again': 'هەوڵ بدەوە',
+                'quick-actions': 'کردارە خێراکان',
+                'home': 'ماڵەوە',
+                'website-tools': 'ئامرازەکانی وێبسایت',
+                'tutorials': 'ڕاهێنانەکان',
+                'apps-games': 'ئەپ و یارییەکان'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'ku' : 'en';
+            updateLanguage();
+            
+            // Update button text
+            const langBtn = document.querySelector('.language-switcher-btn');
+            langBtn.textContent = currentLanguage === 'en' ? 'کوردی' : 'English';
+        }
+
+        function updateLanguage() {
+            const lang = translations[currentLanguage];
+            
+            // Update error title
+            document.querySelector('.error-title').textContent = lang['error-title'];
+            
+            // Update error message
+            document.querySelector('.error-message').textContent = lang['error-message'];
+            
+            // Update buttons
+            document.querySelector('.error-btn').innerHTML = `<i class="fas fa-home"></i> ${lang['go-home']}`;
+            document.querySelector('.error-btn.secondary').innerHTML = `<i class="fas fa-redo"></i> ${lang['try-again']}`;
+            
+            // Update retry section title
+            document.querySelector('.retry-title').textContent = lang['quick-actions'];
+            
+            // Update retry buttons
+            const retryButtons = document.querySelectorAll('.retry-btn');
+            retryButtons[0].textContent = lang['home'];
+            retryButtons[1].textContent = lang['website-tools'];
+            retryButtons[2].textContent = lang['tutorials'];
+            retryButtons[3].textContent = lang['apps-games'];
+        }
+
         // Add some interactive elements
         document.addEventListener('DOMContentLoaded', function() {
             // Animate the error code
