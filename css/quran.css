@@ -87,6 +87,7 @@ body.quran-page {
     font-size: 3rem;
     color: #6F43FE;
     margin-bottom: 20px;
+    margin-top: 40px;
     font-weight: bold;
     animation: textGlow 2s ease-in-out infinite alternate;
 }
@@ -654,13 +655,14 @@ body.quran-page {
 /* Responsive design */
 @media (max-width: 768px) {
     .quran-content {
-        padding-top: 100px;
+        padding-top: 50px;
         padding-left: 15px;
         padding-right: 15px;
     }
     
     .quran-header h1 {
         font-size: 2.5rem;
+       
     }
     
     .quran-header p {
