@@ -50,13 +50,18 @@ body.personality-page .navbar {
     background-color: #415E72;
 }
 
+body.quran-page .navbar {
+    background-color: #6F43FE;
+}
+
 /* Override page-specific navbar backgrounds when navbar is open */
 body.video-tutorial-page .navbar.open,
 body.video-tutorials-page .navbar.open,
 body.pc-apps-games-page .navbar.open,
 body.website-page .navbar.open,
 body.home-page .navbar.open,
-body.personality-page .navbar.open {
+body.personality-page .navbar.open,
+body.quran-page .navbar.open {
     background: #ffff00 !important;
 }
 

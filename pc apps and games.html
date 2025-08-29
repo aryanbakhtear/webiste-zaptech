@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/bg7.css">
     <link rel="stylesheet" href="css/bg8.css">
     <link rel="stylesheet" href="css/bg9.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head >
 <body class="body pc-apps-games-page">
     <div class="navbar" id="navbar">
@@ -31,7 +32,14 @@
           <li><a href="website.html">Website</a></li>
           <li><a href="video-tutorial.html">Video Tutorial</a></li>
           <li><a href="pc apps and games.html">Pc Apps & Games</a></li>
-          <li><a href="personality.html">personality</a></li>
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-translate="navbar.tools">Tools</a>
+              <ul class="dropdown-menu">
+                  <li><a href="personality.html" data-translate="navbar.personality">Personality</a></li>
+                  <li><a href="quran.html" data-translate="navbar.quran">Quran</a></li>
+                  <li><a href="https://gemini.google.com/share/5c74decaacc7" target="_blank" data-translate="navbar.kurdishImageAI">Kurdish Image AI</a></li>
+              </ul>
+          </li>
           <li><a href="index.html#bg8">About Us</a></li>
           <li><a href="#" id="donate-btn">Donate $</a></li>
           <li><button class="language-switcher-btn" onclick="toggleLanguage()">کوردی</button></li>
@@ -71,11 +79,14 @@
                              <div class="card-header">
                                  <h3>Fastpay</h3>
                              </div>
-                             <div class="card-info">
-                                 <p class="phone-number clickable" onclick="copyToClipboard('+964750 901 91 66')">
-                                     <i class="fas fa-phone"></i> +964750 901 91 66
-                                 </p>
-                             </div>
+                                                        <div class="card-info">
+                               <p class="phone-number">+964750 901 91 66</p>
+                               <div class="card-actions">
+                                   <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                       <i class="fas fa-copy"></i> Copy
+                                   </button>
+                               </div>
+                           </div>
                          </div>
                      </div>
                      
@@ -86,11 +97,14 @@
                              <div class="card-header">
                                  <h3>FIB Bank</h3>
                              </div>
-                             <div class="card-info">
-                                 <p class="phone-number clickable" onclick="copyToClipboard('+964750 901 91 66')">
-                                     <i class="fas fa-phone"></i> +964750 901 91 66
-                                 </p>
-                             </div>
+                                                        <div class="card-info">
+                               <p class="phone-number">+964750 901 91 66</p>
+                               <div class="card-actions">
+                                   <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                       <i class="fas fa-copy"></i> Copy
+                                   </button>
+                               </div>
+                           </div>
                          </div>
                      </div>
                      
@@ -101,14 +115,18 @@
                              <div class="card-header">
                                  <h3>Qi Card</h3>
                              </div>
-                             <div class="card-info">
-                                 <p class="phone-number clickable" onclick="copyToClipboard('+964750 901 91 66')">
-                                     <i class="fas fa-phone"></i> +964750 901 91 66
-                                 </p>
-                                 <p class="card-number clickable" onclick="copyToClipboard('7111541806')">
-                                     <i class="fas fa-credit-card"></i> 71 11 54 18 06
-                                 </p>
-                             </div>
+                                                        <div class="card-info">
+                               <p class="phone-number">+964750 901 91 66</p>
+                               <p class="card-number">Card: 7111541806</p>
+                               <div class="card-actions">
+                                   <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                       <i class="fas fa-copy"></i> Copy Phone
+                                   </button>
+                                   <button class="copy-btn" onclick="copyToClipboard('7111541806')">
+                                       <i class="fas fa-copy"></i> Copy Card
+                                   </button>
+                               </div>
+                           </div>
                          </div>
                      </div>
                  </div>
@@ -166,25 +184,23 @@
       }
     }
 
-    // Copy to clipboard function
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(function() {
-        // Show success message
-        const element = event.target;
-        const originalText = element.textContent;
-        const originalColor = element.style.color;
-        
-        element.textContent = 'Copied!';
-        element.style.color = '#00A651';
-        
-        setTimeout(() => {
-          element.textContent = originalText;
-          element.style.color = originalColor;
-        }, 2000);
-      }).catch(function(err) {
-        console.error('Could not copy text: ', err);
-      });
-    }
+            // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Show success message
+                const button = event.target.closest('.copy-btn');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.style.background = '#00A651';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
     </script>
     
     <script>

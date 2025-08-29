@@ -28,6 +28,7 @@ async function loadTranslations() {
                     pcAppsGames: "Pc Apps & Games",
                     tools: "Tools",
                     personality: "Personality",
+                    quran: "Quran",
                     kurdishImageAI: "Kurdish Image AI",
                     aboutUs: "About Us",
                     donate: "Donate $"
@@ -52,6 +53,7 @@ async function loadTranslations() {
                     videoTutorial: "ڤیدیۆ تەڵەم",
                     pcAppsGames: "ئەپ و یاری کۆمپیوتەر",
                     personality: "کەسایەتی",
+                    quran: "قورئان",
                     aboutUs: "دەربارەی ئێمە",
                     donate: "پارە بدە $"
                 },
@@ -130,6 +132,9 @@ function updatePageLanguage() {
     // Update personality page
     updatePersonalityContent();
     
+    // Update Quran page
+    updateQuranContent();
+    
     // Update page title
     updatePageTitle();
     
@@ -168,6 +173,12 @@ function updateNavigation() {
     const personalityLink = document.querySelector('.dropdown-menu a[data-translate="navbar.personality"]');
     if (personalityLink) {
         personalityLink.textContent = getTranslation('nav.personality');
+    }
+    
+    // Update Quran link in dropdown
+    const quranLink = document.querySelector('.dropdown-menu a[data-translate="navbar.quran"]');
+    if (quranLink) {
+        quranLink.textContent = getTranslation('nav.quran');
     }
     
     // Update Kurdish Image AI link in dropdown
@@ -519,6 +530,249 @@ function updateDonateModal() {
     }
 }
 
+// Update Quran page content
+function updateQuranContent() {
+    console.log('Updating Quran content...');
+    console.log('Current language:', currentLanguage);
+    
+    // Update page title
+    const pageTitle = document.querySelector('title[data-translate="quran.pageTitle"]');
+    if (pageTitle) {
+        pageTitle.textContent = getTranslation('quran.pageTitle');
+    }
+    
+    // Update header content
+    const headerTitle = document.querySelector('h1[data-translate="quran.headerTitle"]');
+    if (headerTitle) {
+        headerTitle.textContent = getTranslation('quran.headerTitle');
+    }
+    
+    const headerDescription = document.querySelector('p[data-translate="quran.headerDescription"]');
+    if (headerDescription) {
+        headerDescription.textContent = getTranslation('quran.headerDescription');
+    }
+    
+    // Update gallery header
+    const galleryTitle = document.querySelector('h2[data-translate="quran.galleryTitle"]');
+    if (galleryTitle) {
+        galleryTitle.textContent = getTranslation('quran.galleryTitle');
+    }
+    
+    const galleryDescription = document.querySelector('p[data-translate="quran.galleryDescription"]');
+    if (galleryDescription) {
+        galleryDescription.textContent = getTranslation('quran.galleryDescription');
+    }
+    
+    // Update search placeholder
+    const searchInput = document.querySelector('input[data-translate-placeholder="quran.searchPlaceholder"]');
+    if (searchInput) {
+        searchInput.placeholder = getTranslation('quran.searchPlaceholder');
+    }
+    
+    // Update pagination buttons
+    const previousButton = document.querySelector('span[data-translate="quran.previousButton"]');
+    if (previousButton) {
+        previousButton.textContent = getTranslation('quran.previousButton');
+    }
+    
+    const nextButton = document.querySelector('span[data-translate="quran.nextButton"]');
+    if (nextButton) {
+        nextButton.textContent = getTranslation('quran.nextButton');
+    }
+    
+    // Update page info
+    const pageInfo = document.querySelector('span[data-translate="quran.pageInfo"]');
+    if (pageInfo) {
+        pageInfo.textContent = getTranslation('quran.pageInfo');
+    }
+    
+    // Update button titles
+    const randomBtn = document.querySelector('button[data-translate-title="quran.randomPlayTitle"]');
+    if (randomBtn) {
+        randomBtn.title = getTranslation('quran.randomPlayTitle');
+    }
+    
+    const stopBtn = document.querySelector('button[data-translate-title="quran.stopAllTitle"]');
+    if (stopBtn) {
+        stopBtn.title = getTranslation('quran.stopAllTitle');
+    }
+    
+    const volumeSlider = document.querySelector('input[data-translate-title="quran.volumeControlTitle"]');
+    if (volumeSlider) {
+        volumeSlider.title = getTranslation('quran.volumeControlTitle');
+    }
+    
+    // Update icon titles
+    const searchIcon = document.querySelector('i[data-translate-title="quran.searchIconTitle"]');
+    if (searchIcon) {
+        searchIcon.title = getTranslation('quran.searchIconTitle');
+    }
+    
+    const clearSearchBtn = document.querySelector('button[data-translate-title="quran.clearSearchTitle"]');
+    if (clearSearchBtn) {
+        clearSearchBtn.title = getTranslation('quran.clearSearchTitle');
+    }
+    
+    const volumeDownIcon = document.querySelector('i[data-translate-title="quran.volumeDownTitle"]');
+    if (volumeDownIcon) {
+        volumeDownIcon.title = getTranslation('quran.volumeDownTitle');
+    }
+    
+    const volumeUpIcon = document.querySelector('i[data-translate-title="quran.volumeUpTitle"]');
+    if (volumeUpIcon) {
+        volumeUpIcon.title = getTranslation('quran.volumeUpTitle');
+    }
+    
+    // Update all play icons in video gallery
+    const playIcons = document.querySelectorAll('i[data-translate-title="quran.playIconTitle"]');
+    playIcons.forEach(icon => {
+        icon.title = getTranslation('quran.playIconTitle');
+    });
+    
+    // Update pagination arrow icons
+    const prevArrowIcon = document.querySelector('i[data-translate-title="quran.previousArrowTitle"]');
+    if (prevArrowIcon) {
+        prevArrowIcon.title = getTranslation('quran.previousArrowTitle');
+    }
+    
+    const nextArrowIcon = document.querySelector('i[data-translate-title="quran.nextArrowTitle"]');
+    if (nextArrowIcon) {
+        nextArrowIcon.title = getTranslation('quran.nextArrowTitle');
+    }
+    
+    // Update control button icons
+    const randomIcon = document.querySelector('i[data-translate-title="quran.randomIconTitle"]');
+    if (randomIcon) {
+        randomIcon.title = getTranslation('quran.randomIconTitle');
+    }
+    
+    const stopIcon = document.querySelector('i[data-translate-title="quran.stopIconTitle"]');
+    if (stopIcon) {
+        stopIcon.title = getTranslation('quran.stopIconTitle');
+    }
+    
+    // Update pagination button titles
+    const prevBtn = document.querySelector('button[data-translate-title="quran.previousArrowTitle"]');
+    if (prevBtn) {
+        prevBtn.title = getTranslation('quran.previousArrowTitle');
+    }
+    
+    const nextBtn = document.querySelector('button[data-translate-title="quran.nextArrowTitle"]');
+    if (nextBtn) {
+        nextBtn.title = getTranslation('quran.nextArrowTitle');
+    }
+    
+    // Update additional section content
+    const additionalSectionTitle = document.querySelector('h2[data-translate="quran.additionalSectionTitle"]');
+    if (additionalSectionTitle) {
+        additionalSectionTitle.textContent = getTranslation('quran.additionalSectionTitle');
+    }
+    
+    const additionalSectionDescription = document.querySelector('p[data-translate="quran.additionalSectionDescription"]');
+    if (additionalSectionDescription) {
+        additionalSectionDescription.textContent = getTranslation('quran.additionalSectionDescription');
+    }
+    
+    const downloadTitle = document.querySelector('h3[data-translate="quran.downloadTitle"]');
+    if (downloadTitle) {
+        downloadTitle.textContent = getTranslation('quran.downloadTitle');
+    }
+    
+    const downloadDescription = document.querySelector('p[data-translate="quran.downloadDescription"]');
+    if (downloadDescription) {
+        downloadDescription.textContent = getTranslation('quran.downloadDescription');
+    }
+    
+    // Update feature list items
+    const feature1 = document.querySelector('span[data-translate="quran.feature1"]');
+    if (feature1) {
+        feature1.textContent = getTranslation('quran.feature1');
+    }
+    
+    const feature2 = document.querySelector('span[data-translate="quran.feature2"]');
+    if (feature2) {
+        feature2.textContent = getTranslation('quran.feature2');
+    }
+    
+    const feature3 = document.querySelector('span[data-translate="quran.feature3"]');
+    if (feature3) {
+        feature3.textContent = getTranslation('quran.feature3');
+    }
+    
+    const feature4 = document.querySelector('span[data-translate="quran.feature4"]');
+    if (feature4) {
+        feature4.textContent = getTranslation('quran.feature4');
+    }
+    
+    // Update download button and note
+    const downloadButtonText = document.querySelector('span[data-translate="quran.downloadButtonText"]');
+    if (downloadButtonText) {
+        downloadButtonText.textContent = getTranslation('quran.downloadButtonText');
+    }
+    
+    const downloadNote = document.querySelector('p[data-translate="quran.downloadNote"]');
+    if (downloadNote) {
+        downloadNote.textContent = getTranslation('quran.downloadNote');
+    }
+    
+    // Update font family based on language
+    const additionalSection = document.querySelector('.additional-quran-section');
+    if (additionalSection) {
+        if (currentLanguage === 'ku') {
+            additionalSection.style.fontFamily = "'K24', Arial, sans-serif";
+        } else {
+            additionalSection.style.fontFamily = "'Arial', sans-serif";
+        }
+    }
+    
+    // Ensure Font Awesome icons are properly rendered after language switch
+    ensureQuranIconsRendered();
+    
+    // Call the page's icon initialization if it exists
+    if (typeof initializeIcons === 'function') {
+        setTimeout(() => {
+            initializeIcons();
+        }, 100);
+    }
+}
+
+// Function to ensure Font Awesome icons are properly rendered in Quran page
+function ensureQuranIconsRendered() {
+    // Force re-render of Font Awesome icons
+    const icons = document.querySelectorAll('.fas, .fa, .fab, .far');
+    icons.forEach(icon => {
+        // Remove and re-add the class to force re-render
+        const iconClass = icon.className;
+        icon.className = '';
+        setTimeout(() => {
+            icon.className = iconClass;
+        }, 10);
+    });
+    
+    // Also ensure the icon elements have the correct Font Awesome classes
+    const iconElements = {
+        'searchIcon': 'fas fa-search',
+        'clearSearchIcon': 'fas fa-times',
+        'randomIcon': 'fas fa-random',
+        'stopIcon': 'fas fa-stop',
+        'volumeDownIcon': 'fas fa-volume-down',
+        'volumeUpIcon': 'fas fa-volume-up',
+        'prevArrowIcon': 'fas fa-chevron-left',
+        'nextArrowIcon': 'fas fa-chevron-right',
+        'playIcon': 'fas fa-play'
+    };
+    
+    Object.entries(iconElements).forEach(([key, iconClass]) => {
+        const element = document.querySelector(`[data-translate-title*="${key}"]`) || 
+                       document.querySelector(`.${key}`) ||
+                       document.querySelector(`#${key}`);
+        
+        if (element && !element.className.includes('fas')) {
+            element.className = iconClass + ' ' + element.className;
+        }
+    });
+}
+
 // Update personality page content
 function updatePersonalityContent() {
     console.log('Updating personality content...');
@@ -647,6 +901,9 @@ function updatePageTitle() {
             break;
         case 'personality.html':
             title = 'Personality Test - Zap Tech';
+            break;
+        case 'quran.html':
+            title = getTranslation('quran.pageTitle');
             break;
         default:
             title = 'Zap Tech';
@@ -896,4 +1153,10 @@ window.updateWebsiteCards = function() {
 window.updatePersonalityPage = function() {
     console.log('Manual personality page update called');
     updatePersonalityContent();
+};
+
+// Manual function to update Quran page specifically
+window.updateQuranPage = function() {
+    console.log('Manual Quran page update called');
+    updateQuranContent();
 }; 
