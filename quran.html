@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="quran.pageTitle">Quran - Zap Tech</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="shortcut icon" type="image/png" href="/images/logo.png">
+    <link rel="stylesheet" href="/css/quran.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="quran-page">
+    <div class="navbar" id="navbar">
+        <div class="logo-container">
+            <img src="/images/logo.png" alt="LOGO OF WEBSITE" class="logo">
+        </div>
+        <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation">
+            <span class="navbar-toggle-icon" style="font-weight: bold; background-color: #6F43FE; padding: 8px;">&#9776;</span>
+            <span class="navbar-toggle-close">&times;</span>
+        </button>
+        <div class="navbar-left">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="website.html">Website</a></li>
+                <li><a href="video-tutorial.html">Video Tutorial</a></li>
+                <li><a href="pc apps and games.html">Pc Apps & Games</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-translate="navbar.tools">Tools</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="personality.html" data-translate="navbar.personality">Personality</a></li>
+                        <li><a href="quran.html" data-translate="navbar.quran">Quran</a></li>
+                        <li><a href="https://gemini.google.com/share/5c74decaacc7" target="_blank" data-translate="navbar.kurdishImageAI">Kurdish Image AI</a></li>
+                    </ul>
+                </li>
+                <li><a href="#bg8">About Us</a></li>
+                <li><a href="#" id="donate-btn">Donate $</a></li>
+                <li><button class="language-switcher-btn" onclick="toggleLanguage()">کوردی</button></li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-blur-bg"></div>
+
+    <div class="quran-content">
+        <div class="quran-header">
+            <h1 data-translate="quran.headerTitle">Quran Kareem</h1>
+            <p data-translate="quran.headerDescription">listen to Quran recitation</p>
+        </div>
+        
+        <div class="quran-tools">
+            <div class="tool-card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/JZ2E-ZTol-Y?enablejsapi=1&version=3&playerapiid=ytplayer" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            id="video1">
+                    </iframe>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dAxWOEqDNbU?enablejsapi=1&version=3&playerapiid=ytplayer" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            id="video2">
+                    </iframe>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/WEvuj0axfhU?enablejsapi=1&version=3&playerapiid=ytplayer" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            id="video3">
+                    </iframe>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/DJu0_IrLTXU?enablejsapi=1&version=3&playerapiid=ytplayer" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            id="video4">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="control-group">
+                <button class="control-btn random-btn" id="randomBtn" title="Random Play" data-translate-title="quran.randomPlayTitle">
+                    <i class="fas fa-random" data-translate-title="quran.randomIconTitle" title="Play random video"></i>
+                </button>
+                <button class="control-btn stop-btn" id="stopBtn" title="Stop All" data-translate-title="quran.stopAllTitle">
+                    <i class="fas fa-stop" data-translate-title="quran.stopIconTitle" title="Stop all videos"></i>
+                </button>
+            </div>
+            
+            <div class="volume-control">
+                <i class="fas fa-volume-down volume-icon" data-translate-title="quran.volumeDownTitle" title="Volume Down"></i>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50" title="Volume Control" data-translate-title="quran.volumeControlTitle">
+                <i class="fas fa-volume-up volume-icon" data-translate-title="quran.volumeUpTitle" title="Volume Up"></i>
+            </div>
+        </div>
+
+     
+     
+
+        <!-- Video Gallery Section -->
+        <div class="video-gallery-section">
+            <div class="gallery-header">
+                <h2 data-translate="quran.galleryTitle">Complete Quran Recitation Collection</h2>
+                <p data-translate="quran.galleryDescription">114 videos of complete Quran recitation with beautiful voice and proper tajweed</p>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon" data-translate-title="quran.searchIconTitle" title="Search" aria-label="Search"></i>
+                    <input type="text" id="searchInput" placeholder="Search for surah (e.g., Al-Fatiha, Al-Baqarah, 001, 002...)" class="search-input" data-translate-placeholder="quran.searchPlaceholder">
+                    <button id="clearSearch" class="clear-search-btn" data-translate-title="quran.clearSearchTitle" title="Clear search">
+                        <i class="fas fa-times" aria-label="Clear search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="video-gallery" id="videoGallery">
+                <!-- Videos will be populated by JavaScript -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="pagination-btn" id="prevBtn" disabled data-translate-title="quran.previousArrowTitle" title="Go to previous page">
+                    <i class="fas fa-chevron-left" data-translate-title="quran.previousArrowTitle" title="Go to previous page"></i> <span data-translate="quran.previousButton">Previous</span>
+                </button>
+                <div class="page-info">
+                    <span id="currentPage">1</span> <span data-translate="quran.pageInfo">of</span> <span id="totalPages">10</span>
+                </div>
+                <button class="pagination-btn" id="nextBtn" data-translate-title="quran.nextArrowTitle" title="Go to next page">
+                    <span data-translate="quran.nextButton">Next</span> <i class="fas fa-chevron-right" data-translate-title="quran.nextArrowTitle" title="Go to next page"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Additional Quran Collection Section (Bilingual) -->
+        <div class="additional-quran-section">
+            <div class="section-header">
+                <h2 data-translate="quran.additionalSectionTitle">Complete Quran Recitation Collection</h2>
+                <p data-translate="quran.additionalSectionDescription">Quran Tafsir in Kurdish - All 114 Surahs</p>
+            </div>
+            <div class="section-content">
+                <div class="download-section">
+                    <div class="download-info">
+                        <a class="download-icon" href="https://drive.google.com/drive/folders/1TbCU1iFJAM17L_Cm9t1i4laLfIWAeUpL?usp=drive_link" target="_blank" title="Download Quran Tafsir">
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <div class="download-text">
+                            <h3 data-translate="quran.downloadTitle">Download Quran Tafsir</h3>
+                            <p data-translate="quran.downloadDescription">You can download all Quran surahs with Kurdish tafsir</p>
+                            <ul class="features-list">
+                                <li><i class="fas fa-check"></i> <span data-translate="quran.feature1">114 Pure and Holy Surahs</span></li>
+                                <li><i class="fas fa-check"></i> <span data-translate="quran.feature2">Tafsir in Kurdish</span></li>
+                                <li><i class="fas fa-check"></i> <span data-translate="quran.feature3">Beautiful and Clear Voice</span></li>
+                                <li><i class="fas fa-check"></i> <span data-translate="quran.feature4">MP3 Files</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="download-action">
+                        <a href="https://drive.google.com/drive/folders/1TbCU1iFJAM17L_Cm9t1i4laLfIWAeUpL?usp=sharing" 
+                           target="_blank" 
+                           class="download-btn">
+                            <i class="fas fa-cloud-download-alt"></i>
+                            <span data-translate="quran.downloadButtonText">Download Quran Tafsir</span>
+                        </a>
+                        <p class="download-note" data-translate="quran.downloadNote">Click to open Google Drive folder</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/java script/navbar.js"></script>
+    <script src="/java script/language-switcher.js"></script>
+    
+    <!-- YouTube API and Video Controls -->
+    <script>
+        // YouTube API setup
+        let tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        let firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        let players = [];
+        let currentPlayingIndex = -1;
+
+        // Initialize YouTube players when API is ready
+        function onYouTubeIframeAPIReady() {
+            const videoIds = ['JZ2E-ZTol-Y', 'dAxWOEqDNbU', 'WEvuj0axfhU', 'DJu0_IrLTXU'];
+            
+            videoIds.forEach((videoId, index) => {
+                players[index] = new YT.Player(`video${index + 1}`, {
+                    height: '200',
+                    width: '100%',
+                    videoId: videoId,
+                    playerVars: {
+                        'playsinline': 1,
+                        'controls': 1,
+                        'rel': 0
+                    },
+                    events: {
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            });
+        }
+
+        // Handle player state changes
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                // Stop other videos when one starts playing
+                players.forEach((player, index) => {
+                    if (player !== event.target && player.getPlayerState() === YT.PlayerState.PLAYING) {
+                        player.pauseVideo();
+                    }
+                });
+                
+                // Update current playing index
+                currentPlayingIndex = players.indexOf(event.target);
+            }
+        }
+
+        // Random play functionality
+        document.getElementById('randomBtn').addEventListener('click', function() {
+            const randomIndex = Math.floor(Math.random() * players.length);
+            
+            // Stop current video if playing
+            if (currentPlayingIndex !== -1 && players[currentPlayingIndex].getPlayerState() === YT.PlayerState.PLAYING) {
+                players[currentPlayingIndex].pauseVideo();
+            }
+            
+            // Play random video
+            players[randomIndex].playVideo();
+            currentPlayingIndex = randomIndex;
+            
+            // Add visual feedback
+            this.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+            setTimeout(() => {
+                this.style.background = 'rgba(255, 255, 255, 0.2)';
+            }, 500);
+        });
+
+        // Stop all videos functionality
+        document.getElementById('stopBtn').addEventListener('click', function() {
+            players.forEach(player => {
+                if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+                    player.pauseVideo();
+                }
+            });
+            currentPlayingIndex = -1;
+            
+            // Add visual feedback
+            this.style.background = 'linear-gradient(135deg, #f44336, #da190b)';
+            setTimeout(() => {
+                this.style.background = 'rgba(255, 255, 255, 0.2)';
+            }, 500);
+        });
+
+        // Volume control functionality
+        document.getElementById('volumeSlider').addEventListener('input', function() {
+            const volume = this.value;
+            players.forEach(player => {
+                if (player && player.setVolume) {
+                    player.setVolume(volume);
+                }
+            });
+            
+            // Update volume icons
+            const volumeIcons = document.querySelectorAll('.volume-icon');
+            if (volume == 0) {
+                volumeIcons[0].className = 'fas fa-volume-mute volume-icon';
+                volumeIcons[0].setAttribute('data-translate-title', 'quran.volumeMuteTitle');
+                volumeIcons[0].title = typeof getTranslation === 'function' ? getTranslation('quran.volumeMuteTitle') : 'Mute';
+                volumeIcons[1].className = 'fas fa-volume-mute volume-icon';
+                volumeIcons[1].setAttribute('data-translate-title', 'quran.volumeMuteTitle');
+                volumeIcons[1].title = typeof getTranslation === 'function' ? getTranslation('quran.volumeMuteTitle') : 'Mute';
+            } else if (volume < 50) {
+                volumeIcons[0].className = 'fas fa-volume-down volume-icon';
+                volumeIcons[0].setAttribute('data-translate-title', 'quran.volumeDownTitle');
+                volumeIcons[0].title = typeof getTranslation === 'function' ? getTranslation('quran.volumeDownTitle') : 'Volume Down';
+                volumeIcons[1].className = 'fas fa-volume-up volume-icon';
+                volumeIcons[1].setAttribute('data-translate-title', 'quran.volumeUpTitle');
+                volumeIcons[1].title = typeof getTranslation === 'function' ? getTranslation('quran.volumeUpTitle') : 'Volume Up';
+            } else {
+                volumeIcons[0].className = 'fas fa-volume-down volume-icon';
+                volumeIcons[0].setAttribute('data-translate-title', 'quran.volumeDownTitle');
+                volumeIcons[0].title = typeof getTranslation === 'function' ? getTranslation('quran.volumeDownTitle') : 'Volume Down';
+                volumeIcons[1].className = 'fas fa-volume-up volume-icon';
+                volumeIcons[1].setAttribute('data-translate-title', 'quran.volumeUpTitle');
+                volumeIcons[1].title = typeof getTranslation === 'function' ? getTranslation('quran.volumeUpTitle') : 'Volume Up';
+            }
+        });
+
+        // Initialize volume to 50%
+        window.addEventListener('load', function() {
+            const volumeSlider = document.getElementById('volumeSlider');
+            volumeSlider.value = 50;
+            volumeSlider.dispatchEvent(new Event('input'));
+            
+            // Update search placeholder based on current language
+            if (typeof getTranslation === 'function') {
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.placeholder = getTranslation('quran.searchPlaceholder');
+                }
+                
+                // Update icon titles on load
+                const searchIcon = document.querySelector('i[data-translate-title="quran.searchIconTitle"]');
+                if (searchIcon) {
+                    searchIcon.title = getTranslation('quran.searchIconTitle');
+                }
+                
+                const clearSearchBtn = document.querySelector('button[data-translate-title="quran.clearSearchTitle"]');
+                if (clearSearchBtn) {
+                    clearSearchBtn.title = getTranslation('quran.clearSearchTitle');
+                }
+                
+                const volumeDownIcon = document.querySelector('i[data-translate-title="quran.volumeDownTitle"]');
+                if (volumeDownIcon) {
+                    volumeDownIcon.title = getTranslation('quran.volumeDownTitle');
+                }
+                
+                const volumeUpIcon = document.querySelector('i[data-translate-title="quran.volumeUpTitle"]');
+                if (volumeUpIcon) {
+                    volumeUpIcon.title = getTranslation('quran.volumeUpTitle');
+                }
+                
+                // Update pagination arrow icons
+                const prevArrowIcon = document.querySelector('i[data-translate-title="quran.previousArrowTitle"]');
+                if (prevArrowIcon) {
+                    prevArrowIcon.title = getTranslation('quran.previousArrowTitle');
+                }
+                
+                const nextArrowIcon = document.querySelector('i[data-translate-title="quran.nextArrowTitle"]');
+                if (nextArrowIcon) {
+                    nextArrowIcon.title = getTranslation('quran.nextArrowTitle');
+                }
+                
+                // Update control button icons
+                const randomIcon = document.querySelector('i[data-translate-title="quran.randomIconTitle"]');
+                if (randomIcon) {
+                    randomIcon.title = getTranslation('quran.randomIconTitle');
+                }
+                
+                const stopIcon = document.querySelector('i[data-translate-title="quran.stopIconTitle"]');
+                if (stopIcon) {
+                    stopIcon.title = getTranslation('quran.stopIconTitle');
+                }
+                
+                // Update pagination button titles
+                const prevBtn = document.querySelector('button[data-translate-title="quran.previousArrowTitle"]');
+                if (prevBtn) {
+                    prevBtn.title = getTranslation('quran.previousArrowTitle');
+                }
+                
+                const nextBtn = document.querySelector('button[data-translate-title="quran.nextArrowTitle"]');
+                if (nextBtn) {
+                    nextBtn.title = getTranslation('quran.nextArrowTitle');
+                }
+            }
+            
+            // Ensure Font Awesome icons are properly rendered
+            ensureIconsRendered();
+            
+            // Initialize icons with more robust method
+            initializeIcons();
+        });
+        
+        // Function to ensure Font Awesome icons are properly rendered
+        function ensureIconsRendered() {
+            // Force re-render of Font Awesome icons
+            const icons = document.querySelectorAll('.fas, .fa, .fab, .far');
+            icons.forEach(icon => {
+                // Remove and re-add the class to force re-render
+                const iconClass = icon.className;
+                icon.className = '';
+                setTimeout(() => {
+                    icon.className = iconClass;
+                }, 10);
+            });
+        }
+        
+        // More robust icon initialization
+        function initializeIcons() {
+            // Wait for Font Awesome to load
+            if (typeof FontAwesome !== 'undefined') {
+                FontAwesome.dom.i2svg();
+            }
+            
+            // Force icon re-render
+            setTimeout(() => {
+                ensureIconsRendered();
+            }, 100);
+            
+            // Check if icons are visible, if not, try to reload Font Awesome
+            const testIcon = document.querySelector('.fas');
+            if (testIcon && testIcon.offsetWidth === 0) {
+                // Icons not visible, try to reload Font Awesome
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
+                document.head.appendChild(link);
+                
+                setTimeout(() => {
+                    ensureIconsRendered();
+                }, 200);
+            }
+            
+            // Debug: Check icon status
+            checkIconStatus();
+        }
+        
+        // Function to check icon status
+        function checkIconStatus() {
+            const icons = document.querySelectorAll('.fas, .fa, .fab, .far');
+            console.log(`Found ${icons.length} Font Awesome icons`);
+            
+            icons.forEach((icon, index) => {
+                const isVisible = icon.offsetWidth > 0 && icon.offsetHeight > 0;
+                const hasContent = icon.textContent.trim() === '';
+                console.log(`Icon ${index + 1}:`, {
+                    element: icon,
+                    classes: icon.className,
+                    isVisible: isVisible,
+                    hasContent: hasContent,
+                    width: icon.offsetWidth,
+                    height: icon.offsetHeight
+                });
+            });
+        }
+
+        // Video Gallery functionality
+        const videoUrls = [
+            '4Rav-UjpsQk', 'd983a3lmje4', 'FJi_5hKqXtU', 'ZYrcJtqV7FA', 'Mx_T0RRXiFc',
+            'xiXjqDezB8E', '6dxU7AxAOVs', 'a2uAiijV5Kw', 'prF8QBA9e3Y', '62bKghu_7a0',
+            'EYKC699T9kg', 'fsTydB7LgvA', 'Qh-z-QjPQ6g', 'tfERE33SjlQ', 'uRMBaFhDGyQ',
+            'NGIcsp7xrFc', 'EF2v4feD9FE', 'avFTT8t67yw', 'xh_VTNofpjk', 'xID1iXXROoY',
+            'ablXGjykhfc', '-ZqSJuZBjqw', 'kqlBBvgma44', 'RkYFoTVfqKc', 'TlEz404DN18',
+            'F05_m0NXCVo', 'lKg63bwnpzQ', 'OKhH7PiLmIk', 'EQhfuGlgF1w', 'vHTplni_1r0',
+            'iFGc2QFwH3c', '3G_zhPhHtWw', 'kcqZOYzj84w', 'mORAkzoh0iA', '9wF1vFf9mgE',
+            'PVbmmTprI-w', 'unjP8-7VaIk', 'qM8ZBrHt6H8', 'gh77y5aUR9Q', 'a9kSP2105ko',
+            '4kA8uJfYZnw', 'DiEq5wdSnUA', '-MZ-iRae5cw', 'W9hFpefdvcg', 'OQMlW0buW04',
+            'aqNo_ILZe-Q', 'd5ZGLdduTxg', 'SbcCap2qU48', '0Y0q4rHgscY', '5W2nPipyF6A',
+            'oZ8Dgo1QvC0', 'vAmTs94JnaQ', '4aEmlRsK0XU', 'oq-9qInke0c', 'bX5-xHwiThY',
+            'pUBs3GNw0o0', 'wJGt5KRlmw0', 'r-hKUF2gQbc', 'gZgNrfEcFiA', '9AgthBxO0vs',
+            '40zr_dHqREg', 'ZFTjJI_y2mQ', 'fUKEn_MWxRc', 'iSMuewDqRIE', 'HizkvBGFfhg',
+            '5ytNWaIKyYA', 'ZA17ooEQTG4', 'vHrRNQJtxCY', 'IJyr-k5f3Wg', 'y8bI2X9YSZs',
+            'Fs1otqjR0is', 'aw6r4CNiYGw', 'QoG2scVSx4A', '_favehRpg40', 'VsM4_nPrMVc',
+            'qqdVH88_Kys', '8--BR1NM7fY', 'gLr_vY6m3QU', 'nzPakOnwkHc', 'Di2h5DKAaD4',
+            'cWXXvJRbQA4', 'B4sxBt5KAwY', 'JgpNMwVhR9s', '8EPYpNlqvcc', '8L1eSsBmk8E',
+            '2FilRNBQPdw', 'ncFLjU0qP7k', 'Q78JFBdtgFo', 'XWCD9gx25qA', 'qDJ5mIMZcA8',
+            'KjXFTbit8_s', 'NvXHYSNlWAk', 'wYpIpHD_s9A', 'Ddt6irWHIKk', 'YPZgX83XgQ8',
+            'WwFCEOx1_AM', 'A_I7cRu0JOM', 'BXU2FLyX7T4', '-3fslgq9Mw8', 'MNDuk34j7zs',
+            'yrmqSoF1rk4', 'yjzjHWcJQIw', '533rJO8RqAg', 'Tpn54pCFSPk', 'RwysuOz5Xc0',
+            'uxuNarKeEak', '5udqMQPSQqU', 'eiCXBu_4AeA', 'aLO5Z6ZPSeY', 't3QF080YFI8',
+            'lAN0UlB8YB8', 'eLMnJlKusEg', 'q7JLSuiKBtI', 't2wTMHHZXn4', '-aOJVTgmNSk',
+            'rz61BiAve6k'
+        ];
+
+        // Surah names and information
+        const surahInfo = [
+            { number: '001', name: 'Al-Fatiha', arabic: 'الفاتحة', kurdish: 'تەفسیری قورئان بە کوردی الفاتیحە' },
+            { number: '002', name: 'Al-Baqarah', arabic: 'البقرة', kurdish: 'تەفسیری قورئان بە کوردی البقرە' },
+            { number: '003', name: 'Al-Imran', arabic: 'آل عمران', kurdish: 'ته فسيري قورئان به كوردي عمران' },
+            { number: '005', name: 'An-Nisa', arabic: 'النساء', kurdish: 'ته فسيري قورئان به كوردي نسا' },
+            { number: '006', name: 'Al-Maidah', arabic: 'المائدة', kurdish: 'ته فسيري قورئان به كوردي المائدە' },
+            { number: '007', name: 'Al-Anam', arabic: 'الأنعام', kurdish: 'ته فسيري قورئان به كوردي الانعام' },
+            { number: '008', name: 'Al-Araf', arabic: 'الأعراف', kurdish: 'ته فسيري قورئان به كوردي الاعراف' },
+            { number: '009', name: 'Al-Anfal', arabic: 'الأنفال', kurdish: 'ته فسيري قورئان به كوردي الانفال' },
+            { number: '010', name: 'At-Tawbah', arabic: 'التوبة', kurdish: 'ته فسيري قورئان به كوردي التوبه' },
+            { number: '011', name: 'Hud', arabic: 'هود', kurdish: 'ته فسيري قورئان به كوردي هود' },
+            { number: '012', name: 'Yusuf', arabic: 'يوسف', kurdish: 'ته فسيري قورئان به كوردي یوسف' },
+            { number: '013', name: 'Ar-Rad', arabic: 'الرعد', kurdish: 'ته فسيري قورئان به كوردي الرعد' },
+            { number: '014', name: 'Ibrahim', arabic: 'إبراهيم', kurdish: 'ته فسيري قورئان به كوردي ابراهیم' },
+            { number: '015', name: 'Al-Hijr', arabic: 'الحجر', kurdish: 'ته فسيري قورئان به كوردي الحجر' },
+            { number: '016', name: 'An-Nahl', arabic: 'النحل', kurdish: 'ته فسيري قورئان به كوردي النحل' },
+            { number: '017', name: 'Al-Isra', arabic: 'الإسراء', kurdish: 'ته فسيري قورئان به كوردي الاسراء' },
+            { number: '018', name: 'Al-Kahf', arabic: 'الكهف', kurdish: 'ته فسيري قورئان به كوردي الكهف' },
+            { number: '019', name: 'Maryam', arabic: 'مريم', kurdish: 'ته فسيري قورئان به كوردي مريم' },
+            { number: '020', name: 'Ta-Ha', arabic: 'طه', kurdish: 'ته فسيري قورئان به كوردي طه' },
+            { number: '021', name: 'Al-Anbiya', arabic: 'الأنبياء', kurdish: 'ته فسيري قورئان به كوردي الانبياء' },
+            { number: '022', name: 'Al-Hajj', arabic: 'الحج', kurdish: 'ته فسيري قورئان به كوردي الحج' },
+            { number: '023', name: 'Al-Muminun', arabic: 'المؤمنون', kurdish: 'ته فسيري قورئان به كوردي المؤمنون' },
+            { number: '024', name: 'An-Nur', arabic: 'النور', kurdish: 'ته فسيري قورئان به كوردي النور' },
+            { number: '025', name: 'Al-Furqan', arabic: 'الفرقان', kurdish: 'ته فسيري قورئان به كوردي الفرقان' },
+            { number: '026', name: 'Ash-Shuara', arabic: 'الشعراء', kurdish: 'ته فسيري قورئان به كوردي الشعراء' },
+            { number: '027', name: 'An-Naml', arabic: 'النمل', kurdish: 'ته فسيري قورئان به كوردي النمل' },
+            { number: '028', name: 'Al-Qasas', arabic: 'القصص', kurdish: 'ته فسيري قورئان به كوردي القصص' },
+            { number: '029', name: 'Al-Ankabut', arabic: 'العنكبوت', kurdish: 'ته فسيري قورئان به كوردي العنكبوت' },
+            { number: '030', name: 'Ar-Rum', arabic: 'الروم', kurdish: 'ته فسيري قورئان به كوردي الروم' },
+            { number: '031', name: 'Luqman', arabic: 'لقمان', kurdish: 'ته فسيري قورئان به كوردي لقمان' },
+            { number: '032', name: 'As-Sajdah', arabic: 'السجدة', kurdish: 'ته فسيري قورئان به كوردي السجدة' },
+            { number: '033', name: 'Al-Ahzab', arabic: 'الأحزاب', kurdish: 'ته فسيري قورئان به كوردي الاحزاب' },
+            { number: '034', name: 'Saba', arabic: 'سبأ', kurdish: 'ته فسيري قورئان به كوردي سبا' },
+            { number: '035', name: 'Fatir', arabic: 'فاطر', kurdish: 'ته فسيري قورئان به كوردي فاطر' },
+            { number: '036', name: 'Ya-Sin', arabic: 'يس', kurdish: 'ته فسيري قورئان به كوردي يس' },
+            { number: '037', name: 'As-Saffat', arabic: 'الصافات', kurdish: 'ته فسيري قورئان به كوردي الصافات' },
+            { number: '038', name: 'Sad', arabic: 'ص', kurdish: 'ته فسيري قورئان به كوردي صاد' },
+            { number: '039', name: 'Az-Zumar', arabic: 'الزمر', kurdish: 'ته فسيري قورئان به كوردي الزمر' },
+            { number: '040', name: 'Ghafir', arabic: 'غافر', kurdish: 'ته فسيري قورئان به كوردي غافر' },
+            { number: '041', name: 'Fussilat', arabic: 'فصلت', kurdish: 'ته فسيري قورئان به كوردي فصلت' },
+            { number: '042', name: 'Ash-Shura', arabic: 'الشورى', kurdish: 'ته فسيري قورئان به كوردي الشورى' },
+            { number: '043', name: 'Az-Zukhruf', arabic: 'الزخرف', kurdish: 'ته فسيري قورئان به كوردي الزخرف' },
+            { number: '044', name: 'Ad-Dukhan', arabic: 'الدخان', kurdish: 'ته فسيري قورئان به كوردي الدخان' },
+            { number: '045', name: 'Al-Jathiyah', arabic: 'الجاثية', kurdish: 'ته فسيري قورئان به كوردي الجاثية' },
+            { number: '046', name: 'Al-Ahqaf', arabic: 'الأحقاف', kurdish: 'ته فسيري قورئان به كوردي الاخقاف' },
+            { number: '047', name: 'Muhammad', arabic: 'محمد', kurdish: 'ته فسيري قورئان به كوردي محمد' },
+            { number: '048', name: 'Al-Fath', arabic: 'الفتح', kurdish: 'ته فسيري قورئان به كوردي الفتح' },
+            { number: '049', name: 'Al-Hujurat', arabic: 'الحجرات', kurdish: 'ته فسيري قورئان به كوردي الحجرات' },
+            { number: '050', name: 'Qaf', arabic: 'ق', kurdish: 'ته فسيري قورئان به كوردي ق' },
+            { number: '051', name: 'Adh-Dhariyat', arabic: 'الذاريات', kurdish: 'ته فسيري قورئان به كوردي الذاريات' },
+            { number: '052', name: 'At-Tur', arabic: 'الطور', kurdish: 'ته فسيري قورئان به كوردي الطور' },
+            { number: '053', name: 'An-Najm', arabic: 'النجم', kurdish: 'ته فسيري قورئان به كوردي النجم' },
+            { number: '054', name: 'Al-Qamar', arabic: 'القمر', kurdish: 'ته فسيري قورئان به كوردي القمر' },
+            { number: '055', name: 'Ar-Rahman', arabic: 'الرحمن', kurdish: 'ته فسيري قورئان به كوردي الرحمن' },
+            { number: '056', name: 'Al-Waqiah', arabic: 'الواقعة', kurdish: 'ته فسيري قورئان به كوردي الواقعة' },
+            { number: '057', name: 'Al-Hadid', arabic: 'الحديد', kurdish: 'ته فسيري قورئان به كوردي الحديد' },
+            { number: '058', name: 'Al-Mujadila', arabic: 'المجادلة', kurdish: 'ته فسيري قورئان به كوردي المجادلة' },
+            { number: '059', name: 'Al-Hashr', arabic: 'الحشر', kurdish: 'ته فسيري قورئان به كوردي الحشر' },
+            { number: '060', name: 'Al-Mumtahanah', arabic: 'الممتحنة', kurdish: 'ته فسيري قورئان به كوردي الممتحنة' },
+            { number: '061', name: 'As-Saff', arabic: 'الصف', kurdish: 'ته فسيري قورئان به كوردي الصف' },
+            { number: '062', name: 'Al-Jumuah', arabic: 'الجمعة', kurdish: 'ته فسيري قورئان به كوردي الجمعة' },
+            { number: '063', name: 'Al-Munafiqun', arabic: 'المنافقون', kurdish: 'ته فسيري قورئان به كوردي المنافقون' },
+            { number: '064', name: 'At-Taghabun', arabic: 'التغابن', kurdish: 'ته فسيري قورئان به كوردي التغابن' },
+            { number: '065', name: 'At-Talaq', arabic: 'الطلاق', kurdish: 'ته فسيري قورئان به كوردي الطلاق' },
+            { number: '066', name: 'At-Tahrim', arabic: 'التحريم', kurdish: 'ته فسيري قورئان به كوردي التحريم' },
+            { number: '067', name: 'Al-Mulk', arabic: 'الملك', kurdish: 'ته فسيري قورئان به كوردي الملك' },
+            { number: '068', name: 'Al-Qalam', arabic: 'القلم', kurdish: 'ته فسيري قورئان به كوردي القلم' },
+            { number: '069', name: 'Al-Haqqah', arabic: 'الحاقة', kurdish: 'ته فسيري قورئان به كوردي الحاقة' },
+            { number: '070', name: 'Al-Miharj', arabic: 'المحارج', kurdish: 'ته فسيري قورئان به كوردي المحارج' },
+            { number: '071', name: 'Nuh', arabic: 'نوح', kurdish: 'ته فسيري قورئان به كوردي نوح' },
+            { number: '072', name: 'Al-Jinn', arabic: 'الجن', kurdish: 'ته فسيري قورئان به كوردي الجن' },
+            { number: '073', name: 'Al-Muzzammil', arabic: 'المزمل', kurdish: 'ته فسيري قورئان به كوردي المزمل' },
+            { number: '074', name: 'Al-Muddaththir', arabic: 'المدثر', kurdish: 'ته فسيري قورئان به كوردي المدثر' },
+            { number: '075', name: 'Al-Qiyamah', arabic: 'القيامة', kurdish: 'ته فسيري قورئان به كوردي القيامة' },
+            { number: '076', name: 'Al-Insan', arabic: 'الإنسان', kurdish: 'ته فسيري قورئان به كوردي الانسان' },
+            { number: '077', name: 'Al-Mursalat', arabic: 'المرسلات', kurdish: 'ته فسيري قورئان به كوردي المرسلات' },
+            { number: '078', name: 'An-Naba', arabic: 'النبأ', kurdish: 'ته فسيري قورئان به كوردي النبأ' },
+            { number: '079', name: 'An-Naziat', arabic: 'النازعات', kurdish: 'ته فسيري قورئان به كوردي النازعات' },
+            { number: '080', name: 'Abasa', arabic: 'عبس', kurdish: 'ته فسيري قورئان به كوردي عبس' },
+            { number: '081', name: 'At-Takwir', arabic: 'التكوير', kurdish: 'ته فسيري قورئان به كوردي التكوير' },
+            { number: '082', name: 'Al-Infitar', arabic: 'الانفطار', kurdish: 'ته فسيري قورئان به كوردي الانفطار' },
+            { number: '083', name: 'Al-Mutaffifin', arabic: 'المطففين', kurdish: 'ته فسيري قورئان به كوردي المطففین' },
+            { number: '084', name: 'Al-Inshiqaq', arabic: 'الانشقاق', kurdish: 'ته فسيري قورئان به كوردي الانشقاق' },
+            { number: '085', name: 'Al-Buruj', arabic: 'البروج', kurdish: 'ته فسيري قورئان به كوردي البروج' },
+            { number: '086', name: 'At-Tariq', arabic: 'الطارق', kurdish: 'ته فسيري قورئان به كوردي الطارق' },
+            { number: '087', name: 'Al-A\'la', arabic: 'الأعلى', kurdish: 'ته فسيري قورئان به كوردي الاعلى' },
+            { number: '088', name: 'Al-Ghashiyah', arabic: 'الغاشية', kurdish: 'ته فسيري قورئان به كوردي الغاشية' },
+            { number: '089', name: 'Al-Fajr', arabic: 'الفجر', kurdish: 'ته فسيري قورئان به كوردي الفجر' },
+            { number: '090', name: 'Al-Balad', arabic: 'البلد', kurdish: 'ته فسيري قورئان به كوردي البلد' },
+            { number: '091', name: 'Ash-Shams', arabic: 'الشمس', kurdish: 'ته فسيري قورئان به كوردي الشمس' },
+            { number: '092', name: 'Al-Lail', arabic: 'الليل', kurdish: 'ته فسيري قورئان به كوردي الليل' },
+            { number: '093', name: 'Ad-Duha', arabic: 'الضحى', kurdish: 'ته فسيري قورئان به كوردي الضحى' },
+            { number: '094', name: 'Ash-Sharh', arabic: 'الشرح', kurdish: 'ته فسيري قورئان به كوردي الشرح' },
+            { number: '095', name: 'At-Tin', arabic: 'التين', kurdish: 'ته فسيري قورئان به كوردي التين' },
+            { number: '096', name: 'Al-Alaq', arabic: 'العلق', kurdish: 'ته فسيري قورئان به كوردي العلق' },
+            { number: '097', name: 'Al-Qadr', arabic: 'القدر', kurdish: 'ته فسيري قورئان به كوردي القدر' },
+            { number: '098', name: 'Al-Bayyinah', arabic: 'البينة', kurdish: 'ته فسيري قورئان به كوردي البينة' },
+            { number: '099', name: 'Az-Zalzalah', arabic: 'الزلزلة', kurdish: 'ته فسيري قورئان به كوردي الزلزلة' },
+            { number: '100', name: 'Al-Adiyat', arabic: 'العاديات', kurdish: 'ته فسيري قورئان به كوردي العاديات' },
+            { number: '101', name: 'Al-Qariah', arabic: 'القارعة', kurdish: 'ته فسيري قورئان به كوردي القارعة' },
+            { number: '102', name: 'At-Takathur', arabic: 'التكاثر', kurdish: 'ته فسيري قورئان به كوردي التكاثر' },
+            { number: '103', name: 'Al-Asr', arabic: 'العصر', kurdish: 'ته فسيري قورئان به كوردي العصر' },
+            { number: '104', name: 'Al-Humazah', arabic: 'الهمزة', kurdish: 'ته فسيري قورئان به كوردي الهمزة' },
+            { number: '105', name: 'Al-Fil', arabic: 'الفيل', kurdish: 'ته فسيري قورئان به كوردي الفيل' },
+            { number: '106', name: 'Quraish', arabic: 'قريش', kurdish: 'ته فسيري قورئان به كوردي قريش' },
+            { number: '107', name: 'Al-Maun', arabic: 'الماعون', kurdish: 'ته فسيري قورئان به كوردي الماعون' },
+            { number: '108', name: 'Al-Kawthar', arabic: 'الكوثر', kurdish: 'ته فسيري قورئان به كوردي الكوثر' },
+            { number: '109', name: 'Al-Kafirun', arabic: 'الكافرون', kurdish: 'ته فسيري قورئان به كوردي الكافرون' },
+            { number: '110', name: 'An-Nasr', arabic: 'النصر', kurdish: 'ته فسيري قورئان به كوردي النصر' },
+            { number: '111', name: 'Al-Masad', arabic: 'المسد', kurdish: 'ته فسيري قورئان به كوردي المسد' },
+            { number: '112', name: 'Al-Ikhlas', arabic: 'الإخلاص', kurdish: 'ته فسيري قورئان به كوردي الاخلاص' },
+            { number: '113', name: 'Al-Falaq', arabic: 'الفلق', kurdish: 'ته فسيري قورئان به كوردي الفلق' },
+            { number: '114', name: 'An-Nas', arabic: 'الناس', kurdish: 'ته فسيري قورئان به كوردي الناس' }
+        ];
+
+        let currentPage = 1;
+        const videosPerPage = 12; // 3 columns × 4 rows
+        let filteredVideos = [...videoUrls];
+        let totalPages = Math.ceil(filteredVideos.length / videosPerPage);
+
+        // Search functionality
+        function performSearch(searchTerm) {
+            if (!searchTerm.trim()) {
+                filteredVideos = [...videoUrls];
+            } else {
+                const searchLower = searchTerm.toLowerCase();
+                const searchTermKurdish = searchTerm; // Keep original for Kurdish search
+                const matchingIndices = [];
+                
+                surahInfo.forEach((surah, index) => {
+                    if (surah.number.includes(searchTerm) ||
+                        surah.name.toLowerCase().includes(searchLower) ||
+                        surah.arabic.includes(searchTerm) ||
+                        surah.kurdish.toLowerCase().includes(searchTermKurdish.toLowerCase()) ||
+                        surah.kurdish.includes(searchTermKurdish)) {
+                        matchingIndices.push(index);
+                    }
+                });
+                
+                filteredVideos = matchingIndices.map(index => videoUrls[index]);
+            }
+            
+            currentPage = 1;
+            totalPages = Math.ceil(filteredVideos.length / videosPerPage);
+            displayVideos(1);
+        }
+
+        function displayVideos(page) {
+            const gallery = document.getElementById('videoGallery');
+            const startIndex = (page - 1) * videosPerPage;
+            const endIndex = startIndex + videosPerPage;
+            const pageVideos = filteredVideos.slice(startIndex, endIndex);
+
+            gallery.innerHTML = '';
+
+            pageVideos.forEach((videoId, index) => {
+                const videoCard = document.createElement('div');
+                videoCard.className = 'gallery-video-card';
+                videoCard.innerHTML = `
+                    <div class="gallery-video-container">
+                        <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" 
+                             alt="Quran Recitation"
+                             onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg'">
+                                            <div class="video-overlay">
+                        <i class="fas fa-play" data-translate-title="quran.playIconTitle" title="Play"></i>
+                    </div>
+                    </div>
+                `;
+
+                videoCard.addEventListener('click', () => {
+                    window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+                });
+
+                gallery.appendChild(videoCard);
+            });
+
+            // Update pagination
+            document.getElementById('currentPage').textContent = page;
+            document.getElementById('totalPages').textContent = totalPages;
+            document.getElementById('prevBtn').disabled = page === 1;
+            document.getElementById('nextBtn').disabled = page === totalPages;
+        }
+
+        // Search event listeners
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            performSearch(e.target.value);
+        });
+
+        document.getElementById('clearSearch').addEventListener('click', () => {
+            document.getElementById('searchInput').value = '';
+            performSearch('');
+        });
+
+        // Pagination event listeners
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayVideos(currentPage);
+            }
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayVideos(currentPage);
+            }
+        });
+
+        // Initialize gallery
+        window.addEventListener('load', () => {
+            displayVideos(1);
+        });
+    </script>
+
+    <script src="/java script/smooth-scroll.js"></script>
+ 
+    <script src="/java script/ultra-optimizer.js"></script>
+    <script src="/java script/language-switcher.js"></script>
+</body>
+</html>

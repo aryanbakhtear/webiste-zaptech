@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Error - Zap Tech</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="shortcut icon" type="image/png" href="/images/logo.png">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            color: black;
+        }
+        
+        .error-content {
+            max-width: 600px;
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .error-title {
+            font-size: 2rem;
+            margin: 1rem 0;
+            color: #6F43FE;
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            margin: 1rem 0 2rem 0;
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .error-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #6F43FE, #8B5CF6);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .error-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(111, 67, 254, 0.3);
+        }
+        
+        .error-btn.secondary {
+            background: black;
+            border: 1px solid black;
+            color: white;
+        }
+        
+        .error-btn.secondary:hover {
+            background: #333;
+            border: 1px solid #333;
+        }
+        
+        .retry-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .retry-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #6F43FE;
+        }
+        
+        .retry-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .retry-btn {
+            padding: 8px 16px;
+            background: #f8f9fa;
+            color: black;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            font-size: 0.9rem;
+        }
+        
+        .retry-btn:hover {
+            background: #e9ecef;
+            transform: translateY(-1px);
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 1.5rem;
+            }
+            
+            .error-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .retry-options {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body class="home-page">
+    <div class="navbar" id="navbar">
+        <div class="logo-container">
+            <img src="/images/logo.png" alt="LOGO OF WEBSITE" class="logo">
+        </div>
+        <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation">
+            <span class="navbar-toggle-icon" style="font-weight: bold; background-color: #6F43FE; padding: 8px;">&#9776;</span>
+            <span class="navbar-toggle-close">&times;</span>
+        </button>
+        <div class="navbar-left">
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/website.html">Website</a></li>
+                <li><a href="/video-tutorial.html">Video Tutorial</a></li>
+                <li><a href="/pc apps and games.html">Pc Apps & Games</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Tools</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/personality.html">Personality</a></li>
+                        <li><a href="/quran.html">Quran</a></li>
+                        <li><a href="https://gemini.google.com/share/5c74decaacc7" target="_blank">Kurdish Image AI</a></li>
+                    </ul>
+                </li>
+                <li><a href="/index.html#bg8">About Us</a></li>
+                <li><a href="#" id="donate-btn">Donate $</a></li>
+                <li><button class="language-switcher-btn" onclick="toggleLanguage()">کوردی</button></li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-blur-bg"></div>
+
+    <div class="error-container">
+        <div class="error-content">
+            <h1 class="error-code">500</h1>
+            <h2 class="error-title">Server Error</h2>
+            <p class="error-message">
+                Something went wrong on our end. We're working to fix this issue. 
+                Please try again in a few moments.
+            </p>
+            
+            <div class="error-actions">
+                <a href="/index.html" class="error-btn">
+                    <i class="fas fa-home"></i> Go Home
+                </a>
+                <button onclick="location.reload()" class="error-btn secondary">
+                    <i class="fas fa-redo"></i> Try Again
+                </button>
+            </div>
+            
+            <div class="retry-section">
+                <h3 class="retry-title">Quick Actions</h3>
+                <div class="retry-options">
+                    <a href="/index.html" class="retry-btn">Home</a>
+                    <a href="/website.html" class="retry-btn">Website Tools</a>
+                    <a href="/video-tutorial.html" class="retry-btn">Tutorials</a>
+                    <a href="/pc apps and games.html" class="retry-btn">Apps & Games</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/java script/navbar.js"></script>
+    <script src="/java script/language-switcher.js"></script>
+    <script>
+        // Language data for 500 page
+        const translations = {
+            en: {
+                'error-title': 'Server Error',
+                'error-message': 'Something went wrong on our end. We\'re working to fix this issue. Please try again in a few moments.',
+                'go-home': 'Go Home',
+                'try-again': 'Try Again',
+                'quick-actions': 'Quick Actions',
+                'home': 'Home',
+                'website-tools': 'Website Tools',
+                'tutorials': 'Tutorials',
+                'apps-games': 'Apps & Games'
+            },
+            ku: {
+                'error-title': 'هەڵەی سێرڤەر',
+                'error-message': 'شتێک هەڵە بوو لە لایەن ئێمە. ئێمە کار دەکەین بۆ چارەسەرکردنی ئەم کێشەیە. تکایە دواتر هەوڵ بدەوە.',
+                'go-home': 'بڕۆ بۆ ماڵەوە',
+                'try-again': 'هەوڵ بدەوە',
+                'quick-actions': 'کردارە خێراکان',
+                'home': 'ماڵەوە',
+                'website-tools': 'ئامرازەکانی وێبسایت',
+                'tutorials': 'ڕاهێنانەکان',
+                'apps-games': 'ئەپ و یارییەکان'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'ku' : 'en';
+            updateLanguage();
+            
+            // Update button text
+            const langBtn = document.querySelector('.language-switcher-btn');
+            langBtn.textContent = currentLanguage === 'en' ? 'کوردی' : 'English';
+        }
+
+        function updateLanguage() {
+            const lang = translations[currentLanguage];
+            
+            // Update error title
+            document.querySelector('.error-title').textContent = lang['error-title'];
+            
+            // Update error message
+            document.querySelector('.error-message').textContent = lang['error-message'];
+            
+            // Update buttons
+            document.querySelector('.error-btn').innerHTML = `<i class="fas fa-home"></i> ${lang['go-home']}`;
+            document.querySelector('.error-btn.secondary').innerHTML = `<i class="fas fa-redo"></i> ${lang['try-again']}`;
+            
+            // Update retry section title
+            document.querySelector('.retry-title').textContent = lang['quick-actions'];
+            
+            // Update retry buttons
+            const retryButtons = document.querySelectorAll('.retry-btn');
+            retryButtons[0].textContent = lang['home'];
+            retryButtons[1].textContent = lang['website-tools'];
+            retryButtons[2].textContent = lang['tutorials'];
+            retryButtons[3].textContent = lang['apps-games'];
+        }
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate the error code
+            const errorCode = document.querySelector('.error-code');
+            errorCode.style.opacity = '0';
+            errorCode.style.transform = 'scale(0.5)';
+            
+            setTimeout(() => {
+                errorCode.style.transition = 'all 0.8s ease';
+                errorCode.style.opacity = '1';
+                errorCode.style.transform = 'scale(1)';
+            }, 100);
+            
+            // Auto-retry functionality
+            let retryCount = 0;
+            const maxRetries = 3;
+            
+            function autoRetry() {
+                if (retryCount < maxRetries) {
+                    retryCount++;
+                    setTimeout(() => {
+                        console.log(`Auto-retry attempt ${retryCount}/${maxRetries}`);
+                        // You can add logic here to check if the server is back up
+                    }, 5000 * retryCount); // Increasing delay between retries
+                }
+            }
+            
+            // Start auto-retry
+            autoRetry();
+        });
+    </script>
+</body>
+</html> 
