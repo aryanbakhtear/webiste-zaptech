@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Websites - Zap Tech</title>
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <link rel="shortcut icon" type="image/png" href="/images/logo.png">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/bg2.css">
+  <link rel="stylesheet" href="/css/website.css">
+  <link rel="stylesheet" href="/css/bg3.css">
+
+ 
+</head>
+<body style="background-color: black;" class="website-page">
+  <div class="navbar" id="navbar">
+    <div class="logo-container">
+      <img src="/images/logo.png" alt="LOGO OF WEBSITE" class="logo">
+    </div>
+    <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation">
+      <span class="navbar-toggle-icon" style="font-weight: bold; background-color: #6F43FE; padding: 8px;">&#9776;</span>
+      <span class="navbar-toggle-close">&times;</span>
+    </button>
+            <div class="navbar-left">
+          <ul>
+                                     <li><a href="/">Home</a></li>
+                <li><a href="/website">Website</a></li>
+                <li><a href="/video-tutorial">Video Tutorial</a></li>
+                <li><a href="/pc-apps-and-games">Pc Apps & Games</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-translate="navbar.tools">Tools</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/personality" data-translate="navbar.personality">Personality</a></li>
+                        <li><a href="/quran" data-translate="navbar.quran">Quran</a></li>
+                        <li><a href="/steamacc">Steam Accounts</a></li>
+                        <li><a href="https://gemini.google.com/share/5c74decaacc7" target="_blank" data-translate="navbar.kurdishImageAI">Kurdish Image AI</a></li>
+                    </ul>
+                </li>
+                <li><a href="/#bg8">About Us</a></li>
+            <li><a href="#" id="donate-btn">Donate $</a></li>
+            <li><button class="language-switcher-btn" onclick="toggleLanguage()">کوردی</button></li>
+          </ul>
+        </div>
+
+
+  </div>
+  <div class="navbar-blur-bg"></div>
+  <script src="/java script/navbar.js"></script>
+  <script src="/java script/smooth-scroll.js"></script>
+  <script src="/java script/ultra-optimizer.js"></script>
+  <script src="/java script/language-switcher.js"></script>
+  <script>
+    // Test function to manually trigger language switch
+    function testLanguageSwitch() {
+      console.log('Testing language switch...');
+      if (typeof toggleLanguage === 'function') {
+        toggleLanguage();
+      } else {
+        console.error('toggleLanguage function not found');
+      }
+    }
+    
+    // Test function to manually update website description
+    function testWebsiteDescription() {
+      console.log('Testing website description update...');
+      if (typeof updateWebsiteDescription === 'function') {
+        updateWebsiteDescription();
+      } else {
+        console.error('updateWebsiteDescription function not found');
+      }
+    }
+    
+    // Make functions available globally for testing
+    window.testLanguageSwitch = testLanguageSwitch;
+    window.testWebsiteDescription = testWebsiteDescription;
+  </script>
+  
+     <!-- Donation Modal -->
+   <div class="donate-modal" id="donate-modal">
+       <div class="donate-modal-content">
+           <div class="donate-header">
+           </div>
+           <div class="donate-body">
+               <p class="donate-message">Help us continue providing free tools, tutorials, and resources to the community.</p>
+               <div class="donate-options">
+                   <button class="card-close-btn" onclick="closeDonateModal()">
+                       <i class="fas fa-times"></i>
+                   </button>
+                   <div class="donate-card fastpay-card">
+                       <div class="card-background" style="background-image: url('/images/fastpay.png');">
+                       </div>
+                       <div class="card-content">
+                           <div class="card-header">
+                               <h3>Fastpay</h3>
+                           </div>
+                           <div class="card-info">
+                               <p class="phone-number">+964750 901 91 66</p>
+                               <div class="card-actions">
+                                   <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                       <i class="fas fa-copy"></i> Copy
+                                   </button>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   
+                   <div class="donate-card fib-card">
+                       <div class="card-background" style="background-image: url('/images/fib.png');">
+                       </div>
+                       <div class="card-content">
+                           <div class="card-header">
+                               <h3>FIB Bank</h3>
+                           </div>
+                           <div class="card-info">
+                               <p class="phone-number">+964750 901 91 66</p>
+                               <div class="card-actions">
+                                   <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                       <i class="fas fa-copy"></i> Copy
+                                   </button>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   
+                   <div class="donate-card qi-card">
+                       <div class="card-background" style="background-image: url('/images/qi card.png');">
+                       </div>
+                       <div class="card-content">
+                           <div class="card-header">
+                               <h3>Qi Card</h3>
+                           </div>
+                           <div class="card-info">
+                               <p class="phone-number">+964750 901 91 66</p>
+                               <p class="card-number">Card: 7111541806</p>
+                               <div class="card-actions">
+                                   <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                       <i class="fas fa-copy"></i> Copy Phone
+                                   </button>
+                                   <button class="copy-btn" onclick="copyToClipboard('7111541806')">
+                                       <i class="fas fa-copy"></i> Copy Card
+                                   </button>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+  <script>
+  // Donation modal functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const donateBtn = document.getElementById('donate-btn');
+    const donateModal = document.getElementById('donate-modal');
+
+    if (donateBtn && donateModal) {
+      donateBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        donateModal.style.display = 'flex';
+        setTimeout(() => {
+          donateModal.classList.add('show');
+        }, 10);
+      });
+    }
+
+    // Close modal when clicking outside
+    if (donateModal) {
+      donateModal.addEventListener('click', function(e) {
+        if (e.target === donateModal) {
+          donateModal.classList.remove('show');
+          setTimeout(() => {
+            donateModal.style.display = 'none';
+          }, 300);
+        }
+      });
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && donateModal && donateModal.style.display === 'flex') {
+        donateModal.classList.remove('show');
+        setTimeout(() => {
+          donateModal.style.display = 'none';
+        }, 300);
+      }
+    });
+  });
+
+  // Close donate modal function
+  function closeDonateModal() {
+    const donateModal = document.getElementById('donate-modal');
+    if (donateModal) {
+      donateModal.classList.remove('show');
+      setTimeout(() => {
+        donateModal.style.display = 'none';
+      }, 300);
+    }
+  }
+
+  // Copy to clipboard function
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+      // Show success message
+      const button = event.target.closest('.copy-btn');
+      const originalText = button.innerHTML;
+      button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+      button.style.background = '#00A651';
+      
+      setTimeout(() => {
+        button.innerHTML = originalText;
+        button.style.background = '';
+      }, 2000);
+    }).catch(function(err) {
+      console.error('Could not copy text: ', err);
+    });
+  }
+  </script>
+  
+  <div class="websites-section">
+    <div class="bg3-container">
+            
+        <p class="b3header">Choose Website</p>
+        <p class="b3header-text">Our website is designed to be easy to use and navigate. We have a variety of websites to choose from, and we are always adding new ones. We are a team of developers who are passionate about creating useful websites and tools.</p>
+    </div>
+    <div class="websites-grid">
+      <a href="https://suno.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="card">
+          <img class="card-image" src="https://archive.org/download/assets_task_01k2ayeyrnfq09bc8sx8d448nv_1754861748_img_0_1_optimized_10/assets_task_01k2ayeyrnfq09bc8sx8d448nv_1754861748_img_0_1_optimized_10.png" alt="Suno" />
+          <div class="card-details">
+            <div class="card-title-hover">Suno</div>
+            <p>AI-powered music creation platform for generating original songs and melodies</p>
+            <div class="card-footer-overlay">AI Music Creator</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://www.napkin.ai" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="card">
+          <img class="card-image" src="https://ia601704.us.archive.org/0/items/20250802-2022-anime-presentation-graphs-simple-compose-01k-1nws-7fxegnrnmbf-1nvpj-4f-4-optimized-50/20250802_2022_Anime_Presentation_Graphs_simple_compose_01k1nws7fxegnrnmbf1nvpj4f4_optimized_50.png" alt="Napkin AI" />
+          <div class="card-details">
+            <div class="card-title-hover">Napkin AI</div>
+            <p>AI-powered presentation and graph creation tool</p>
+            <div class="card-footer-overlay">AI Presentation Tool</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://online-fix.me" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="card">
+          <img class="card-image" src="https://archive.org/download/assets_task_01k13an55tfhhvafqfhqk7v1kg_1753532357_img_1_1_optimized_100/assets_task_01k13an55tfhhvafqfhqk7v1kg_1753532357_img_1_1_optimized_100.png" alt="Online Fix" />
+          <div class="card-details">
+            <div class="card-title-hover">Online Fix</div>
+            <p>Professional game fixes and patches for seamless gaming experience</p>
+            <div class="card-footer-overlay">Game Fixes</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://temp-mail.org/en" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="card">
+          <img class="card-image" src="https://ia800902.us.archive.org/4/items/20250721-2010-temporary-email-signup-simple-compose-01k-0q-67yecf-6naf-51f-9yqnzhvp-1/20250721_2010_Temporary%20Email%20Signup_simple_compose_01k0q67yecf6naf51f9yqnzhvp%20%281%29.png" alt="Temp Mail" />
+          <div class="card-details">
+            <div class="card-title-hover">Temp Mail</div>
+            <p>Get a free temporary email address instantly for signups and privacy</p>
+            <div class="card-footer-overlay">Free Temp Email</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://photogradient.com" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="card">
+          <img class="card-image" src="https://ia601005.us.archive.org/0/items/assets_task_01k1nxws9jf0eaxnxekkrqrv98_1754156439_img_0_optimized_50_20250802/assets_task_01k1nxws9jf0eaxnxekkrqrv98_1754156439_img_0_optimized_50.png" alt="Photo Gradient" />
+          <div class="card-details">
+            <div class="card-title-hover">Photo Gradient</div>
+            <p>Create stunning gradient effects for your photos online</p>
+            <div class="card-footer-overlay">Gradient Photo Tool</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://www.recraft.ai" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="card">
+          <img class="card-image" src="https://ia903105.us.archive.org/32/items/20250721-1952-cartoon-thumbnail-creation-simple-compose-01k-0q-54zjjfs-18sm-3e-9r-9r-3ajp-1/20250721_1952_Cartoon%20Thumbnail%20Creation_simple_compose_01k0q54zjjfs18sm3e9r9r3ajp%20%281%29.png" alt="Recraft AI" />
+          <div class="card-details">
+            <div class="card-title-hover">Recraft AI</div>
+            <p>AI-powered design and illustration tool for creators</p>
+            <div class="card-footer-overlay">AI Design Tool</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://www.unscreen.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="card">
+          <img class="card-image" src="https://ia801504.us.archive.org/22/items/20250709-2321-anime-guy-thumbnail-simple-compose-01jzrdgqy-5fm-2ag-227wj-4phjwb/20250709_2321_Anime%20Guy%20Thumbnail_simple_compose_01jzrdgqy5fm2ag227wj4phjwb.png" alt="Unscreen" />
+          <div class="card-details">
+            <div class="card-title-hover">Unscreen</div>
+            <p>Remove video background automatically, free & online</p>
+            <div class="card-footer-overlay">Video BG Remover</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://trace.moe/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="card">
+          <img class="card-image" src="https://ia600904.us.archive.org/25/items/20250705-2331-anime-scene-search-simple-compose-01jzf-6s-7y-7fqz-9df-1bwm-1k-4h-81/20250705_2331_Anime%20Scene%20Search_simple_compose_01jzf6s7y7fqz9df1bwm1k4h81.png" alt="WHATS THIS ANIME" />
+          <div class="card-details">
+            <div class="card-title-hover">WHATS THIS ANIME </div>
+            <p>Anime scene search engine <br>by screenshot</p>
+            <div class="card-footer-overlay">Anime Scene Search</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://pixie.haus/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="card">
+          <img class="card-image" src="https://ia601402.us.archive.org/1/items/20250706-2115-pixelated-flying-pixie-simple-compose-01jzgf-4n-08fkptrf-8j-3fktkr-6n/20250706_2115_Pixelated%20Flying%20Pixie_simple_compose_01jzgf4n08fkptrf8j3fktkr6n.png" alt="Pixie" />
+          <div class="card-details">
+            <div class="card-title-hover">Pixie</div>
+            <p>AI Pixel Art Generator<br>For making logo or any idea in your mind</p>
+            <div class="card-footer-overlay">Pixel Art Generator</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+</html> 

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Test - Zap Tech</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="shortcut icon" type="image/png" href="/images/logo.png">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/personality.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body style="background-color: #415E72;" class="personality-page">
+    <div class="navbar" id="navbar">
+        <div class="logo-container">
+            <img src="/images/logo.png" alt="LOGO OF WEBSITE" class="logo">
+        </div>
+        <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation">
+            <span class="navbar-toggle-icon" style="font-weight: bold; background-color: #6F43FE; padding: 8px;">&#9776;</span>
+            <span class="navbar-toggle-close">&times;</span>
+        </button>
+        <div class="navbar-left">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/website">Website</a></li>
+                <li><a href="/video-tutorial">Video Tutorial</a></li>
+                <li><a href="/pc-apps-and-games">Pc Apps & Games</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-translate="navbar.tools">Tools</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/personality" data-translate="navbar.personality">Personality</a></li>
+                        <li><a href="/quran" data-translate="navbar.quran">Quran</a></li>
+                        <li><a href="/steamacc">Steam Accounts</a></li>
+                        <li><a href="https://gemini.google.com/share/5c74decaacc7" target="_blank" data-translate="navbar.kurdishImageAI">Kurdish Image AI</a></li>
+                    </ul>
+                </li>
+                <li><a href="/#bg8">About Us</a></li>
+                <li><a href="#" id="donate-btn">Donate $</a></li>
+                <li><button class="language-switcher-btn" onclick="toggleLanguage()">کوردی</button></li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="navbar-blur-bg"></div>
+
+    <!-- Welcome Popup -->
+    <div id="welcome-popup" class="welcome-popup">
+        <div class="welcome-content">
+            <div class="welcome-header">
+                <h2>🌟 Let's Discover Your Personality!</h2>
+                <button class="welcome-close" id="welcome-close">&times;</button>
+            </div>
+            <div class="welcome-body">
+                <div class="welcome-icon">🧠</div>
+                <p>Welcome to our comprehensive personality assessment! This test will help you understand your unique personality traits and discover your personality type.</p>
+                <div class="welcome-features">
+                    <div class="feature">
+                        <span class="feature-icon">📊</span>
+                        <span>20 carefully crafted questions</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">⚡</span>
+                        <span>Quick and easy to complete</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🎯</span>
+                        <span>Detailed personality analysis</span>
+                    </div>
+
+                </div>
+                <button id="start-quiz-btn" class="start-quiz-btn">🚀 Start Your Journey</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="personality-container" id="quiz-container" style="display: none;">
+        <div class="title-section">
+            <h1 class="personality-title">🌟 Personality Discovery</h1>
+            <button class="language-btn personality-language-btn" onclick="toggleLanguage()">کوردی</button>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="current-question">1</span> / <span id="total-questions">20</span>
+            </div>
+        </div>
+
+
+
+        <div class="cards-container" id="cards-container">
+            <!-- Question cards will be generated here -->
+        </div>
+
+
+
+        <div id="result" class="result" style="display: none;">
+            <h2>🎉 Your Personality Results</h2>
+            <div class="personality-type">
+                <h3 id="personality-type">Your Type</h3>
+                <p id="personality-description">Description will appear here</p>
+            </div>
+            
+            <div class="category-scores">
+                <h3 class="category-breakdown-title">📊 Category Breakdown</h3>
+                <div class="score-grid">
+                    <div class="score-item">
+                        <span class="category" data-translate="personality.introvertExtrovert">Introvert vs Extrovert</span>
+                        <span class="score" id="introvertScore">-</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="category" data-translate="personality.thinkingFeeling">Thinking vs Feeling</span>
+                        <span class="score" id="thinkingScore">-</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="category" data-translate="personality.judgingPerceiving">Judging vs Perceiving</span>
+                        <span class="score" id="judgingScore">-</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="category" data-translate="personality.sensingIntuition">Sensing vs Intuition</span>
+                        <span class="score" id="sensingScore">-</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="category" data-translate="personality.planningSpontaneous">Planning vs Spontaneous</span>
+                        <span class="score" id="planningScore">-</span>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#" onclick="shareResults()" class="share-results-btn" data-translate="personality.shareResults">Share Results</a>
+        </div>
+    </div>
+
+    <!-- Results Popup -->
+    <div id="results-popup" class="results-popup">
+        <div class="results-content">
+            <div class="results-header">
+                <h2 class="congratulations-title">🎉 Congratulations!</h2>
+                <button class="results-close" id="results-close">&times;</button>
+            </div>
+            <div class="results-body">
+                <div class="results-icon">🧠</div>
+                <h3 id="popup-personality-type">Your Personality Type</h3>
+                <p id="popup-personality-description">Description will appear here</p>
+                
+
+                
+                <div class="results-actions">
+                    <button id="retake-quiz-btn" class="retake-btn" data-translate="personality.takeTestAgain">🔄 Take Test Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Modal -->
+    <div class="donate-modal" id="donate-modal">
+        <div class="donate-modal-content">
+            <div class="donate-header">
+            </div>
+            <div class="donate-body">
+                <p class="donate-message">Help us continue providing free tools, tutorials, and resources to the community.</p>
+                <div class="donate-options">
+                    <button class="card-close-btn" onclick="closeDonateModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="donate-card fastpay-card">
+                        <div class="card-background" style="background-image: url('/images/fastpay.png');">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>Fastpay</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number">+964750 901 91 66</p>
+                                <div class="card-actions">
+                                    <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="donate-card fib-card">
+                        <div class="card-background" style="background-image: url('/images/fib.png');">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>FIB Bank</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number">+964750 901 91 66</p>
+                                <div class="card-actions">
+                                    <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="donate-card qi-card">
+                        <div class="card-background" style="background-image: url('/images/qi card.png');">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>Qi Card</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number">+964750 901 91 66</p>
+                                <p class="card-number">Card: 7111541806</p>
+                                <div class="card-actions">
+                                    <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                        <i class="fas fa-copy"></i> Copy Phone
+                                    </button>
+                                    <button class="copy-btn" onclick="copyToClipboard('7111541806')">
+                                        <i class="fas fa-copy"></i> Copy Card
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/java script/navbar.js"></script>
+    <script src="/java script/smooth-scroll.js"></script>
+    <script src="/java script/ultra-optimizer.js"></script>
+    <script src="/java script/language-switcher.js"></script>
+
+    <script>
+        // Questions data - will be loaded from language system
+        let questions = [];
+        let personalityTypes = {};
+
+        let currentQuestionIndex = 0;
+        let answers = {};
+
+        // Load questions and personality types from language system
+        function loadPersonalityData() {
+            if (typeof getTranslation === 'function') {
+                // Load questions
+                const questionsData = getTranslation('personality.questions');
+                if (Array.isArray(questionsData)) {
+                    questions = questionsData;
+                }
+                
+                // Load personality types
+                const typesData = getTranslation('personality.personalityTypes');
+                if (typesData && typeof typesData === 'object') {
+                    personalityTypes = typesData;
+                }
+            }
+            
+            // Regenerate cards if they exist
+            if (document.getElementById('cards-container').children.length > 0) {
+                generateCards();
+                showCard(currentQuestionIndex);
+            }
+        }
+
+        // Question categories mapping
+        const questionCategories = {
+            introvert: [1, 4, 7, 11], // Questions for Introvert vs Extrovert
+            thinking: [2, 10, 15, 18], // Questions for Thinking vs Feeling
+            judging: [3, 9, 12, 20], // Questions for Judging vs Perceiving
+            sensing: [6, 8, 13, 17], // Questions for Sensing vs Intuition
+            planning: [5, 14, 16, 19] // Questions for Planning vs Spontaneous
+        };
+
+        // Initialize the quiz
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load personality data
+            loadPersonalityData();
+            
+            // Show welcome popup
+            document.getElementById('welcome-popup').style.display = 'flex';
+            
+            // Welcome popup functionality
+            document.getElementById('start-quiz-btn').addEventListener('click', function() {
+                document.getElementById('welcome-popup').style.display = 'none';
+                document.getElementById('quiz-container').style.display = 'block';
+                generateCards();
+                showCard(0);
+            });
+
+            document.getElementById('welcome-close').addEventListener('click', function() {
+                document.getElementById('welcome-popup').style.display = 'none';
+                document.getElementById('quiz-container').style.display = 'block';
+                generateCards();
+                showCard(0);
+            });
+
+
+
+            // Donation modal functionality
+            const donateBtn = document.getElementById('donate-btn');
+            const donateModal = document.getElementById('donate-modal');
+
+            if (donateBtn && donateModal) {
+                donateBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    donateModal.style.display = 'flex';
+                    setTimeout(() => {
+                        donateModal.classList.add('show');
+                    }, 10);
+                });
+            }
+
+            if (donateModal) {
+                donateModal.addEventListener('click', function(e) {
+                    if (e.target === donateModal) {
+                        donateModal.classList.remove('show');
+                        setTimeout(() => {
+                            donateModal.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            }
+
+            // Results popup functionality
+            const resultsPopup = document.getElementById('results-popup');
+            const resultsClose = document.getElementById('results-close');
+            const retakeQuizBtn = document.getElementById('retake-quiz-btn');
+
+            if (resultsClose) {
+                resultsClose.addEventListener('click', function() {
+                    resultsPopup.classList.remove('show');
+                    setTimeout(() => {
+                        resultsPopup.style.display = 'none';
+                    }, 300);
+                });
+            }
+
+            if (resultsPopup) {
+                resultsPopup.addEventListener('click', function(e) {
+                    if (e.target === resultsPopup) {
+                        resultsPopup.classList.remove('show');
+                        setTimeout(() => {
+                            resultsPopup.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            }
+
+
+
+            if (retakeQuizBtn) {
+                retakeQuizBtn.addEventListener('click', function() {
+                    // Reset quiz
+                    currentQuestionIndex = 0;
+                    answers = {};
+                    resultsPopup.classList.remove('show');
+                    setTimeout(() => {
+                        resultsPopup.style.display = 'none';
+                        document.getElementById('quiz-container').style.display = 'none';
+                        document.getElementById('welcome-popup').style.display = 'flex';
+                    }, 300);
+                });
+            }
+        });
+
+        function generateCards() {
+            const container = document.getElementById('cards-container');
+            container.innerHTML = '';
+
+            // Get answer options from language system
+            let answerOptions = ['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly agree'];
+            if (typeof getTranslation === 'function') {
+                const optionsData = getTranslation('personality.answerOptions');
+                if (Array.isArray(optionsData)) {
+                    answerOptions = optionsData;
+                }
+            }
+
+            questions.forEach((question, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.style.display = 'none';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="question-number">Question ${index + 1}</div>
+                        <div class="card-progress">${index + 1} / ${questions.length}</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="question-text">${question}</h3>
+                        <div class="rating-options">
+                            <label class="rating-option">
+                                <input type="radio" name="q${index + 1}" value="1" onchange="selectAnswer(${index + 1}, 1)">
+                                <span class="rating-label">
+                                    <span class="rating-number">1</span>
+                                    <span class="rating-text">${answerOptions[0]}</span>
+                                </span>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="q${index + 1}" value="2" onchange="selectAnswer(${index + 1}, 2)">
+                                <span class="rating-label">
+                                    <span class="rating-number">2</span>
+                                    <span class="rating-text">${answerOptions[1]}</span>
+                                </span>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="q${index + 1}" value="3" onchange="selectAnswer(${index + 1}, 3)">
+                                <span class="rating-label">
+                                    <span class="rating-number">3</span>
+                                    <span class="rating-text">${answerOptions[2]}</span>
+                                </span>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="q${index + 1}" value="4" onchange="selectAnswer(${index + 1}, 4)">
+                                <span class="rating-label">
+                                    <span class="rating-number">4</span>
+                                    <span class="rating-text">${answerOptions[3]}</span>
+                                </span>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="q${index + 1}" value="5" onchange="selectAnswer(${index + 1}, 5)">
+                                <span class="rating-label">
+                                    <span class="rating-number">5</span>
+                                    <span class="rating-text">${answerOptions[4]}</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function showCard(index) {
+            const cards = document.querySelectorAll('.question-card');
+            cards.forEach((card, i) => {
+                card.style.display = i === index ? 'block' : 'none';
+            });
+
+            // Update progress
+            const progress = ((index + 1) / questions.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+            document.getElementById('current-question').textContent = index + 1;
+
+
+
+            // Pre-select answer if already answered
+            if (answers[index + 1]) {
+                const radio = document.querySelector(`input[name="q${index + 1}"][value="${answers[index + 1]}"]`);
+                if (radio) radio.checked = true;
+            }
+        }
+
+        function selectAnswer(questionNumber, value) {
+            answers[questionNumber] = value;
+            
+            // Auto-advance to next question after a short delay
+            setTimeout(() => {
+                if (currentQuestionIndex < questions.length - 1) {
+                    currentQuestionIndex++;
+                    showCard(currentQuestionIndex);
+                } else {
+                    // Last question answered - show results popup
+                    showResultsPopup();
+                }
+            }, 500);
+        }
+
+        function calculateResults() {
+            // Check if all questions are answered
+            for (let i = 1; i <= questions.length; i++) {
+                if (!answers[i]) {
+                    alert('Please answer all questions before getting results.');
+                    return;
+                }
+            }
+
+            // Calculate category scores
+            const scores = {
+                introvert: averageScore(questionCategories.introvert, answers),
+                thinking: averageScore(questionCategories.thinking, answers),
+                judging: averageScore(questionCategories.judging, answers),
+                sensing: averageScore(questionCategories.sensing, answers),
+                planning: averageScore(questionCategories.planning, answers)
+            };
+
+            // Determine personality type
+            const personalityType = determinePersonalityType(scores);
+            
+            // Display results
+            displayResults(scores, personalityType);
+        }
+
+        function averageScore(questions, answers) {
+            const sum = questions.reduce((total, q) => total + answers[q], 0);
+            return (sum / questions.length).toFixed(1);
+        }
+
+        function determinePersonalityType(scores) {
+            const traits = [];
+            
+            traits.push(scores.introvert > 3 ? 'I' : 'E');
+            traits.push(scores.sensing > 3 ? 'S' : 'N');
+            traits.push(scores.thinking > 3 ? 'T' : 'F');
+            traits.push(scores.judging > 3 ? 'J' : 'P');
+            
+            const type = traits.join('');
+            return personalityTypes[type] ? type : 'INTJ';
+        }
+
+        function showResultsPopup() {
+            // Check if all questions are answered
+            for (let i = 1; i <= questions.length; i++) {
+                if (!answers[i]) {
+                    alert('Please answer all questions before getting results.');
+                    return;
+                }
+            }
+
+            // Calculate category scores
+            const scores = {
+                introvert: averageScore(questionCategories.introvert, answers),
+                thinking: averageScore(questionCategories.thinking, answers),
+                judging: averageScore(questionCategories.judging, answers),
+                sensing: averageScore(questionCategories.sensing, answers),
+                planning: averageScore(questionCategories.planning, answers)
+            };
+
+            // Determine personality type
+            const personalityType = determinePersonalityType(scores);
+            const type = personalityTypes[personalityType];
+            
+            // Update popup content
+            document.getElementById('popup-personality-type').textContent = `${personalityType} – ${type.name}`;
+            document.getElementById('popup-personality-description').textContent = type.description;
+            
+            // Show popup with animation
+            const popup = document.getElementById('results-popup');
+            popup.style.display = 'flex';
+            setTimeout(() => {
+                popup.classList.add('show');
+            }, 10);
+        }
+
+        function displayResults(scores, personalityType) {
+            const resultDiv = document.getElementById('result');
+            const type = personalityTypes[personalityType];
+            
+            document.getElementById('personality-type').textContent = `${personalityType} – ${type.name}`;
+            document.getElementById('personality-description').textContent = type.description;
+            
+            document.getElementById('introvertScore').textContent = scores.introvert;
+            document.getElementById('thinkingScore').textContent = scores.thinking;
+            document.getElementById('judgingScore').textContent = scores.judging;
+            document.getElementById('sensingScore').textContent = scores.sensing;
+            document.getElementById('planningScore').textContent = scores.planning;
+            
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+
+
+        function shareResults() {
+            const personalityType = document.getElementById('personality-type').textContent;
+            const shareText = `I just took a personality test and found out I'm a ${personalityType}! Take the test at Zap Tech.`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Personality Test Results',
+                    text: shareText,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Results copied to clipboard!');
+                });
+            }
+        }
+
+        // Close donate modal function
+        function closeDonateModal() {
+            const donateModal = document.getElementById('donate-modal');
+            if (donateModal) {
+                donateModal.classList.remove('show');
+                setTimeout(() => {
+                    donateModal.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Show success message
+                const button = event.target.closest('.copy-btn');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.style.background = '#00A651';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+
+    <!-- Donation Modal -->
+    <div class="donate-modal" id="donate-modal">
+        <div class="donate-modal-content">
+            <div class="donate-header">
+            </div>
+            <div class="donate-body">
+                <p class="donate-message">Help us continue providing free tools, tutorials, and resources to the community.</p>
+                <div class="donate-options">
+                    <button class="card-close-btn" onclick="closeDonateModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="donate-card fastpay-card">
+                        <div class="card-background" style="background-image: url('/images/fastpay.png');">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>Fastpay</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number">+964750 901 91 66</p>
+                                <div class="card-actions">
+                                    <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="donate-card fib-card">
+                        <div class="card-background" style="background-image: url('/images/fib.png');">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>FIB Bank</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number">+964750 901 91 66</p>
+                                <div class="card-actions">
+                                    <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="donate-card qi-card">
+                        <div class="card-background" style="background-image: url('/images/qi card.png');">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>Qi Card</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number">+964750 901 91 66</p>
+                                <p class="card-number">Card: 7111541806</p>
+                                <div class="card-actions">
+                                    <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                        <i class="fas fa-copy"></i> Copy Phone
+                                    </button>
+                                    <button class="copy-btn" onclick="copyToClipboard('7111541806')">
+                                        <i class="fas fa-copy"></i> Copy Card
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/java script/navbar.js"></script>
+    <script src="/java script/smooth-scroll.js"></script>
+    <script src="/java script/ultra-optimizer.js"></script>
+    <script src="/java script/language-switcher.js"></script>
+    <script>
+        // Donation modal functionality
+        document.getElementById('donate-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('donate-modal').style.display = 'flex';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === document.getElementById('donate-modal')) {
+                closeDonateModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
