@@ -120,6 +120,10 @@
                                     <div id="accounts-container" class="accounts-container">
                                         <!-- Published accounts will appear here -->
                                     </div>
+                                    <div class="admin-actions">
+                                        <button onclick="exportAccountsToJSON()" class="export-btn">Export to JSON</button>
+                                        <p class="export-info">Download JSON file to update steamacc.json</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -170,6 +174,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             loadTranslations();
             loadPublicAccounts(); // Load public accounts when page loads
+            loadAccountsFromJSON(); // Load accounts from JSON file
         });
         
         // Admin Access Functions
@@ -216,14 +221,17 @@
                 timePublished: new Date().toLocaleTimeString()
             };
             
-            // Get existing accounts from localStorage
+            // Get existing accounts from JSON file
             let accounts = JSON.parse(localStorage.getItem('steamAccounts') || '[]');
             
             // Add new account
             accounts.push(newAccount);
             
-            // Save to localStorage
+            // Save to localStorage (for immediate display)
             localStorage.setItem('steamAccounts', JSON.stringify(accounts));
+            
+            // Also save to JSON file
+            saveAccountsToJSON(accounts);
             
             // Clear form
             document.getElementById('account-content').value = '';
@@ -262,6 +270,9 @@
                 // Save updated list
                 localStorage.setItem('steamAccounts', JSON.stringify(accounts));
                 
+                // Also save to JSON file
+                saveAccountsToJSON(accounts);
+                
                 // Reload accounts list
                 loadPublishedAccounts();
                 
@@ -270,6 +281,62 @@
                 
                 showNotification('Account deleted successfully!', 'success');
             }
+        }
+        
+        // JSON File Management Functions
+        function loadAccountsFromJSON() {
+            fetch('/java script/steamacc.json')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.accounts && data.accounts.length > 0) {
+                        // Store in localStorage for immediate use
+                        localStorage.setItem('steamAccounts', JSON.stringify(data.accounts));
+                        // Refresh displays
+                        loadPublishedAccounts();
+                        loadPublicAccounts();
+                    }
+                })
+                .catch(error => {
+                    console.log('No existing accounts found or error loading JSON:', error);
+                });
+        }
+        
+        function saveAccountsToJSON(accounts) {
+            // Create the data structure for the JSON file
+            const jsonData = {
+                accounts: accounts,
+                lastUpdated: new Date().toISOString()
+            };
+            
+            // For now, we'll use localStorage as the primary storage
+            // and provide instructions for manual JSON file updates
+            localStorage.setItem('steamAccountsBackup', JSON.stringify(jsonData));
+            
+            // Show instructions for manual JSON update
+            showNotification('Account published! Use Export to JSON button to download updated file', 'success');
+        }
+        
+        function exportAccountsToJSON() {
+            const accounts = JSON.parse(localStorage.getItem('steamAccounts') || '[]');
+            const jsonData = {
+                accounts: accounts,
+                lastUpdated: new Date().toISOString()
+            };
+            
+            // Create and download the JSON file
+            const dataStr = JSON.stringify(jsonData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'steamacc.json';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            showNotification('JSON file downloaded! Replace steamacc.json with this file', 'success');
         }
         
         function loadPublishedAccounts() {
@@ -595,6 +662,39 @@
                     transform: scale(1); 
                     opacity: 1; 
                 }
+            }
+            
+            /* Admin Actions Styles */
+            .admin-actions {
+                margin-top: 20px;
+                padding: 20px;
+                background: #f8f9fa;
+                border-radius: 10px;
+                border: 2px solid #e9ecef;
+            }
+            
+            .export-btn {
+                background: linear-gradient(135deg, #28a745, #20c997);
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                border-radius: 8px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-bottom: 10px;
+            }
+            
+            .export-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            }
+            
+            .export-info {
+                color: #6c757d;
+                font-size: 0.9rem;
+                margin: 0;
+                font-style: italic;
             }
             
             /* Responsive adjustments */
