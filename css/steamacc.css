@@ -1,0 +1,1037 @@
+/* Steam Accounts Page Styles */
+
+/* Font declarations */
+@font-face {
+    font-family: 'NavbarFont';
+    src: url('../fonts/navbar.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Apply navbar font to whole page */
+body.steamacc-page {
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Page-specific navbar background */
+body.steamacc-page .navbar {
+    background-color: #6F43FE;
+}
+
+/* Override page-specific navbar background when navbar is open */
+body.steamacc-page .navbar.open {
+    background: #ffff00 !important;
+}
+
+/* Main content area */
+.main-content {
+    margin-top: 120px; /* Account for fixed navbar */
+    padding: 20px;
+    min-height: calc(100vh - 120px);
+}
+
+/* Steam Accounts Container */
+.steam-accounts-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Main Header */
+.main-header {
+    color: #6F43FE;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Explanation Container */
+.explanation-container {
+    background: linear-gradient(135deg, rgba(248, 249, 250, 0.9) 0%, rgba(233, 236, 239, 0.9) 100%);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 30px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.explanation-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://ia801600.us.archive.org/30/items/steam-banner/steam-banner.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(8px);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.explanation-text {
+    color: #495057;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin: 0;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Admin Access Container */
+.admin-access-container {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 30px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid #dc3545;
+}
+
+.admin-header {
+    color: #dc3545;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-form {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.admin-input {
+    padding: 15px 20px;
+    border: 2px solid #dc3545;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    width: 250px;
+    background: white;
+    color: #333;
+}
+
+.admin-button {
+    padding: 15px 25px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.admin-button:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+}
+
+/* Admin Panel */
+.admin-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 20px;
+    border: 2px solid #28a745;
+}
+
+.admin-panel h3 {
+    color: #28a745;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.admin-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Account Form */
+.account-form {
+    background: rgba(40, 167, 69, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    border: 2px solid #28a745;
+}
+
+.account-form h4 {
+    color: #28a745;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.form-input {
+    padding: 12px 18px;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 200px;
+    background: white;
+    color: #333;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.form-textarea {
+    padding: 15px 18px;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 100%;
+    min-width: 400px;
+    min-height: 120px;
+    background: white;
+    color: #333;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #218838;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+}
+
+/* Accounts List */
+.accounts-list {
+    background: rgba(23, 162, 184, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    border: 2px solid #17a2b8;
+}
+
+.accounts-list h4 {
+    color: #17a2b8;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.accounts-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.account-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border: 2px solid #17a2b8;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.account-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(23, 162, 184, 0.2);
+}
+
+.account-info {
+    flex: 1;
+}
+
+.account-details {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.account-meta {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.delete-btn {
+    padding: 8px 16px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+.no-accounts {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 20px;
+}
+
+/* Scrollbar Styling */
+.accounts-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.accounts-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.accounts-container::-webkit-scrollbar-thumb {
+    background: #17a2b8;
+    border-radius: 4px;
+}
+
+.accounts-container::-webkit-scrollbar-thumb:hover {
+    background: #138496;
+}
+
+/* Publish and Manage Buttons */
+.publish-btn, .manage-btn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.publish-btn {
+    background: #28a745;
+    color: white;
+}
+
+.publish-btn:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.manage-btn {
+    background: #17a2b8;
+    color: white;
+}
+
+.manage-btn:hover {
+    background: #138496;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(23, 162, 184, 0.4);
+}
+
+/* Public Accounts Display */
+.public-accounts-container {
+    background: linear-gradient(135deg, #ebe8f5 0%, #d4d7ed 100%);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 30px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  
+}
+
+.public-header {
+    color: rgb(8, 18, 81);
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: -20px;
+}
+
+/* Search Section */
+.search-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    padding: 12px 18px;
+    border: 2px solid #072956;
+    border-radius: 10px;
+    font-size: 1rem;
+    width: 300px;
+    background: white;
+    color: #333;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #072956;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+    transform: translateY(-2px);
+}
+
+.search-btn {
+    padding: 12px 25px;
+    background: #072956;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.search-btn:hover {
+    background: #072956;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.search-btn:active {
+    transform: translateY(0);
+}
+
+.clear-search-btn {
+    padding: 12px 20px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-family: 'NavbarFont', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.clear-search-btn:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+}
+
+.accounts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.public-account-card {
+    background: white;
+    border: 2px solid #072956;
+    border-radius: 15px;
+    padding: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.public-account-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px #072956;
+}
+
+/* Pagination Styles */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: nowrap;
+    min-height: 60px;
+}
+
+.pagination-info {
+    color: #072956;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.pagination-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.pagination-btn {
+    padding: 12px 20px;
+    background: #072956;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    min-width: 50px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.pagination-btn:hover {
+    background: #072956;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.pagination-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.pagination-btn.active {
+    background: #17a2b8;
+    box-shadow: 0 0 0 2px rgba(23, 162, 184, 0.3);
+}
+
+.page-number {
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    color: #495057;
+    font-weight: 600;
+    min-width: 40px;
+    text-align: center;
+}
+
+.account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #e9ecef;
+    margin-top: -10px;
+}
+
+.account-header h3 {
+    color: #072956;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.publish-date {
+    background: #072956;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.account-details {
+    margin-bottom: 5px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
+}
+
+.detail-row {
+    display: flex;
+   
+    align-items: center;
+
+    background: #f8f9fa;
+    border-radius: 6px;
+    flex: 1;
+    min-height: 0;
+}
+
+.copy-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-height: 0;
+}
+
+.field-value {
+    background: white;
+    padding: 6px 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #333;
+    flex: 1;
+    word-break: break-all;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+}
+
+.copy-btn {
+    background: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.copy-btn:hover {
+    background: #138496;
+    transform: scale(1.05);
+}
+
+.refresh-section {
+    text-align: center;
+    padding-top: 20px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.refresh-btn {
+    background: #072956;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.refresh-btn:hover {
+    background: #072956;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.refresh-info {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.no-public-accounts {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.no-public-accounts i {
+    font-size: 3rem;
+    color: #072956;
+    margin-bottom: 20px;
+}
+
+.no-public-accounts h3 {
+    color: #072956;
+    margin-bottom: 15px;
+}
+
+.no-public-accounts p {
+    color: #666;
+    font-style: italic;
+}
+
+/* Account Text Styling */
+.account-text {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 8px 0;
+    color: #333;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.account-text:empty {
+    display: none;
+}
+
+/* Update field-value for account text */
+.field-value.account-text {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 0;
+}
+
+/* Responsive adjustments for account text */
+@media (max-width: 768px) {
+    .account-text {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+    
+    .field-value.account-text {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .accounts-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        max-width: 800px;
+    }
+    
+    .public-account-card {
+        min-height: 170px;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 992px) {
+    .steam-accounts-container {
+        padding: 15px;
+    }
+    
+    .accounts-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        max-width: 800px;
+    }
+    
+    .public-account-card {
+        min-height: 160px;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-top: 70px;
+        padding: 15px;
+    }
+    
+    .admin-form {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .admin-input {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .accounts-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        max-width: 700px;
+    }
+    
+    .public-account-card {
+        min-height: 150px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .pagination-container {
+        flex-direction: column;
+        gap: 10px;
+        min-height: 80px;
+    }
+    
+    .pagination-buttons {
+        flex-wrap: nowrap;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    .detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .copy-field {
+        width: 100%;
+    }
+    
+    .field-value {
+        font-size: 0.8rem;
+    }
+    
+    .form-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .form-input, .form-textarea {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .form-textarea {
+        min-width: unset;
+        min-height: 100px;
+    }
+    
+    .main-header, .admin-header, .public-header {
+        font-size: 2rem;
+    }
+    
+    .search-section {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .search-input {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .steam-accounts-container {
+        padding: 20px;
+    }
+    
+    .admin-access-container,
+    .public-accounts-container {
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .admin-panel {
+        padding: 20px;
+    }
+    
+    .account-form,
+    .accounts-list {
+        padding: 20px;
+    }
+    
+    .accounts-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        max-width: 600px;
+    }
+    
+    .public-account-card {
+        height: 170px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .account-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .publish-date {
+        font-size: 0.8rem;
+        padding: 4px 12px;
+    }
+    
+    .pagination-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        min-width: 45px;
+    }
+    
+    .search-section {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .search-input {
+        width: 100%;
+        max-width: 280px;
+        padding: 10px 16px;
+        font-size: 0.95rem;
+    }
+    
+    .search-btn, .clear-search-btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .steam-accounts-container {
+        padding: 10px;
+    }
+    
+    .admin-access-container,
+    .public-accounts-container {
+        padding: 18px;
+    }
+    
+    .admin-panel {
+        padding: 18px;
+    }
+    
+    .account-form,
+    .accounts-list {
+        padding: 18px;
+    }
+    
+    .form-input,
+    .admin-input {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+    
+    .form-textarea {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+    
+    .public-account-card {
+        padding: 10px;
+        height: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .detail-row {
+        padding: 4px 6px;
+    }
+    
+    .field-value {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    
+    .copy-btn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .pagination-btn {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+        min-width: 40px;
+    }
+}
+
+@media (max-width: 360px) {
+    .main-header {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .admin-access-container,
+    .public-accounts-container {
+        padding: 15px;
+    }
+    
+    .admin-panel {
+        padding: 15px;
+    }
+    
+    .account-form,
+    .accounts-list {
+        padding: 15px;
+    }
+    
+    .form-input,
+    .admin-input {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .form-textarea {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .public-account-card {
+        padding: 8px;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .account-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .publish-date {
+        font-size: 0.75rem;
+        padding: 3px 10px;
+    }
+    
+    .pagination-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        min-width: 35px;
+    }
+}
