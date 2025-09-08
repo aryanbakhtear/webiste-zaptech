@@ -131,10 +131,28 @@
         document.addEventListener('DOMContentLoaded', function() {
             loadTranslations();
             loadPublicAccounts();
-            // Minimal admin bar inline
-            const adminBar = document.createElement('div');
-            adminBar.innerHTML = `
-                <div id="adminbar" style="margin: 16px 0; padding: 12px; border-radius: 10px; background: rgba(111,67,254,0.08); border: 1px solid rgba(111,67,254,0.2);">
+            // Floating Admin FAB and panel
+            const adminFab = document.createElement('button');
+            adminFab.id = 'admin-fab';
+            adminFab.setAttribute('title', 'Admin');
+            adminFab.style.cssText = `
+                position: fixed; bottom: 20px; right: 20px; z-index: 10000;
+                width: 56px; height: 56px; border-radius: 50%; border: none;
+                background: linear-gradient(135deg, #6F43FE, #8B5CF6); color: #fff;
+                box-shadow: 0 6px 20px rgba(111,67,254,0.35); cursor: pointer;
+                display: flex; align-items: center; justify-content: center; font-size: 22px;`;
+            adminFab.innerHTML = '<i class="fas fa-user-shield"></i>';
+            document.body.appendChild(adminFab);
+
+            const adminPanel = document.createElement('div');
+            adminPanel.id = 'admin-fab-panel';
+            adminPanel.style.cssText = `
+                position: fixed; bottom: 86px; right: 20px; z-index: 10000;
+                width: 320px; max-width: calc(100% - 40px);
+                background: #fff; border: 1px solid #e9ecef; border-radius: 12px;
+                box-shadow: 0 14px 40px rgba(0,0,0,0.18); display: none;`;
+            adminPanel.innerHTML = `
+                <div id="adminbar" style="padding: 12px; border-radius: 12px;">
                     <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
                         <span id="adminbar-status" style="font-size: 0.95rem; color:#333;">Not signed in</span>
                         <button id="adminbar-signin" style="padding:8px 12px; border:none; border-radius:8px; background:#6F43FE; color:#fff; cursor:pointer;">Sign in</button>
@@ -142,11 +160,19 @@
                     </div>
                     <div id="adminbar-editor" style="margin-top:10px; display:none;">
                         <textarea id="adminbar-text" placeholder="Paste Steam account details here..." style="width:100%; min-height:110px; padding:12px; border:2px solid #e1e5e9; border-radius:10px; font-size:15px; resize:vertical;"></textarea>
-                        <button id="adminbar-publish" style="margin-top:10px; padding:10px 16px; border:none; border-radius:8px; background: linear-gradient(135deg, #28a745, #20c997); color:#fff; font-weight:600; cursor:pointer;">Publish</button>
+                        <button id="adminbar-publish" style="margin-top:10px; padding:10px 16px; border:none; border-radius:8px; background: linear-gradient(135deg, #28a745, #20c997); color:#fff; font-weight:600; cursor:pointer; width:100%;">Publish</button>
                     </div>
                 </div>`;
-            const container = document.querySelector('.steam-accounts-container');
-            container.insertBefore(adminBar, container.children[container.children.length - 1]);
+            document.body.appendChild(adminPanel);
+
+            adminFab.addEventListener('click', function(){
+                adminPanel.style.display = adminPanel.style.display === 'none' ? 'block' : 'none';
+            });
+            document.addEventListener('click', function(e){
+                if (!adminPanel.contains(e.target) && e.target !== adminFab && !adminFab.contains(e.target)) {
+                    adminPanel.style.display = 'none';
+                }
+            });
 
             function refreshAdminbarUI(){
                 const status = document.getElementById('adminbar-status');
@@ -171,12 +197,17 @@
             if (window.SteamAccData && SteamAccData.onAuthStateChanged) {
                 SteamAccData.onAuthStateChanged(function(){
                     refreshAdminbarUI();
+                    // Re-render lists so admin-only actions appear/disappear
+                    loadPublicAccounts();
+                    loadComments();
                 });
             }
             document.getElementById('adminbar-signin').addEventListener('click', function(){
                 SteamAccData.signIn().then(function(){
                     showNotification('Signed in successfully', 'success');
                     refreshAdminbarUI();
+                    loadPublicAccounts();
+                    loadComments();
                 }).catch(function(err){
                     console.warn('Sign-in error:', err);
                     const msg = (err && (err.message || err.code)) ? (err.message || err.code) : 'Sign in failed';
@@ -187,6 +218,8 @@
                 SteamAccData.signOut().then(function(){
                     showNotification('Signed out', 'success');
                     refreshAdminbarUI();
+                    loadPublicAccounts();
+                    loadComments();
                 });
             });
             document.getElementById('adminbar-publish').addEventListener('click', function(){
@@ -211,6 +244,90 @@
                 });
             });
             refreshAdminbarUI();
+
+            // Public comments UI under sign-in
+            const commentsBox = document.createElement('div');
+            commentsBox.innerHTML = `
+                <div style="margin: 12px 0; padding: 12px; border:1px solid #e1e5e9; border-radius:10px; background:#fafbff;">
+                    <h3 style="margin:0 0 8px 0; font-size:1.05rem;">Requests & Comments</h3>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+                        <input id="comment-name" type="text" placeholder="Your name (optional)" style="flex:1; min-width:160px; padding:10px; border:2px solid #e1e5e9; border-radius:8px;" />
+                        <input id="comment-message" type="text" placeholder="Ask what account you want..." style="flex:2; min-width:220px; padding:10px; border:2px solid #e1e5e9; border-radius:8px;" />
+                        <button id="comment-send" style="padding:10px 14px; border:none; border-radius:8px; background:#6F43FE; color:#fff; font-weight:600; cursor:pointer;">Send</button>
+                    </div>
+                    <div id="comments-list" style="display:grid; gap:10px; max-height:260px; overflow-y:auto; padding-right:6px;"></div>
+                </div>`;
+            const publicSection = document.querySelector('.public-accounts-container');
+            if (publicSection) {
+                publicSection.after(commentsBox);
+            } else {
+                adminBar.after(commentsBox);
+            }
+
+            function renderComments(items){
+                const list = document.getElementById('comments-list');
+                if (!items || items.length === 0) {
+                    list.innerHTML = '<div class="no-public-accounts"><p>No comments yet. Be the first!</p></div>';
+                    return;
+                }
+                let html = '';
+                const allowed = window.SteamAccData && SteamAccData.isAllowedUser && SteamAccData.isAllowedUser();
+                items.forEach(c => {
+                    const name = c.name || 'Anonymous';
+                    const msg = c.message || '';
+                    const when = c.createdAt && c.createdAt.seconds ? new Date(c.createdAt.seconds*1000).toLocaleString() : '';
+                    html += `
+                        <div style="border:1px solid #e9ecef; border-radius:8px; padding:10px; background:#fff;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                                <div style="font-weight:600; color:#333;">${name}</div>
+                                ${allowed ? `<button onclick=\"deleteCommentById('${c.id}')\" class=\"copy-btn\" title=\"Delete comment\" style=\"background:#dc3545; color:#fff; padding:6px 10px; border:none; border-radius:6px;\"><i class=\"fas fa-trash\"></i></button>` : ''}
+                            </div>
+                            <div style="white-space:pre-wrap;">${msg}</div>
+                            <div style="font-size:12px; color:#6c757d; margin-top:4px;">${when}</div>
+                        </div>`;
+                });
+                list.innerHTML = html;
+            }
+
+            function loadComments(){
+                if (!window.SteamAccData || !SteamAccData.getComments) return;
+                SteamAccData.getComments().then(renderComments).catch(function(){
+                    // ignore
+                });
+            }
+            loadComments();
+
+            document.getElementById('comment-send').addEventListener('click', function(){
+                const name = (document.getElementById('comment-name').value || '').trim();
+                const message = (document.getElementById('comment-message').value || '').trim();
+                if (!message) { showNotification('Write a message first', 'warning'); return; }
+                SteamAccData.addComment({ name, message }).then(function(){
+                    document.getElementById('comment-message').value = '';
+                    loadComments();
+                    showNotification('Comment posted', 'success');
+                }).catch(function(err){
+                    console.warn(err);
+                    showNotification('Failed to post comment', 'error');
+                });
+            });
+
+            // Admin-only delete for comments
+            window.deleteCommentById = function(id){
+                if (!id) return;
+                if (!window.SteamAccData || !SteamAccData.deleteComment) {
+                    showNotification('Delete not available', 'error');
+                    return;
+                }
+                if (!confirm('Delete this comment?')) return;
+                SteamAccData.deleteComment(id).then(function(){
+                    loadComments();
+                    showNotification('Comment deleted', 'success');
+                }).catch(function(err){
+                    console.warn(err);
+                    const msg = (err && (err.message || err.code)) ? (err.message || err.code) : 'Delete failed';
+                    showNotification(msg, 'error');
+                });
+            };
         });
         
         // Removed legacy admin modal and code access
@@ -292,6 +409,7 @@
                 const currentAccounts = list.slice(startIndex, endIndex);
                 // Display current page accounts
                 let accountsHTML = '';
+                const allowed = window.SteamAccData && SteamAccData.isAllowedUser && SteamAccData.isAllowedUser();
                 currentAccounts.forEach(account => {
                     const contentSafe = (account.content || '').replace(/`/g, '\\`');
                     accountsHTML += `
@@ -304,9 +422,12 @@
                                 <div class="detail-row">
                                     <div class="copy-field">
                                         <pre class="field-value account-text">${account.content || ''}</pre>
-                                        <button onclick="copyToClipboard('${contentSafe}')" class="copy-btn" title="Copy Account">
-                                            <i class="fas fa-copy"></i>
-                                        </button>
+                                        <div style="display:flex; gap:8px; align-items:center;">
+                                            <button onclick="copyToClipboard('${contentSafe}')" class="copy-btn" title="Copy Account">
+                                                <i class=\"fas fa-copy\"></i>
+                                            </button>
+                                            ${allowed ? `<button onclick=\"deleteAccountById('${account.id}')\" class=\"copy-btn\" title=\"Delete\" style=\"background:#dc3545;\">\n                                                <i class=\\"fas fa-trash\\"></i>\n                                            </button>` : ''}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -382,6 +503,24 @@
         
         function manageAccounts() {
             showNotification('Manage Accounts feature coming soon!', 'info');
+        }
+
+        // Admin-only delete button handler
+        function deleteAccountById(id){
+            if (!id) return;
+            if (!window.SteamAccData || !SteamAccData.deleteAccount) {
+                showNotification('Delete not available', 'error');
+                return;
+            }
+            if (!confirm('Delete this account?')) return;
+            SteamAccData.deleteAccount(id).then(function(){
+                loadPublicAccounts();
+                showNotification('Deleted', 'success');
+            }).catch(function(err){
+                console.warn(err);
+                const msg = (err && (err.message || err.code)) ? (err.message || err.code) : 'Delete failed';
+                showNotification(msg, 'error');
+            });
         }
         
 
@@ -637,34 +776,37 @@
             }
         });
         
-        // Search functionality
+        // Search functionality (Firestore-backed)
         function searchAccounts() {
             const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
             if (!searchTerm) {
                 showNotification('Please enter a search term!', 'warning');
                 return;
             }
-            
-            const accounts = JSON.parse(localStorage.getItem('steamAccounts') || '[]');
-            const filteredAccounts = accounts.filter(account => 
-                account.content.toLowerCase().includes(searchTerm)
-            );
-            
-            if (filteredAccounts.length === 0) {
-                document.getElementById('public-accounts-grid').innerHTML = `
-                    <div class="no-public-accounts">
-                        <i class="fas fa-search"></i>
-                        <h3>No Results Found</h3>
-                        <p>No accounts match your search: "${searchTerm}"</p>
-                    </div>
-                `;
-                document.getElementById('pagination-container').style.display = 'none';
-            } else {
-                displaySearchResults(filteredAccounts);
-                document.getElementById('pagination-container').style.display = 'none';
+            const publicGrid = document.getElementById('public-accounts-grid');
+            publicGrid.innerHTML = '<div class="no-public-accounts"><p>Searching...</p></div>';
+            if (!window.SteamAccData || !SteamAccData.getAccounts) {
+                showNotification('Search unavailable', 'error');
+                return;
             }
-            
-            showNotification(`Found ${filteredAccounts.length} account(s)`, 'success');
+            SteamAccData.getAccounts().then(function(accounts){
+                const list = Array.isArray(accounts) ? accounts : [];
+                const filtered = list.filter(a => (a.content || '').toLowerCase().includes(searchTerm));
+                if (filtered.length === 0) {
+                    publicGrid.innerHTML = `
+                        <div class="no-public-accounts">
+                            <i class="fas fa-search"></i>
+                            <h3>No Results Found</h3>
+                            <p>No accounts match your search: "${searchTerm}"</p>
+                        </div>`;
+                } else {
+                    displaySearchResults(filtered);
+                }
+                document.getElementById('pagination-container').style.display = 'none';
+                showNotification(`Found ${filtered.length} account(s)`, 'success');
+            }).catch(function(){
+                showNotification('Search failed', 'error');
+            });
         }
         
         function clearSearch() {
@@ -678,15 +820,27 @@
             const publicGrid = document.getElementById('public-accounts-grid');
             
             let accountsHTML = '';
+            const allowed = window.SteamAccData && SteamAccData.isAllowedUser && SteamAccData.isAllowedUser();
             accounts.forEach(account => {
+                const contentSafe = (account.content || '').replace(/`/g, '\\`');
                 accountsHTML += `
                     <div class="public-account-card">
                         <div class="account-header">
                             <h3>Steam Account</h3>
-                            <span class="publish-date">${account.datePublished}</span>
+                            <span class="publish-date">${account.datePublished || ''}</span>
                         </div>
                         <div class="account-details">
-                            <pre class="account-text">${account.content}</pre>
+                            <div class="detail-row">
+                                <div class="copy-field">
+                                    <pre class="field-value account-text">${account.content || ''}</pre>
+                                    <div style="display:flex; gap:8px; align-items:center;">
+                                        <button onclick="copyToClipboard('${contentSafe}')" class="copy-btn" title="Copy Account">
+                                            <i class=\"fas fa-copy\"></i>
+                                        </button>
+                                        ${allowed ? `<button onclick=\"deleteAccountById('${account.id}')\" class=\"copy-btn\" title=\"Delete\" style=\"background:#dc3545;\"><i class=\"fas fa-trash\"></i></button>` : ''}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `;

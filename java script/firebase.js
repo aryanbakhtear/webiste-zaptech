@@ -11,6 +11,7 @@
 
   const COLLECTION = "steamAccounts";
   const ALLOWED_EMAIL = "zaptech0000@gmail.com";
+  const COMMENTS = "steamComments";
 
   let app = null;
   let db = null;
@@ -94,11 +95,51 @@
     return { id: doc.id };
   }
 
+  async function deleteAccount(id){
+    const ok = await ensureInit();
+    if (!ok) throw new Error('Firebase not ready');
+    if (!isAllowedUser()) throw new Error('Not authorized');
+    if (!id) throw new Error('Missing id');
+    await db.collection(COLLECTION).doc(String(id)).delete();
+    return true;
+  }
+
   async function getAccounts(){
     const ok = await ensureInit();
     if (!ok) return [];
     const snap = await db.collection(COLLECTION).orderBy('createdAt', 'desc').get();
     return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  }
+
+  // Public comments (no auth required to create, but you can tighten with rules)
+  async function addComment({ name, message }){
+    const ok = await ensureInit();
+    if (!ok) throw new Error('Firebase not ready');
+    const safeName = (name || 'Anonymous').toString().slice(0, 50);
+    const safeMsg = (message || '').toString().slice(0, 500);
+    if (!safeMsg) throw new Error('Empty message');
+    const doc = await db.collection(COMMENTS).add({
+      name: safeName,
+      message: safeMsg,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    return { id: doc.id };
+  }
+
+  async function getComments(){
+    const ok = await ensureInit();
+    if (!ok) return [];
+    const snap = await db.collection(COMMENTS).orderBy('createdAt', 'desc').limit(50).get();
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  }
+
+  async function deleteComment(id){
+    const ok = await ensureInit();
+    if (!ok) throw new Error('Firebase not ready');
+    if (!isAllowedUser()) throw new Error('Not authorized');
+    if (!id) throw new Error('Missing id');
+    await db.collection(COMMENTS).doc(String(id)).delete();
+    return true;
   }
 
   global.SteamAccData = {
@@ -108,7 +149,11 @@
     getCurrentUser,
     isAllowedUser,
     addAccount,
-    getAccounts
+    getAccounts,
+    deleteAccount,
+    addComment,
+    getComments,
+    deleteComment
   };
 })(window);
 
