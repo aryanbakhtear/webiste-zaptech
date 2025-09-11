@@ -54,6 +54,13 @@ async function loadTranslations() {
                     sendButton: "Send",
                     noComments: "No comments yet. Be the first!",
                     deleteComment: "Delete comment"
+                },
+                custom: {
+                    freeSteam: {
+                        title: "Free Steam Account",
+                        part: "Video Tutorial",
+                        desc: "Visit our website to get free accounts. We post daily, and you can ask for accounts."
+                    }
                 }
             },
             ku: {
@@ -80,6 +87,13 @@ async function loadTranslations() {
                     sendButton: "ناردن",
                     noComments: "هیچ لێدوانێک نییە. یەکەم بین!",
                     deleteComment: "سڕینەوەی لێدوان"
+                },
+                custom: {
+                    freeSteam: {
+                        title: "هەژماری بەخۆرای Steam",
+                        part: "فیدیۆی ڕێنمایی",
+                        desc: "سەردانی وێبساتەکەمان بکە بۆ وەرگرتنی هەژمارە خۆرایەکان. هەموو ڕۆژێک بڵاو دەکەینەوە و دەتوانیت داوای هەژمار بکەیت."
+                    }
                 }
             }
         };
@@ -138,6 +152,13 @@ async function loadTranslations() {
                         followUs: "Follow Us",
                         copyright: "© 2024 Zap Tech. All rights reserved."
                     }
+                },
+                custom: {
+                    freeSteam: {
+                        title: "Free Steam Account",
+                        part: "Video Tutorial",
+                        desc: "Visit our website to get free accounts. We post daily, and you can ask for accounts."
+                    }
                 }
             },
             ku: {
@@ -191,6 +212,13 @@ async function loadTranslations() {
                         description: "بەخێربێیت بۆ زاپ تێک، پلاتفۆرمێکی تایبەت کە ئەپەکانی PC، یاریەکان، و ئامرازە دیجیتاڵیەکان پێشکەش دەکات. ئامانجمان ئەوەیە نەرمەکاڵای بەکیفیت و چارەسەرە تەکنەلۆجیایە پراکتیکیەکان بۆ هەموو کەسێک بەردەست بکەینەوە. ئێمە تایبەتین بە دابینکردنی سەرچاوە بەوێنەکان، فێرکاریە بەپێی هەنگاو، و چارەسەرە ڕوونەکان بۆ بەرەنگاربوونەوەی ڕۆژانەی دیجیتاڵ. گەر یاریزانێک بیت، پیشەیەکی داهێنەر، یان کەسێک کە بەدوای زیاتر لە PC کەت دەگەڕێت، زاپ تێک لێرەیە بۆ پشتگیریکردنی گەشتەکەت.",
                         followUs: "شوێنمان بکەوە",
                         copyright: "© ٢٠٢٥ زاپ تێک. هەموو مافەکان پارێزراون"
+                    }
+                },
+                custom: {
+                    freeSteam: {
+                        title: "هەژماری بەخۆرای Steam",
+                        part: "فیدیۆی ڕێنمایی",
+                        desc: "سەردانی وێبساتەکەمان بکە بۆ وەرگرتنی هەژمارە خۆرایەکان. هەموو ڕۆژێک بڵاو دەکەینەوە و دەتوانیت داوای هەژمار بکەیت."
                     }
                 }
             }
@@ -702,6 +730,14 @@ function updateVideos() {
                 }
             }
         });
+    });
+
+    // Update any custom video elements using data-translate starting with 'custom.'
+    const customElements = document.querySelectorAll('[data-translate^="custom."]');
+    customElements.forEach(el => {
+        const key = el.getAttribute('data-translate');
+        const val = getTranslation(key);
+        if (val) el.textContent = val;
     });
 }
 
