@@ -2,6 +2,21 @@
 let currentLanguage = 'en';
 let translations = {};
 
+// Deep merge utility: prefers values from 'source', fills missing from 'target'
+function deepMerge(target, source) {
+    if (typeof target !== 'object' || target === null) return source;
+    if (typeof source !== 'object' || source === null) return source ?? target;
+    const result = Array.isArray(target) ? target.slice() : { ...target };
+    Object.keys(source).forEach(key => {
+        if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+            result[key] = deepMerge(result[key] || {}, source[key]);
+        } else {
+            result[key] = source[key];
+        }
+    });
+    return result;
+}
+
 // Load translations from language.json
 async function loadTranslations() {
     try {
@@ -13,6 +28,62 @@ async function loadTranslations() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         translations = await response.json();
+        // Ensure Steam Accounts page keys exist even if missing from language.json
+        const steamaccDefaults = {
+            en: {
+                steamacc: {
+                    pageTitle: "Steam Accounts - Zap Tech",
+                    mainHeader: "Free Steam Accounts",
+                    availableHeader: "Available Steam Accounts",
+                    explanation: "Welcome to our Steam Accounts section! We provide free Steam accounts on a daily basis to help gamers access games and features without any cost.",
+                    searchPlaceholder: "Search account details...",
+                    searchButton: "Search",
+                    clearButton: "Clear",
+                    pagination: {
+                        showing: "Showing page",
+                        of: "of",
+                        totalAccounts: "total accounts",
+                        prev: "Previous",
+                        next: "Next"
+                    },
+                    refreshButton: "Refresh Accounts",
+                    refreshInfo: "Click refresh to see newly published accounts",
+                    commentsTitle: "Requests & Comments",
+                    namePlaceholder: "Your name (optional)",
+                    messagePlaceholder: "Ask what account you want...",
+                    sendButton: "Send",
+                    noComments: "No comments yet. Be the first!",
+                    deleteComment: "Delete comment"
+                }
+            },
+            ku: {
+                steamacc: {
+                    pageTitle: "ئەکاونتی ستیم - زاپ تێک",
+                    mainHeader: "ئەکاونتی ستیم بەخۆڕایی",
+                    availableHeader: "ئەکاونتە ستیمە بەردەستەکان",
+                    explanation: "بەخێربێیت بۆ بەشی ئەکاونتە ستیم! ئێمە ڕۆژانە ئەکاونتی ستیم بەخۆڕایی دابین دەکەین بۆ یاریکەرانی دەستگەیشتن بە یاری و تایبەتمەندییەکان بەبێ هیچ تێچوویەکی دارایی.",
+                    searchPlaceholder: "گەڕان لە وردەکاری ئەکاونتەکان...",
+                    searchButton: "گەڕان",
+                    clearButton: "سڕینەوە",
+                    pagination: {
+                        showing: "پەڕە",
+                        of: "لە",
+                        totalAccounts: "ئەکاونتەکان",
+                        prev: "پێشوو",
+                        next: "دواتر"
+                    },
+                    refreshButton: "نوێکردنەوەی ئەکاونتەکان",
+                    refreshInfo: "دوگمەی نوێکردنەوە دابگرە بۆ بینینی ئەکاونتی نوێکراو",
+                    commentsTitle: "داوا و لێدوانەکان",
+                    namePlaceholder: "ناوت (ئارەزوویە)",
+                    messagePlaceholder: "بڵێ چی جۆر ئەکاونت دەتەوێت...",
+                    sendButton: "ناردن",
+                    noComments: "هیچ لێدوانێک نییە. یەکەم بین!",
+                    deleteComment: "سڕینەوەی لێدوان"
+                }
+            }
+        };
+        translations = deepMerge(steamaccDefaults, translations);
         console.log('Translations loaded successfully:', translations);
         console.log('Available sections:', translations.ku?.sections);
         console.log('Websites section:', translations.ku?.sections?.websites);
@@ -32,6 +103,29 @@ async function loadTranslations() {
                     kurdishImageAI: "Kurdish Image AI",
                     aboutUs: "About Us",
                     donate: "Donate $"
+                },
+                steamacc: {
+                    pageTitle: "Steam Accounts - Zap Tech",
+                    mainHeader: "Free Steam Accounts",
+                    availableHeader: "Available Steam Accounts",
+                    searchPlaceholder: "Search account details...",
+                    searchButton: "Search",
+                    clearButton: "Clear",
+                    pagination: {
+                        showing: "Showing page",
+                        of: "of",
+                        totalAccounts: "total accounts",
+                        prev: "Previous",
+                        next: "Next"
+                    },
+                    refreshButton: "Refresh Accounts",
+                    refreshInfo: "Click refresh to see newly published accounts",
+                    commentsTitle: "Requests & Comments",
+                    namePlaceholder: "Your name (optional)",
+                    messagePlaceholder: "Ask what account you want...",
+                    sendButton: "Send",
+                    noComments: "No comments yet. Be the first!",
+                    deleteComment: "Delete comment"
                 },
                 sections: {
                     pcAppsGames: {
@@ -56,6 +150,29 @@ async function loadTranslations() {
                     quran: "قورئان",
                     aboutUs: "دەربارەی ئێمە",
                     donate: "پارە بدە $"
+                },
+                steamacc: {
+                    pageTitle: "ئەکاونتی ستیم - زاپ تێک",
+                    mainHeader: "ئەکاونتی ستیم بەخۆڕایی",
+                    availableHeader: "ئەکاونتە ستیمە بەردەستەکان",
+                    searchPlaceholder: "گەڕان لە وردەکاری ئەکاونتەکان...",
+                    searchButton: "گەڕان",
+                    clearButton: "سڕینەوە",
+                    pagination: {
+                        showing: "پەڕە",
+                        of: "لە",
+                        totalAccounts: "ئەکاونتەکان",
+                        prev: "پێشوو",
+                        next: "دواتر"
+                    },
+                    refreshButton: "نوێکردنەوەی ئەکاونتەکان",
+                    refreshInfo: "دوگمەی نوێکردنەوە دابگرە بۆ بینینی ئەکاونتی نوێکراو",
+                    commentsTitle: "داوا و لێدوانەکان",
+                    namePlaceholder: "ناوت (ئارەزوویە)",
+                    messagePlaceholder: "بڵێ چی جۆر ئەکاونت دەتەوێت...",
+                    sendButton: "ناردن",
+                    noComments: "هیچ لێدوانێک نییە. یەکەم بین!",
+                    deleteComment: "سڕینەوەی لێدوان"
                 },
                 sections: {
                     websites: {
@@ -134,6 +251,9 @@ function updatePageLanguage() {
     
     // Update Quran page
     updateQuranContent();
+
+    // Update Steam Accounts page (UI only, exclude account details)
+    updateSteamAccPage();
     
     // Update page title
     updatePageTitle();
@@ -144,22 +264,130 @@ function updatePageLanguage() {
     // Update body lang attribute for font switching
     document.body.lang = currentLanguage;
 }
+// Update Steam Accounts page UI (exclude account content text)
+function updateSteamAccPage() {
+    const isSteamAccPage = /steamacc(\.html)?$/.test(window.location.pathname) || document.body.classList.contains('steamacc-page');
+    if (!isSteamAccPage) return;
+
+    // Title
+    const titleEl = document.querySelector('title');
+    if (titleEl) {
+        titleEl.textContent = getTranslation('steamacc.pageTitle');
+    }
+
+    // Main header
+    const mainHeader = document.querySelector('.main-header');
+    if (mainHeader) {
+        mainHeader.textContent = getTranslation('steamacc.mainHeader');
+    }
+
+    // Section header
+    const availableHeader = document.querySelector('.public-header');
+    if (availableHeader) {
+        availableHeader.textContent = getTranslation('steamacc.availableHeader');
+    }
+
+    // Explanation paragraph under banner
+    const explanationText = document.querySelector('.explanation-text');
+    if (explanationText) {
+        explanationText.textContent = getTranslation('steamacc.explanation');
+    }
+
+    // Search placeholders and buttons
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.placeholder = getTranslation('steamacc.searchPlaceholder');
+    }
+    const searchBtn = document.querySelector('.search-btn');
+    if (searchBtn) {
+        searchBtn.textContent = getTranslation('steamacc.searchButton');
+    }
+    const clearBtn = document.querySelector('.clear-search-btn');
+    if (clearBtn) {
+        clearBtn.textContent = getTranslation('steamacc.clearButton');
+    }
+
+    // Pagination
+    const paginationInfo = document.getElementById('pagination-info');
+    if (paginationInfo) {
+        // Rebuild using current page info pattern: "Showing page X of Y (N total accounts)"
+        const current = document.getElementById('current-page');
+        const text = paginationInfo.textContent || '';
+        let totalPages = 1;
+        let totalAccounts = '';
+        try {
+            const match = text.match(/page\s+(\d+)\s+of\s+(\d+).*?(\d+)?/i);
+            if (match) {
+                totalPages = parseInt(match[2], 10) || 1;
+                totalAccounts = match[3] || '';
+            }
+        } catch (e) {}
+        const showing = getTranslation('steamacc.pagination.showing');
+        const ofText = getTranslation('steamacc.pagination.of');
+        const totalText = getTranslation('steamacc.pagination.totalAccounts');
+        const currPageNum = current ? current.textContent : '1';
+        paginationInfo.textContent = `${showing} ${currPageNum} ${ofText} ${totalPages}${totalAccounts ? ` (${totalAccounts} ${totalText})` : ''}`;
+    }
+    const prevBtn = document.getElementById('prev-btn');
+    if (prevBtn) prevBtn.textContent = getTranslation('steamacc.pagination.prev');
+    const nextBtn = document.getElementById('next-btn');
+    if (nextBtn) nextBtn.textContent = getTranslation('steamacc.pagination.next');
+
+    // Refresh section
+    const refreshBtn = document.querySelector('.refresh-btn');
+    if (refreshBtn) refreshBtn.textContent = getTranslation('steamacc.refreshButton');
+    const refreshInfo = document.querySelector('.refresh-info');
+    if (refreshInfo) refreshInfo.textContent = getTranslation('steamacc.refreshInfo');
+
+    // Comments box created dynamically in steamacc.html
+    const commentsContainer = document.getElementById('comments-list');
+    const commentsHeader = commentsContainer ? commentsContainer.closest('div').querySelector('h3') : null;
+    if (commentsHeader) commentsHeader.textContent = getTranslation('steamacc.commentsTitle');
+    const nameInput = document.getElementById('comment-name');
+    if (nameInput) nameInput.placeholder = getTranslation('steamacc.namePlaceholder');
+    const msgInput = document.getElementById('comment-message');
+    if (msgInput) msgInput.placeholder = getTranslation('steamacc.messagePlaceholder');
+    const sendBtn = document.getElementById('comment-send');
+    if (sendBtn) sendBtn.textContent = getTranslation('steamacc.sendButton');
+
+    // If no comments placeholder is present, skip; render happens in page script
+}
 
 // Update navigation menu
 function updateNavigation() {
-    const navItems = {
-        'home': 'a[href="index.html"]',
-        'website': 'a[href="website.html"]',
-        'videoTutorial': 'a[href="video-tutorial.html"]',
-        'pcAppsGames': 'a[href="pc apps and games.html"]',
-        'aboutUs': 'a[href="#bg8"], a[href="index.html#bg8"]',
-        'donate': '#donate-btn'
+    const navItemSelectors = {
+        home: [
+            'a[href="/"]',
+            'a[href="index.html"]'
+        ],
+        website: [
+            'a[href="/website"]',
+            'a[href="website.html"]'
+        ],
+        videoTutorial: [
+            'a[href="/video-tutorial"]',
+            'a[href="video-tutorial.html"]'
+        ],
+        pcAppsGames: [
+            'a[href="/pc-apps-and-games"]',
+            'a[href="pc apps and games.html"]'
+        ],
+        aboutUs: [
+            'a[href="/#bg8"]',
+            'a[href="#bg8"]',
+            'a[href="index.html#bg8"]'
+        ],
+        donate: [
+            '#donate-btn'
+        ]
     };
-    
-    Object.entries(navItems).forEach(([key, selector]) => {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach(element => {
-            element.textContent = getTranslation(`nav.${key}`);
+
+    Object.entries(navItemSelectors).forEach(([key, selectors]) => {
+        selectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => {
+                element.textContent = getTranslation(`nav.${key}`);
+            });
         });
     });
     
@@ -170,13 +398,13 @@ function updateNavigation() {
     }
     
     // Update Personality link in dropdown
-    const personalityLink = document.querySelector('.dropdown-menu a[data-translate="navbar.personality"]');
+    const personalityLink = document.querySelector('.dropdown-menu a[data-translate="navbar.personality"], .dropdown-menu a[href="/personality"]');
     if (personalityLink) {
         personalityLink.textContent = getTranslation('nav.personality');
     }
     
     // Update Quran link in dropdown
-    const quranLink = document.querySelector('.dropdown-menu a[data-translate="navbar.quran"]');
+    const quranLink = document.querySelector('.dropdown-menu a[data-translate="navbar.quran"], .dropdown-menu a[href="/quran"]');
     if (quranLink) {
         quranLink.textContent = getTranslation('nav.quran');
     }
@@ -185,6 +413,12 @@ function updateNavigation() {
     const kurdishImageAILink = document.querySelector('.dropdown-menu a[data-translate="navbar.kurdishImageAI"]');
     if (kurdishImageAILink) {
         kurdishImageAILink.textContent = getTranslation('nav.kurdishImageAI');
+    }
+
+    // Update Steam Accounts link in Tools dropdown (exclude content area)
+    const steamAccLink = document.querySelector('.dropdown-menu a[href="/steamacc"], .dropdown-menu a[href="steamacc.html"], .dropdown-menu a[href="/steamacc.html"]');
+    if (steamAccLink) {
+        steamAccLink.textContent = currentLanguage === 'ku' ? 'ئەکاونتی ستیم' : 'Steam Accounts';
     }
 }
 

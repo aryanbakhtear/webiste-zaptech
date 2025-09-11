@@ -753,42 +753,65 @@
         `;
         document.head.appendChild(style);
         
-        // Enter key support for admin code
-        document.getElementById('admin-code').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkAdminCode();
+        // Enter key support for admin code (guarded if element exists)
+        (function(){
+            var adminCodeEl = document.getElementById('admin-code');
+            if (adminCodeEl && typeof checkAdminCode === 'function') {
+                adminCodeEl.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkAdminCode();
+                    }
+                });
             }
-        });
+        })();
         
 
         
-        // Close modal when clicking outside
-        document.getElementById('admin-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeAdminModal();
+        // Close modal when clicking outside (guarded)
+        (function(){
+            var adminModalEl = document.getElementById('admin-modal');
+            if (adminModalEl && typeof closeAdminModal === 'function') {
+                adminModalEl.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeAdminModal();
+                    }
+                });
+                // Close modal with Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        closeAdminModal();
+                    }
+                });
             }
-        });
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeAdminModal();
-            }
-        });
+        })();
         
         // Search functionality (Firestore-backed)
-        function searchAccounts() {
+        function searchAccounts(isLive) {
             const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
-            if (!searchTerm) {
-                showNotification('Please enter a search term!', 'warning');
-                return;
-            }
             const publicGrid = document.getElementById('public-accounts-grid');
-            publicGrid.innerHTML = '<div class="no-public-accounts"><p>Searching...</p></div>';
+
+            // When typing live and input is empty, restore full list silently
+            if (!searchTerm) {
+                if (isLive) {
+                    currentPage = 1;
+                    loadPublicAccounts();
+                    return;
+                } else {
+                    showNotification('Please enter a search term!', 'warning');
+                    return;
+                }
+            }
+
+            // Avoid flicker for live typing
+            if (!isLive) {
+                publicGrid.innerHTML = '<div class="no-public-accounts"><p>Searching...</p></div>';
+            }
+
             if (!window.SteamAccData || !SteamAccData.getAccounts) {
-                showNotification('Search unavailable', 'error');
+                if (!isLive) showNotification('Search unavailable', 'error');
                 return;
             }
+
             SteamAccData.getAccounts().then(function(accounts){
                 const list = Array.isArray(accounts) ? accounts : [];
                 const filtered = list.filter(a => (a.content || '').toLowerCase().includes(searchTerm));
@@ -803,9 +826,9 @@
                     displaySearchResults(filtered);
                 }
                 document.getElementById('pagination-container').style.display = 'none';
-                showNotification(`Found ${filtered.length} account(s)`, 'success');
+                if (!isLive) showNotification(`Found ${filtered.length} account(s)`, 'success');
             }).catch(function(){
-                showNotification('Search failed', 'error');
+                if (!isLive) showNotification('Search failed', 'error');
             });
         }
         
@@ -849,10 +872,27 @@
             publicGrid.innerHTML = accountsHTML;
         }
         
+        // Debounced live search on input
+        function debounce(fn, delay) {
+            let timeoutId;
+            return function() {
+                clearTimeout(timeoutId);
+                const context = this;
+                const args = arguments;
+                timeoutId = setTimeout(function(){ fn.apply(context, args); }, delay);
+            };
+        }
+
+        const handleLiveSearch = debounce(function(){
+            searchAccounts(true);
+        }, 250);
+
+        document.getElementById('search-input').addEventListener('input', handleLiveSearch);
+
         // Enter key support for search
         document.getElementById('search-input').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                searchAccounts();
+                searchAccounts(false);
             }
         });
     </script>

@@ -881,7 +881,8 @@ body.steamacc-page .navbar.open {
     }
     
     .public-account-card {
-        height: 170px;
+        height: auto;
+        min-height: 180px;
         padding: 10px;
         display: flex;
         flex-direction: column;
@@ -953,8 +954,9 @@ body.steamacc-page .navbar.open {
     }
     
     .public-account-card {
+        height: auto;
+        min-height: 180px;
         padding: 10px;
-        height: 160px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -1013,8 +1015,9 @@ body.steamacc-page .navbar.open {
     }
     
     .public-account-card {
+        height: auto;
+        min-height: 180px;
         padding: 8px;
-        height: 150px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
