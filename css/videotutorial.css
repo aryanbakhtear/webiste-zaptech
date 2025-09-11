@@ -132,7 +132,9 @@
 @media (max-width: 600px) {
   .video-hover-card-link {
     width: 100%;
-    max-width: 100vw;
+    max-width: 92vw;
+    margin-left: auto;
+    margin-right: auto;
   }
   .video-hover-card {
     justify-content: center;
@@ -152,8 +154,22 @@
   .items {
     grid-template-columns: 1fr;
     gap: 12px;
-    max-width: 100vw;
+    max-width: 96vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
   }
+}
+
+/* bottom spacing for video tutorial page */
+.video-tutorial-page .items { 
+  padding-bottom: 48px; 
+}
+.video-tutorial-page { 
+  padding-bottom: 24px; 
+}
+@media (max-width: 600px) {
+  .video-tutorial-page .items { padding-bottom: 40px; }
+  .video-tutorial-page { padding-bottom: 20px; }
 }
 
 

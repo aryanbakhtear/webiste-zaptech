@@ -116,6 +116,12 @@
       </div>
     </div></a>
   </div>
+  <!-- Mobile pager -->
+  <div id="mobile-video-pager" style="display:none; gap:8px; align-items:center; justify-content:center; margin: 12px auto 24px auto;">
+    <button id="mv-prev" style="padding:8px 12px; border-radius:8px; border:1px solid #ddd; background:#fff; cursor:pointer;">Previous</button>
+    <span id="mv-info" style="font-family:'NavbarFont','Arial',sans-serif; color:#fff;">1 / 1</span>
+    <button id="mv-next" style="padding:8px 12px; border-radius:8px; border:1px solid #ddd; background:#fff; cursor:pointer;">Next</button>
+  </div>
   <script src="/java script/navbar.js"></script>
   <script src="/java script/smooth-scroll.js"></script>
   <script src="/java script/ultra-optimizer.js"></script>
@@ -195,6 +201,56 @@
    </div>
 
   <script>
+  // Mobile video pagination: show 4 per page on small screens
+  (function(){
+    const itemsContainer = document.querySelector('.items');
+    if (!itemsContainer) return;
+    const links = Array.from(itemsContainer.querySelectorAll('.video-hover-card-link'));
+    const pager = document.getElementById('mobile-video-pager');
+    const prevBtn = document.getElementById('mv-prev');
+    const nextBtn = document.getElementById('mv-next');
+    const info = document.getElementById('mv-info');
+    let page = 1;
+    const perPageMobile = 4;
+
+    function isMobile(){
+      return window.matchMedia('(max-width: 600px)').matches;
+    }
+
+    function totalPages(){
+      if (!isMobile()) return 1;
+      return Math.max(1, Math.ceil(links.length / perPageMobile));
+    }
+
+    function render(){
+      const mobile = isMobile();
+      pager.style.display = mobile && totalPages() > 1 ? 'flex' : 'none';
+      if (!mobile){
+        links.forEach(el => { el.style.display = ''; });
+        return;
+      }
+      const tp = totalPages();
+      if (page > tp) page = tp;
+      const start = (page - 1) * perPageMobile;
+      const end = start + perPageMobile;
+      links.forEach((el, idx) => {
+        el.style.display = (idx >= start && idx < end) ? '' : 'none';
+      });
+      info.textContent = page + ' / ' + tp;
+      prevBtn.disabled = page <= 1;
+      nextBtn.disabled = page >= tp;
+    }
+
+    if (prevBtn && nextBtn){
+      prevBtn.addEventListener('click', function(){ if (page > 1){ page--; render(); } });
+      nextBtn.addEventListener('click', function(){ if (page < totalPages()){ page++; render(); } });
+    }
+
+    window.addEventListener('resize', render);
+    document.addEventListener('DOMContentLoaded', render);
+    // In case this runs after DOMContentLoaded
+    render();
+  })();
   // Donation modal functionality
   document.addEventListener('DOMContentLoaded', function() {
     const donateBtn = document.getElementById('donate-btn');
