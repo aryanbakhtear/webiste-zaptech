@@ -53,7 +53,11 @@ async function loadTranslations() {
                     messagePlaceholder: "Ask what account you want...",
                     sendButton: "Send",
                     noComments: "No comments yet. Be the first!",
-                    deleteComment: "Delete comment"
+                    deleteComment: "Delete comment",
+                    accountStatus: {
+                        active: "Active",
+                        maybeWorking: "Maybe Working"
+                    }
                 },
                 custom: {
                     freeSteam: {
@@ -86,7 +90,11 @@ async function loadTranslations() {
                     messagePlaceholder: "بڵێ چی جۆر ئەکاونت دەتەوێت...",
                     sendButton: "ناردن",
                     noComments: "هیچ لێدوانێک نییە. یەکەم بین!",
-                    deleteComment: "سڕینەوەی لێدوان"
+                    deleteComment: "سڕینەوەی لێدوان",
+                    accountStatus: {
+                        active: "چالاک",
+                        maybeWorking: "لەوانەیە کار بکات"
+                    }
                 },
                 custom: {
                     freeSteam: {
@@ -139,7 +147,11 @@ async function loadTranslations() {
                     messagePlaceholder: "Ask what account you want...",
                     sendButton: "Send",
                     noComments: "No comments yet. Be the first!",
-                    deleteComment: "Delete comment"
+                    deleteComment: "Delete comment",
+                    accountStatus: {
+                        active: "Active",
+                        maybeWorking: "Maybe Working"
+                    }
                 },
                 sections: {
                     pcAppsGames: {
@@ -193,7 +205,11 @@ async function loadTranslations() {
                     messagePlaceholder: "بڵێ چی جۆر ئەکاونت دەتەوێت...",
                     sendButton: "ناردن",
                     noComments: "هیچ لێدوانێک نییە. یەکەم بین!",
-                    deleteComment: "سڕینەوەی لێدوان"
+                    deleteComment: "سڕینەوەی لێدوان",
+                    accountStatus: {
+                        active: "چالاک",
+                        maybeWorking: "لەوانەیە کار بکات"
+                    }
                 },
                 sections: {
                     websites: {
@@ -379,6 +395,11 @@ function updateSteamAccPage() {
     if (sendBtn) sendBtn.textContent = getTranslation('steamacc.sendButton');
 
     // If no comments placeholder is present, skip; render happens in page script
+    
+    // Update account statuses if the function exists
+    if (typeof updateAccountStatuses === 'function') {
+        updateAccountStatuses();
+    }
 }
 
 // Update navigation menu

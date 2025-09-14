@@ -129,6 +129,11 @@
     <script>
         // Load translations when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            // Set the cutoff time to current time - all existing accounts will be "Maybe Working"
+            // Only accounts published after this moment will be "Active" for 7 days
+            window.accountStatusCutoffTime = Date.now();
+            console.log('Account status cutoff time set to:', window.accountStatusCutoffTime);
+            
             loadTranslations();
             loadPublicAccounts();
             // Floating Admin FAB and panel
@@ -204,7 +209,7 @@
             }
             document.getElementById('adminbar-signin').addEventListener('click', function(){
                 SteamAccData.signIn().then(function(){
-                    showNotification('Signed in successfully', 'success');
+                    showNotification(getNotificationText('signedInSuccessfully', 'Signed in successfully'), 'success');
                     refreshAdminbarUI();
                     loadPublicAccounts();
                     loadComments();
@@ -216,7 +221,7 @@
             });
             document.getElementById('adminbar-signout').addEventListener('click', function(){
                 SteamAccData.signOut().then(function(){
-                    showNotification('Signed out', 'success');
+                    showNotification(getNotificationText('signedOut', 'Signed out'), 'success');
                     refreshAdminbarUI();
                     loadPublicAccounts();
                     loadComments();
@@ -225,22 +230,23 @@
             document.getElementById('adminbar-publish').addEventListener('click', function(){
                 const accountContent = (document.getElementById('adminbar-text').value || '').trim();
                 if (!accountContent) {
-                    showNotification('Please paste account details!', 'warning');
+                    showNotification(getNotificationText('pleasePasteAccountDetails', 'Please paste account details!'), 'warning');
                     return;
                 }
                 const newAccount = {
                     id: Date.now(),
                     content: accountContent,
                     datePublished: new Date().toLocaleDateString(),
-                    timePublished: new Date().toLocaleTimeString()
+                    timePublished: new Date().toLocaleTimeString(),
+                    publishedAt: new Date().toISOString() // This will make it "Active" for 7 days
                 };
                 SteamAccData.addAccount(newAccount).then(function(){
                     document.getElementById('adminbar-text').value = '';
                     loadPublicAccounts();
-                    showNotification('Published!', 'success');
+                    showNotification(getNotificationText('published', 'Published!'), 'success');
                 }).catch(function(err){
                     console.warn(err);
-                    showNotification('Failed to publish. Please try again.', 'error');
+                    showNotification(getNotificationText('failedToPublish', 'Failed to publish. Please try again.'), 'error');
                 });
             });
             refreshAdminbarUI();
@@ -300,14 +306,14 @@
             document.getElementById('comment-send').addEventListener('click', function(){
                 const name = (document.getElementById('comment-name').value || '').trim();
                 const message = (document.getElementById('comment-message').value || '').trim();
-                if (!message) { showNotification('Write a message first', 'warning'); return; }
+                if (!message) { showNotification(getNotificationText('writeMessageFirst', 'Write a message first'), 'warning'); return; }
                 SteamAccData.addComment({ name, message }).then(function(){
                     document.getElementById('comment-message').value = '';
                     loadComments();
-                    showNotification('Comment posted', 'success');
+                    showNotification(getNotificationText('commentPosted', 'Comment posted'), 'success');
                 }).catch(function(err){
                     console.warn(err);
-                    showNotification('Failed to post comment', 'error');
+                    showNotification(getNotificationText('failedToPostComment', 'Failed to post comment'), 'error');
                 });
             });
 
@@ -315,13 +321,13 @@
             window.deleteCommentById = function(id){
                 if (!id) return;
                 if (!window.SteamAccData || !SteamAccData.deleteComment) {
-                    showNotification('Delete not available', 'error');
+                    showNotification(getNotificationText('deleteNotAvailable', 'Delete not available'), 'error');
                     return;
                 }
                 if (!confirm('Delete this comment?')) return;
                 SteamAccData.deleteComment(id).then(function(){
                     loadComments();
-                    showNotification('Comment deleted', 'success');
+                    showNotification(getNotificationText('commentDeleted', 'Comment deleted'), 'success');
                 }).catch(function(err){
                     console.warn(err);
                     const msg = (err && (err.message || err.code)) ? (err.message || err.code) : 'Delete failed';
@@ -347,6 +353,107 @@
                 notes: notesMatch ? notesMatch[1].trim() : null
             };
         }
+        
+        // Simple function to calculate account status
+        function getAccountStatus(account) {
+            console.log('Checking account status for:', account);
+            
+            // Check if account was published today (simple date comparison)
+            if (account && account.datePublished) {
+                const today = new Date().toLocaleDateString();
+                const accountDate = account.datePublished;
+                
+                console.log('Date comparison:', {
+                    today: today,
+                    accountDate: accountDate,
+                    isToday: accountDate === today
+                });
+                
+                // If published today, it's Active
+                if (accountDate === today) {
+                    console.log('Account published today - ACTIVE');
+                    return 'active';
+                }
+            }
+            
+            // Check if account has publishedAt timestamp (new accounts)
+            if (account && account.publishedAt) {
+                const publishedTime = new Date(account.publishedAt).getTime();
+                const currentTime = Date.now();
+                const timeDiff = currentTime - publishedTime;
+                const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+                
+                console.log('PublishedAt check:', {
+                    publishedAt: account.publishedAt,
+                    daysDiff: daysDiff,
+                    willBeActive: daysDiff < 7
+                });
+                
+                // Active for 7 days, then Maybe Working
+                if (daysDiff < 7) {
+                    console.log('Account published recently - ACTIVE');
+                    return 'active';
+                }
+            }
+            
+            // All other accounts are Maybe Working
+            console.log('Account will be Maybe Working');
+            return 'maybeWorking';
+        }
+        
+        // Function to get translated status text
+        function getStatusText(status) {
+            if (typeof getTranslation === 'function') {
+                const translation = getTranslation(`steamacc.accountStatus.${status}`);
+                console.log(`Getting translation for ${status}:`, translation);
+                return translation;
+            }
+            // Fallback if translations not loaded
+            console.log('Using fallback translation for', status);
+            return status === 'active' ? 'Active' : 'Maybe Working';
+        }
+        
+        // Function to get translated notification text
+        function getNotificationText(key, fallback) {
+            if (typeof getTranslation === 'function') {
+                return getTranslation(`steamacc.notifications.${key}`);
+            }
+            return fallback;
+        }
+        
+        // Function to update account statuses when language changes
+        function updateAccountStatuses() {
+            console.log('Updating account statuses...');
+            const statusElements = document.querySelectorAll('.account-status');
+            console.log('Found', statusElements.length, 'status elements');
+            statusElements.forEach(element => {
+                const statusClass = element.classList.contains('status-active') ? 'active' : 'maybeWorking';
+                const newText = getStatusText(statusClass);
+                console.log('Updating status from', element.textContent, 'to', newText);
+                element.textContent = newText;
+            });
+        }
+        
+        // Make function globally available
+        window.updateAccountStatuses = updateAccountStatuses;
+        
+        // Add event delegation for copy buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.copy-btn[data-copy-text]')) {
+                const button = e.target.closest('.copy-btn[data-copy-text]');
+                const textToCopy = button.getAttribute('data-copy-text');
+                if (textToCopy) {
+                    copyToClipboard(textToCopy);
+                }
+            }
+        });
+        
+        // Test function for copy functionality (can be called from browser console)
+        window.testCopyFunction = function() {
+            const testText = "Email: test@example.com\nPassword: testpass123\nGames: Counter-Strike, Dota 2";
+            console.log('Testing copy function with:', testText);
+            copyToClipboard(testText);
+        };
         
         // Delete from admin list removed on this page
         
@@ -411,19 +518,26 @@
                 let accountsHTML = '';
                 const allowed = window.SteamAccData && SteamAccData.isAllowedUser && SteamAccData.isAllowedUser();
                 currentAccounts.forEach(account => {
-                    const contentSafe = (account.content || '').replace(/`/g, '\\`');
+                    const contentSafe = (account.content || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+                    const status = getAccountStatus(account);
+                    const statusText = getStatusText(status);
+                    const statusClass = status === 'active' ? 'status-active' : 'status-maybe-working';
+                    
                     accountsHTML += `
                         <div class="public-account-card">
                             <div class="account-header">
                                 <h3>Steam Account</h3>
-                                <span class="publish-date">${account.datePublished || ''}</span>
+                                <div class="account-meta">
+                                    <span class="publish-date">${account.datePublished || ''}</span>
+                                    <span class="account-status ${statusClass}">${statusText}</span>
+                                </div>
                             </div>
                             <div class="account-details">
                                 <div class="detail-row">
                                     <div class="copy-field">
                                         <pre class="field-value account-text">${account.content || ''}</pre>
                                         <div style="display:flex; gap:8px; align-items:center;">
-                                            <button onclick="copyToClipboard('${contentSafe}')" class="copy-btn" title="Copy Account">
+                                            <button class="copy-btn" title="Copy Account" data-copy-text="${contentSafe}">
                                                 <i class=\"fas fa-copy\"></i>
                                             </button>
                                             ${allowed ? `<button onclick=\"deleteAccountById('${account.id}')\" class=\"copy-btn\" title=\"Delete\" style=\"background:#dc3545;\">\n                                                <i class=\\"fas fa-trash\\"></i>\n                                            </button>` : ''}
@@ -483,39 +597,64 @@
         function refreshPublicAccounts() {
             currentPage = 1; // Reset to first page when refreshing
             loadPublicAccounts();
-            showNotification('Accounts refreshed!', 'success');
+            showNotification(getNotificationText('accountsRefreshed', 'Accounts refreshed!'), 'success');
         }
         
         function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(function() {
-                showNotification('Copied to clipboard!', 'success');
+            // Decode HTML entities
+            const decodedText = text.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+            console.log('Copying text:', decodedText);
+            if (!decodedText) {
+                console.error('No text provided to copy');
+                return;
+            }
+            
+            navigator.clipboard.writeText(decodedText).then(function() {
+                console.log('Text copied successfully via navigator.clipboard');
+                showNotification(getNotificationText('copiedToClipboard', 'Copied to clipboard!'), 'success');
             }).catch(function(err) {
+                console.log('navigator.clipboard failed, using fallback:', err);
                 // Fallback for older browsers
                 const textArea = document.createElement('textarea');
-                textArea.value = text;
+                textArea.value = decodedText;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
                 document.body.appendChild(textArea);
+                textArea.focus();
                 textArea.select();
-                document.execCommand('copy');
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        console.log('Text copied successfully via fallback method');
+                        showNotification(getNotificationText('copiedToClipboard', 'Copied to clipboard!'), 'success');
+                    } else {
+                        console.error('Fallback copy failed');
+                        showNotification('Copy failed', 'error');
+                    }
+                } catch (err) {
+                    console.error('Fallback copy error:', err);
+                    showNotification('Copy failed', 'error');
+                }
                 document.body.removeChild(textArea);
-                showNotification('Copied to clipboard!', 'success');
             });
         }
         
         function manageAccounts() {
-            showNotification('Manage Accounts feature coming soon!', 'info');
+            showNotification(getNotificationText('manageAccountsComingSoon', 'Manage Accounts feature coming soon!'), 'info');
         }
 
         // Admin-only delete button handler
         function deleteAccountById(id){
             if (!id) return;
             if (!window.SteamAccData || !SteamAccData.deleteAccount) {
-                showNotification('Delete not available', 'error');
+                showNotification(getNotificationText('deleteNotAvailable', 'Delete not available'), 'error');
                 return;
             }
             if (!confirm('Delete this account?')) return;
             SteamAccData.deleteAccount(id).then(function(){
                 loadPublicAccounts();
-                showNotification('Deleted', 'success');
+                showNotification(getNotificationText('deleted', 'Deleted'), 'success');
             }).catch(function(err){
                 console.warn(err);
                 const msg = (err && (err.message || err.code)) ? (err.message || err.code) : 'Delete failed';
@@ -732,6 +871,33 @@
                 font-style: italic;
             }
             
+            /* Account Status Styles */
+            .account-meta {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 4px;
+            }
+            
+            .account-status {
+                padding: 4px 8px;
+                border-radius: 12px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            
+            .status-active {
+                background-color: #28a745;
+                color: white;
+            }
+            
+            .status-maybe-working {
+                background-color: #ffc107;
+                color: #333;
+            }
+            
             /* Responsive adjustments */
             @media (max-width: 768px) {
                 .admin-icon-container {
@@ -748,6 +914,10 @@
                 .admin-modal-content {
                     width: 95%;
                     margin: 20px;
+                }
+                
+                .account-meta {
+                    align-items: flex-start;
                 }
             }
         `;
@@ -797,7 +967,7 @@
                     loadPublicAccounts();
                     return;
                 } else {
-                    showNotification('Please enter a search term!', 'warning');
+                    showNotification(getNotificationText('pleaseEnterSearchTerm', 'Please enter a search term!'), 'warning');
                     return;
                 }
             }
@@ -808,7 +978,7 @@
             }
 
             if (!window.SteamAccData || !SteamAccData.getAccounts) {
-                if (!isLive) showNotification('Search unavailable', 'error');
+                if (!isLive) showNotification(getNotificationText('searchUnavailable', 'Search unavailable'), 'error');
                 return;
             }
 
@@ -826,9 +996,12 @@
                     displaySearchResults(filtered);
                 }
                 document.getElementById('pagination-container').style.display = 'none';
-                if (!isLive) showNotification(`Found ${filtered.length} account(s)`, 'success');
+                if (!isLive) {
+                    const message = getNotificationText('foundAccounts', `Found ${filtered.length} account(s)`).replace('{count}', filtered.length);
+                    showNotification(message, 'success');
+                }
             }).catch(function(){
-                if (!isLive) showNotification('Search failed', 'error');
+                if (!isLive) showNotification(getNotificationText('searchFailed', 'Search failed'), 'error');
             });
         }
         
@@ -836,7 +1009,7 @@
             document.getElementById('search-input').value = '';
             currentPage = 1;
             loadPublicAccounts();
-            showNotification('Search cleared!', 'info');
+            showNotification(getNotificationText('searchCleared', 'Search cleared!'), 'info');
         }
         
         function displaySearchResults(accounts) {
@@ -845,19 +1018,26 @@
             let accountsHTML = '';
             const allowed = window.SteamAccData && SteamAccData.isAllowedUser && SteamAccData.isAllowedUser();
             accounts.forEach(account => {
-                const contentSafe = (account.content || '').replace(/`/g, '\\`');
+                const contentSafe = (account.content || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+                const status = getAccountStatus(account);
+                const statusText = getStatusText(status);
+                const statusClass = status === 'active' ? 'status-active' : 'status-maybe-working';
+                
                 accountsHTML += `
                     <div class="public-account-card">
                         <div class="account-header">
                             <h3>Steam Account</h3>
-                            <span class="publish-date">${account.datePublished || ''}</span>
+                            <div class="account-meta">
+                                <span class="publish-date">${account.datePublished || ''}</span>
+                                <span class="account-status ${statusClass}">${statusText}</span>
+                            </div>
                         </div>
                         <div class="account-details">
                             <div class="detail-row">
                                 <div class="copy-field">
                                     <pre class="field-value account-text">${account.content || ''}</pre>
                                     <div style="display:flex; gap:8px; align-items:center;">
-                                        <button onclick="copyToClipboard('${contentSafe}')" class="copy-btn" title="Copy Account">
+                                        <button class="copy-btn" title="Copy Account" data-copy-text="${contentSafe}">
                                             <i class=\"fas fa-copy\"></i>
                                         </button>
                                         ${allowed ? `<button onclick=\"deleteAccountById('${account.id}')\" class=\"copy-btn\" title=\"Delete\" style=\"background:#dc3545;\"><i class=\"fas fa-trash\"></i></button>` : ''}

@@ -604,6 +604,8 @@ body.steamacc-page .navbar.open {
     min-height: 0;
     display: flex;
     align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 .copy-btn {
@@ -696,6 +698,7 @@ body.steamacc-page .navbar.open {
     color: #333;
     max-width: 100%;
     overflow-x: auto;
+    text-align: center;
 }
 
 .account-text:empty {
@@ -716,6 +719,7 @@ body.steamacc-page .navbar.open {
     max-width: 100%;
     overflow-x: auto;
     margin: 0;
+    text-align: center;
 }
 
 /* Responsive adjustments for account text */

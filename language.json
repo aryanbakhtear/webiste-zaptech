@@ -320,6 +320,33 @@
       "feature4": "MP3 Files",
       "downloadButtonText": "Download Quran Tafsir",
       "downloadNote": "Click to open Google Drive folder"
+    },
+    "steamacc": {
+      "accountStatus": {
+        "active": "Active",
+        "maybeWorking": "Maybe Working"
+      },
+      "notifications": {
+        "copiedToClipboard": "Copied to clipboard!",
+        "signedInSuccessfully": "Signed in successfully",
+        "signedOut": "Signed out",
+        "pleasePasteAccountDetails": "Please paste account details!",
+        "published": "Published!",
+        "failedToPublish": "Failed to publish. Please try again.",
+        "writeMessageFirst": "Write a message first",
+        "commentPosted": "Comment posted",
+        "failedToPostComment": "Failed to post comment",
+        "deleteNotAvailable": "Delete not available",
+        "commentDeleted": "Comment deleted",
+        "accountsRefreshed": "Accounts refreshed!",
+        "manageAccountsComingSoon": "Manage Accounts feature coming soon!",
+        "deleted": "Deleted",
+        "pleaseEnterSearchTerm": "Please enter a search term!",
+        "searchUnavailable": "Search unavailable",
+        "foundAccounts": "Found {count} account(s)",
+        "searchFailed": "Search failed",
+        "searchCleared": "Search cleared!"
+      }
     }
   },
   "ku": {
@@ -621,6 +648,33 @@
       "feature4": "فایلە MP3",
       "downloadButtonText": "داونڵۆدی تەفسیری قورئان",
       "downloadNote": "کلیک بکە بۆ کردنەوەی فۆڵدەری گووگڵ درایڤ"
+    },
+    "steamacc": {
+      "accountStatus": {
+        "active": "چالاک",
+        "maybeWorking": "لەوانەیە کار بکات"
+      },
+      "notifications": {
+        "copiedToClipboard": "کۆپی کرا بۆ کلیپبۆرد!",
+        "signedInSuccessfully": "بە سەرکەوتوویی چوونەژوورەوە",
+        "signedOut": "دەرچوونەوە",
+        "pleasePasteAccountDetails": "تکایە وردەکاری ئەکاونتەکان بەستە!",
+        "published": "بڵاوکرایەوە!",
+        "failedToPublish": "شکستی هێنا لە بڵاوکردنەوەدا. تکایە دووبارە هەوڵ بدەرەوە.",
+        "writeMessageFirst": "پێشتر پەیام بنووسە",
+        "commentPosted": "لێدوان نێردرا",
+        "failedToPostComment": "شکستی هێنا لە ناردنی لێدواندا",
+        "deleteNotAvailable": "سڕینەوە بەردەست نییە",
+        "commentDeleted": "لێدوان سڕایەوە",
+        "accountsRefreshed": "ئەکاونتەکان نوێکرانەوە!",
+        "manageAccountsComingSoon": "تایبەتمەندی بەڕێوەبردنی ئەکاونتەکان بەزوویی دێت!",
+        "deleted": "سڕایەوە",
+        "pleaseEnterSearchTerm": "تکایە وشەی گەڕان بنووسە!",
+        "searchUnavailable": "گەڕان بەردەست نییە",
+        "foundAccounts": "{count} ئەکاونت دۆزرایەوە",
+        "searchFailed": "گەڕان شکستی هێنا",
+        "searchCleared": "گەڕان پاککرایەوە!"
+      }
     }
   }
 } 
