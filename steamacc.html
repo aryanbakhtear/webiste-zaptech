@@ -114,10 +114,7 @@
                     </div>
                 </div>
                 
-                <div class="refresh-section">
-                    <button onclick="refreshPublicAccounts()" class="refresh-btn">Refresh Accounts</button>
-                    <p class="refresh-info">Click refresh to see newly published accounts</p>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -129,10 +126,11 @@
     <script>
         // Load translations when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Set the cutoff time to current time - all existing accounts will be "Maybe Working"
-            // Only accounts published after this moment will be "Active" for 7 days
-            window.accountStatusCutoffTime = Date.now();
-            console.log('Account status cutoff time set to:', window.accountStatusCutoffTime);
+            // Set the cutoff time to 14/09/2025 - only accounts published on/after this date
+            // will be considered "Active" for 7 days, then "Maybe Working"
+            // Note: Months are 0-indexed in JS Date, so 8 = September
+            window.accountStatusCutoffTime = new Date(2025, 8, 14, 0, 0, 0, 0).getTime();
+            console.log('Account status cutoff time set to (ms):', window.accountStatusCutoffTime);
             
             loadTranslations();
             loadPublicAccounts();
@@ -261,7 +259,7 @@
                         <input id="comment-message" type="text" placeholder="Ask what account you want..." style="flex:2; min-width:220px; padding:10px; border:2px solid #e1e5e9; border-radius:8px;" />
                         <button id="comment-send" style="padding:10px 14px; border:none; border-radius:8px; background:#6F43FE; color:#fff; font-weight:600; cursor:pointer;">Send</button>
                     </div>
-                    <div id="comments-list" style="display:grid; gap:10px; max-height:260px; overflow-y:auto; padding-right:6px;"></div>
+                    <div id="comments-list" style="display:grid; gap:10px; max-height:420px; overflow-y:auto; padding-right:6px;"></div>
                 </div>`;
             const publicSection = document.querySelector('.public-accounts-container');
             if (publicSection) {
@@ -354,50 +352,68 @@
             };
         }
         
-        // Simple function to calculate account status
+        // Parse date strings like "14/9/2025" or "9/14/2025" (best effort, assume day-first if ambiguous)
+        function parseLooseDate(dateString) {
+            if (!dateString || typeof dateString !== 'string') return NaN;
+            const trimmed = dateString.trim();
+            // Try native parse first
+            const native = Date.parse(trimmed);
+            if (!isNaN(native)) return native;
+            // Try split by '/'
+            const parts = trimmed.split(/[\/-]/);
+            if (parts.length === 3) {
+                let p1 = parseInt(parts[0], 10);
+                let p2 = parseInt(parts[1], 10);
+                let p3 = parseInt(parts[2], 10);
+                if (isNaN(p1) || isNaN(p2) || isNaN(p3)) return NaN;
+                // Heuristic: if first part > 12, it's definitely day/month/year
+                // If both <= 12, assume day/month/year for this site
+                const day = p1;
+                const monthIndex = p2 - 1; // 0-based
+                const year = p3 < 100 ? 2000 + p3 : p3;
+                const dt = new Date(year, monthIndex, day, 0, 0, 0, 0);
+                return dt.getTime();
+            }
+            return NaN;
+        }
+
+        // Calculate account status with 7-day active window for accounts on/after cutoff date (14/09/2025)
         function getAccountStatus(account) {
             console.log('Checking account status for:', account);
-            
-            // Check if account was published today (simple date comparison)
-            if (account && account.datePublished) {
-                const today = new Date().toLocaleDateString();
-                const accountDate = account.datePublished;
-                
-                console.log('Date comparison:', {
-                    today: today,
-                    accountDate: accountDate,
-                    isToday: accountDate === today
-                });
-                
-                // If published today, it's Active
-                if (accountDate === today) {
-                    console.log('Account published today - ACTIVE');
-                    return 'active';
-                }
-            }
-            
-            // Check if account has publishedAt timestamp (new accounts)
+            const cutoffMs = window.accountStatusCutoffTime || 0;
+            const nowMs = Date.now();
+            const sevenDaysMs = 7 * 24 * 60 * 60 * 1000;
+
+            // Determine the best available published timestamp
+            let publishedMs = NaN;
             if (account && account.publishedAt) {
-                const publishedTime = new Date(account.publishedAt).getTime();
-                const currentTime = Date.now();
-                const timeDiff = currentTime - publishedTime;
-                const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-                
-                console.log('PublishedAt check:', {
-                    publishedAt: account.publishedAt,
-                    daysDiff: daysDiff,
-                    willBeActive: daysDiff < 7
-                });
-                
-                // Active for 7 days, then Maybe Working
-                if (daysDiff < 7) {
-                    console.log('Account published recently - ACTIVE');
-                    return 'active';
-                }
+                const t = new Date(account.publishedAt).getTime();
+                if (!isNaN(t)) publishedMs = t;
             }
-            
-            // All other accounts are Maybe Working
-            console.log('Account will be Maybe Working');
+            if (isNaN(publishedMs) && account && account.datePublished) {
+                const t2 = parseLooseDate(account.datePublished);
+                if (!isNaN(t2)) publishedMs = t2;
+            }
+
+            // If we cannot determine publish time, default to Maybe Working
+            if (isNaN(publishedMs)) {
+                console.log('No valid publish time - MAYBE WORKING');
+                return 'maybeWorking';
+            }
+
+            // Enforce cutoff: only accounts on/after 14/09/2025 can be Active
+            if (publishedMs < cutoffMs) {
+                console.log('Published before cutoff - MAYBE WORKING');
+                return 'maybeWorking';
+            }
+
+            // Active for the first 7 days after publish time
+            if ((nowMs - publishedMs) < sevenDaysMs) {
+                console.log('Within 7 days of publish - ACTIVE');
+                return 'active';
+            }
+
+            console.log('Older than 7 days since publish - MAYBE WORKING');
             return 'maybeWorking';
         }
         
@@ -491,8 +507,8 @@
         }
         
         // Public Accounts Display Functions
-        let currentPage = 1;
-        const accountsPerPage = 4; // 1 column, 4 rows
+        let currentPage = 1; // no longer used for scrolling list
+        const accountsPerPage = 4; // legacy (pagination disabled)
         
         function loadPublicAccounts() {
             const publicGrid = document.getElementById('public-accounts-grid');
@@ -509,15 +525,10 @@
                     document.getElementById('pagination-container').style.display = 'none';
                     return;
                 }
-                // Calculate pagination
-                const totalPages = Math.ceil(list.length / accountsPerPage);
-                const startIndex = (currentPage - 1) * accountsPerPage;
-                const endIndex = startIndex + accountsPerPage;
-                const currentAccounts = list.slice(startIndex, endIndex);
-                // Display current page accounts
+                // Display all accounts in a scrollable grid (pagination disabled)
                 let accountsHTML = '';
                 const allowed = window.SteamAccData && SteamAccData.isAllowedUser && SteamAccData.isAllowedUser();
-                currentAccounts.forEach(account => {
+                list.forEach(account => {
                     const contentSafe = (account.content || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
                     const status = getAccountStatus(account);
                     const statusText = getStatusText(status);
@@ -549,8 +560,9 @@
                     `;
                 });
                 publicGrid.innerHTML = accountsHTML;
-                // Update pagination
-                updatePagination(list.length, totalPages);
+                // Hide pagination controls for scrollable list
+                const paginationEl = document.getElementById('pagination-container');
+                if (paginationEl) paginationEl.style.display = 'none';
             }).catch(() => {
                 publicGrid.innerHTML = '<div class="no-public-accounts"><h3>Unable to load accounts</h3></div>';
                 document.getElementById('pagination-container').style.display = 'none';

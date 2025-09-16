@@ -351,12 +351,12 @@ body.steamacc-page .navbar.open {
 
 /* Public Accounts Display */
 .public-accounts-container {
-    background: linear-gradient(135deg, #ebe8f5 0%, #d4d7ed 100%);
+    background: #f8f9fb; /* similar to detail row */
+    border: 1px solid #dee2e6;
     border-radius: 20px;
-    padding: 40px;
-    margin: 30px 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  
+    padding: 48px 40px; /* more top/bottom padding */
+    margin: 40px 0; /* more space above and below the section */
+    box-shadow: 0 8px 24px rgba(7, 41, 86, 0.08);
 }
 
 .public-header {
@@ -442,30 +442,37 @@ body.steamacc-page .navbar.open {
 
 .accounts-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px; /* bigger gaps between cards */
     margin-bottom: 20px;
-    max-width: 800px;
+    max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
+    /* allow cards to size to their content; container scrolls */
+    grid-auto-rows: auto;
+    max-height: 75vh;
+    overflow-y: auto;
+    padding: 6px 10px 6px 6px; /* space for scrollbar */
+    box-sizing: border-box;
 }
 
 .public-account-card {
     background: white;
-    border: 2px solid #072956;
+    border: 1.5px solid #cfd6e4;
     border-radius: 15px;
-    padding: 12px;
+    padding: 14px;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    min-height: 180px;
+    box-shadow: 0 6px 18px rgba(7, 41, 86, 0.08);
+    height: auto; /* grow to fit content */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .public-account-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px #072956;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(7, 41, 86, 0.16);
+    border-color: #a8b6d1;
 }
 
 /* Pagination Styles */
@@ -542,41 +549,43 @@ body.steamacc-page .navbar.open {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0px;
-    padding-bottom: 2px;
-    border-bottom: 2px solid #e9ecef;
-    margin-top: -10px;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    background: #f8f9fa; /* match details look */
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
 }
 
 .account-header h3 {
     color: #072956;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     margin: 0;
 }
 
 .publish-date {
     background: #072956;
     color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
 }
 
 .account-details {
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 0;
+    font-weight: 500; /* calmer than bold */
 }
 
 .detail-row {
     display: flex;
-   
+    
     align-items: center;
-
+    padding: 4px 0;
     background: #f8f9fa;
     border-radius: 6px;
     flex: 1;
@@ -593,14 +602,14 @@ body.steamacc-page .navbar.open {
 
 .field-value {
     background: white;
-    padding: 6px 10px;
+    padding: 8px 12px;
     border: 1px solid #dee2e6;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     color: #333;
     flex: 1;
-    word-break: break-all;
+    word-break: break-word;
     min-height: 0;
     display: flex;
     align-items: center;
@@ -624,42 +633,7 @@ body.steamacc-page .navbar.open {
     transform: scale(1.05);
 }
 
-.refresh-section {
-    text-align: center;
-    padding-top: 20px;
-    min-height: 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.refresh-btn {
-    background: #072956;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 15px 30px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    margin-bottom: 15px;
-    flex-shrink: 0;
-    white-space: nowrap;
-}
-
-.refresh-btn:hover {
-    background: #072956;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
-}
-
-.refresh-info {
-    color: #666;
-    font-size: 0.9rem;
-    margin: 0;
-}
+/* refresh-section removed */
 
 .no-public-accounts {
     text-align: center;
@@ -686,8 +660,8 @@ body.steamacc-page .navbar.open {
 /* Account Text Styling */
 .account-text {
     font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: 0.92rem;
+    line-height: 1.5;
     white-space: pre-wrap;
     word-wrap: break-word;
     background: #f8f9fa;
@@ -697,7 +671,7 @@ body.steamacc-page .navbar.open {
     margin: 8px 0;
     color: #333;
     max-width: 100%;
-    overflow-x: auto;
+    overflow: visible; /* show all details; no inner scroll */
     text-align: center;
 }
 
@@ -738,13 +712,13 @@ body.steamacc-page .navbar.open {
 /* Responsive Design */
 @media (max-width: 1200px) {
     .accounts-grid {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        max-width: 800px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        max-width: 980px;
+        max-height: 70vh;
     }
     
     .public-account-card {
-        min-height: 170px;
         padding: 12px;
         display: flex;
         flex-direction: column;
@@ -758,9 +732,10 @@ body.steamacc-page .navbar.open {
     }
     
     .accounts-grid {
-        grid-template-columns: 1fr;
-        gap: 8px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
         max-width: 800px;
+        max-height: 68vh;
     }
     
     .public-account-card {
@@ -790,8 +765,10 @@ body.steamacc-page .navbar.open {
     
     .accounts-grid {
         grid-template-columns: 1fr;
-        gap: 6px;
+        gap: 16px;
         max-width: 700px;
+        grid-auto-rows: auto;
+        max-height: 65vh;
     }
     
     .public-account-card {
@@ -880,8 +857,10 @@ body.steamacc-page .navbar.open {
     
     .accounts-grid {
         grid-template-columns: 1fr;
-        gap: 6px;
+        gap: 14px;
         max-width: 600px;
+        grid-auto-rows: auto;
+        max-height: 62vh;
     }
     
     .public-account-card {
