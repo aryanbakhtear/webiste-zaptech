@@ -38,7 +38,7 @@
                         <li><a href="/personality" data-translate="navbar.personality">Personality</a></li>
                         <li><a href="/quran" data-translate="navbar.quran">Quran</a></li>
                         <li><a href="/steamacc">Steam Accounts</a></li>
-                        <li><a href="https://gemini.google.com/share/5c74decaacc7" target="_blank" data-translate="navbar.kurdishImageAI">Kurdish Image AI</a></li>
+                        <li><a href="https://gemini.google.com/share/5c74decaacc7" target="_blank" rel="noopener" data-translate="navbar.kurdishImageAI">Kurdish Image AI</a></li>
                     </ul>
                 </li>
                 <li><a href="/#bg8">About Us</a></li>
@@ -61,6 +61,7 @@
     <script src="/java script/smooth-scroll.js"></script>
     <script src="/java script/ultra-optimizer.js"></script>
     <script src="/java script/language-switcher.js"></script>
+    <script src="/java script/pcapps.js"></script>
     
          <!-- Donation Modal -->
      <div class="donate-modal" id="donate-modal">
@@ -70,7 +71,7 @@
              <div class="donate-body">
                  <p class="donate-message">Help us continue providing free tools, tutorials, and resources to the community.</p>
                  <div class="donate-options">
-                     <button class="card-close-btn" onclick="closeDonateModal()">
+                     <button class="card-close-btn" onclick="closeDonateModal()" aria-label="Close donation modal" title="Close">
                          <i class="fas fa-times"></i>
                      </button>
                      <div class="donate-card fastpay-card">
@@ -136,6 +137,267 @@
      </div>
 
     <script>
+    // Admin FAB and dynamic loading
+    document.addEventListener('DOMContentLoaded', function(){
+      // Load apps from Firestore and render
+      async function renderApps(){
+        try {
+          const grid = document.getElementById('pc-apps-grid');
+          if (!grid) return;
+          grid.innerHTML = '';
+          const items = await (window.PcAppsData ? window.PcAppsData.getApps() : []);
+          // Merge Firestore apps with static fallback so older static apps still show
+          const fsItems = Array.isArray(items) ? items : [];
+          const staticItems = Array.isArray(window.PC_APPS) ? window.PC_APPS : [];
+          const merged = [...fsItems, ...staticItems].filter(Boolean);
+          // De-duplicate by link (fallback to title) to avoid duplicates between sources
+          const seen = new Set();
+          const unique = merged.filter(app => {
+            const key = (app && (app.link || app.title)) || Math.random();
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+          });
+          // Ensure newest first based on createdAtMs when present
+          const sorted = unique.slice().sort((a, b) => (b.createdAtMs || 0) - (a.createdAtMs || 0));
+          const isAdmin = !!(window.PcAppsData && window.PcAppsData.isAllowedUser && window.PcAppsData.isAllowedUser());
+          sorted.forEach(app => {
+            const a = document.createElement('a');
+            a.href = app.link;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            a.className = 'pc-app-card';
+            const isKu = (document && document.body && document.body.lang === 'ku');
+            const title = isKu && app.kuTitle ? app.kuTitle : app.title;
+            const desc = isKu && app.kuDesc ? app.kuDesc : app.desc;
+            a.innerHTML = `
+              <img src="${app.image}" alt="${title}" class="pc-app-image"/>
+              <div class="pc-app-overlay">
+                <div class="pc-app-title">${title || ''}</div>
+                <div class="pc-app-desc">${desc || ''}</div>
+              </div>
+            `;
+            if (isAdmin && app.id){
+              const adminCtrl = document.createElement('div');
+              adminCtrl.className = 'pc-admin-ctrl';
+              adminCtrl.style.cssText = 'position:absolute; top:8px; right:8px; display:flex; gap:6px; z-index:5;';
+              const delBtn = document.createElement('button');
+              delBtn.textContent = '🗑';
+              delBtn.title = 'Delete';
+              delBtn.style.cssText = 'background:#dc3545; color:#fff; border:none; border-radius:6px; padding:6px 8px; cursor:pointer; font-size:14px;';
+              const editBtn = document.createElement('button');
+              editBtn.textContent = '✏';
+              editBtn.title = 'Edit';
+              editBtn.style.cssText = 'background:#0d6efd; color:#fff; border:none; border-radius:6px; padding:6px 8px; cursor:pointer; font-size:14px;';
+              adminCtrl.appendChild(editBtn);
+              adminCtrl.appendChild(delBtn);
+              // Prevent anchor navigation when clicking admin buttons
+              adminCtrl.addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); });
+              editBtn.addEventListener('click', function(ev){
+                ev.preventDefault();
+                ev.stopPropagation();
+                const ed = document.getElementById('adminbar-editor');
+                if (ed) ed.style.display = 'block';
+                const f = {
+                  id: document.getElementById('pa-edit-id'),
+                  t: document.getElementById('pa-title'),
+                  d: document.getElementById('pa-desc'),
+                  kt: document.getElementById('pa-ku-title'),
+                  kd: document.getElementById('pa-ku-desc'),
+                  i: document.getElementById('pa-image'),
+                  l: document.getElementById('pa-link')
+                };
+                if (f.id) f.id.value = app.id || '';
+                if (f.t) f.t.value = app.title || '';
+                if (f.d) f.d.value = app.desc || '';
+                if (f.kt) f.kt.value = app.kuTitle || '';
+                if (f.kd) f.kd.value = app.kuDesc || '';
+                if (f.i) f.i.value = app.image || '';
+                if (f.l) f.l.value = app.link || '';
+                alert('Loaded for edit');
+              });
+              delBtn.addEventListener('click', async function(ev){
+                ev.preventDefault();
+                ev.stopPropagation();
+                if (!confirm('Delete this app?')) return;
+                try {
+                  await window.PcAppsData.deleteApp(app.id);
+                  await renderApps();
+                  alert('Deleted');
+                } catch(e){ alert(e && (e.message||e.code) || 'Failed'); }
+              });
+              a.style.position = 'relative';
+              a.appendChild(adminCtrl);
+            }
+            grid.appendChild(a);
+          });
+        } catch (e) { console.warn('Render apps failed', e); }
+      }
+
+      renderApps();
+
+      // Re-render apps when site language changes (body.lang updated by language switcher)
+      try {
+        const body = document.body;
+        if (body) {
+          const mo = new MutationObserver(function(muts){
+            for (const m of muts){
+              if (m.type === 'attributes' && m.attributeName === 'lang') {
+                renderApps();
+                break;
+              }
+            }
+          });
+          mo.observe(body, { attributes: true, attributeFilter: ['lang'] });
+        }
+      } catch(_) {}
+
+      // Allow language system to refresh this section explicitly
+      window.updatePCAppsWithTranslations = function(){
+        renderApps();
+      };
+
+      // Admin FAB
+      const adminFab = document.createElement('button');
+      adminFab.id = 'admin-fab';
+      adminFab.setAttribute('title', 'Admin');
+      adminFab.style.cssText = `
+          position: fixed; bottom: 20px; right: 20px; z-index: 10000;
+          width: 56px; height: 56px; border-radius: 50%; border: none;
+          background: linear-gradient(135deg, #6F43FE, #8B5CF6); color: #fff;
+          box-shadow: 0 6px 20px rgba(111,67,254,0.35); cursor: pointer;
+          display: flex; align-items: center; justify-content: center; font-size: 22px;`;
+      adminFab.innerHTML = '<i class="fas fa-user-shield"></i>';
+      document.body.appendChild(adminFab);
+
+      const panel = document.createElement('div');
+      panel.id = 'admin-fab-panel';
+      panel.style.cssText = `
+          position: fixed; bottom: 86px; right: 20px; z-index: 10000;
+          width: 320px; max-width: calc(100% - 40px);
+          background: #fff; border: 1px solid #e9ecef; border-radius: 12px;
+          box-shadow: 0 14px 40px rgba(0,0,0,0.18); display: none;`;
+      panel.innerHTML = `
+        <div id="adminbar" style="padding: 12px; border-radius: 12px;">
+          <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+            <span id="adminbar-status" style="font-size: 0.95rem; color:#333;">Not signed in</span>
+            <button id="adminbar-signin" style="padding:8px 12px; border:none; border-radius:8px; background:#6F43FE; color:#fff; cursor:pointer;">Sign in</button>
+            <button id="adminbar-signout" style="padding:8px 12px; border:none; border-radius:8px; background:#6c757d; color:#fff; cursor:pointer; display:none;">Sign out</button>
+          </div>
+          <div id="adminbar-editor" style="margin-top:10px; display:none;">
+            <input id="pa-title" placeholder="Title" style="width:100%; padding:10px; border:2px solid #e1e5e9; border-radius:10px; font-size:15px; margin-bottom:8px;"/>
+            <textarea id="pa-desc" placeholder="Description" style="width:100%; min-height:80px; padding:10px; border:2px solid #e1e5e9; border-radius:10px; font-size:15px; margin-bottom:8px; resize:vertical;"></textarea>
+            <input id="pa-ku-title" placeholder="Kurdish Title (optional)" style="width:100%; padding:10px; border:2px solid #e1e5e9; border-radius:10px; font-size:15px; margin-bottom:8px;"/>
+            <textarea id="pa-ku-desc" placeholder="Kurdish Description (optional)" style="width:100%; min-height:80px; padding:10px; border:2px solid #e1e5e9; border-radius:10px; font-size:15px; margin-bottom:8px; resize:vertical;"></textarea>
+            <input id="pa-image" placeholder="Image URL" style="width:100%; padding:10px; border:2px solid #e1e5e9; border-radius:10px; font-size:15px; margin-bottom:8px;"/>
+            <input id="pa-link" placeholder="Download/External Link" style="width:100%; padding:10px; border:2px solid #e1e5e9; border-radius:10px; font-size:15px;"/>
+            <button id="adminbar-publish" style="margin-top:10px; padding:10px 16px; border:none; border-radius:8px; background: linear-gradient(135deg, #28a745, #20c997); color:#fff; font-weight:600; cursor:pointer; width:100%;">Publish</button>
+            <div style="display:flex; gap:8px; margin-top:8px;">
+              <input id="pa-edit-id" placeholder="App ID for edit/delete" style="flex:1; padding:10px; border:2px solid #e1e5e9; border-radius:10px; font-size:14px;"/>
+              <button id="adminbar-update" style="padding:10px 12px; border:none; border-radius:8px; background:#0d6efd; color:#fff; font-weight:600; cursor:pointer;">Update</button>
+              <button id="adminbar-delete" style="padding:10px 12px; border:none; border-radius:8px; background:#dc3545; color:#fff; font-weight:600; cursor:pointer;">Delete</button>
+            </div>
+          </div>
+        </div>`;
+      document.body.appendChild(panel);
+
+      adminFab.addEventListener('click', function(){
+        panel.style.display = (panel.style.display === 'none' || !panel.style.display) ? 'block' : 'none';
+      });
+
+      function updateAuthUI(user){
+        const allowed = window.PcAppsData && window.PcAppsData.isAllowedUser && window.PcAppsData.isAllowedUser();
+        const status = document.getElementById('adminbar-status');
+        const si = document.getElementById('adminbar-signin');
+        const so = document.getElementById('adminbar-signout');
+        const ed = document.getElementById('adminbar-editor');
+        if (user && allowed){
+          status.textContent = 'Signed in as ' + user.email;
+          si.style.display = 'none';
+          so.style.display = 'inline-block';
+          ed.style.display = 'block';
+        } else if (user) {
+          status.textContent = 'Signed in (no access)';
+          si.style.display = 'none';
+          so.style.display = 'inline-block';
+          ed.style.display = 'none';
+        } else {
+          status.textContent = 'Not signed in';
+          si.style.display = 'inline-block';
+          so.style.display = 'none';
+          ed.style.display = 'none';
+        }
+      }
+
+      if (window.PcAppsData && window.PcAppsData.onAuthStateChanged){
+        window.PcAppsData.onAuthStateChanged(function(user){
+          updateAuthUI(user);
+        });
+      }
+
+      document.getElementById('adminbar-signin').addEventListener('click', async function(){
+        if (!window.PcAppsData || !window.PcAppsData.signIn){
+          alert('Firebase not ready. Please reload the page.');
+          return;
+        }
+        try { await window.PcAppsData.signIn(); } catch(e) { console.warn(e); alert('Sign-in failed: ' + (e && (e.message || e.code) || 'Unknown error')); }
+      });
+      document.getElementById('adminbar-signout').addEventListener('click', async function(){
+        try { await window.PcAppsData.signOut(); } catch(e) { console.warn(e); }
+      });
+      document.getElementById('adminbar-publish').addEventListener('click', async function(){
+        const title = document.getElementById('pa-title').value.trim();
+        const desc = document.getElementById('pa-desc').value.trim();
+        const kuTitle = document.getElementById('pa-ku-title').value.trim();
+        const kuDesc = document.getElementById('pa-ku-desc').value.trim();
+        const image = document.getElementById('pa-image').value.trim();
+        const link = document.getElementById('pa-link').value.trim();
+        if (!title || !link){ alert('Title and Link are required'); return; }
+        try {
+          await window.PcAppsData.addApp({ title, desc, kuTitle, kuDesc, image, link });
+          document.getElementById('pa-title').value = '';
+          document.getElementById('pa-desc').value = '';
+          document.getElementById('pa-ku-title').value = '';
+          document.getElementById('pa-ku-desc').value = '';
+          document.getElementById('pa-image').value = '';
+          document.getElementById('pa-link').value = '';
+          await renderApps();
+          alert('Published');
+        } catch(e){ alert(e.message || 'Failed'); }
+      });
+
+      // Update existing app
+      document.getElementById('adminbar-update').addEventListener('click', async function(){
+        const id = document.getElementById('pa-edit-id').value.trim();
+        if (!id){ alert('Enter App ID'); return; }
+        const payload = {
+          title: document.getElementById('pa-title').value.trim() || undefined,
+          desc: document.getElementById('pa-desc').value.trim() || undefined,
+          kuTitle: document.getElementById('pa-ku-title').value.trim() || undefined,
+          kuDesc: document.getElementById('pa-ku-desc').value.trim() || undefined,
+          image: document.getElementById('pa-image').value.trim() || undefined,
+          link: document.getElementById('pa-link').value.trim() || undefined
+        };
+        try {
+          await window.PcAppsData.updateApp(id, payload);
+          await renderApps();
+          alert('Updated');
+        } catch(e){ alert(e.message || 'Failed'); }
+      });
+
+      // Delete app
+      document.getElementById('adminbar-delete').addEventListener('click', async function(){
+        const id = document.getElementById('pa-edit-id').value.trim();
+        if (!id){ alert('Enter App ID'); return; }
+        if (!confirm('Delete this app?')) return;
+        try {
+          await window.PcAppsData.deleteApp(id);
+          document.getElementById('pa-edit-id').value = '';
+          await renderApps();
+          alert('Deleted');
+        } catch(e){ alert(e.message || 'Failed'); }
+      });
+    });
     // Donation modal functionality
     document.addEventListener('DOMContentLoaded', function() {
       const donateBtn = document.getElementById('donate-btn');
@@ -274,24 +536,7 @@
         link: "https://mega.nz/file/ThZW2aoB#N0jMQInKg2gqQxD2zjXZ79aURD0ZhyJ5B0knjr6wCPw"
       }
     ];
-    const pcAppsGrid = document.getElementById('pc-apps-grid');
-    if (pcAppsGrid && window.PC_APPS) {
-      window.PC_APPS.forEach(app => {
-        const a = document.createElement('a');
-        a.href = app.link;
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.className = 'pc-app-card';
-        a.innerHTML = `
-          <img src="${app.image}" alt="${app.title}" class="pc-app-image"/>
-          <div class="pc-app-overlay">
-            <div class="pc-app-title">${app.title}</div>
-            <div class="pc-app-desc">${app.desc}</div>
-          </div>
-        `;
-        pcAppsGrid.appendChild(a);
-      });
-    }
+    // initial static list kept as fallback. Rendering handled above
     </script>
 </body>
 </html>
