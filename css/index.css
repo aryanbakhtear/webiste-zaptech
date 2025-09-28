@@ -1128,4 +1128,129 @@ html, body {
     }
 }
 
+/* Advertisement Popup Styles */
+.ad-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(5px);
+}
+
+.ad-popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ad-image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.ad-close-btn {
+    position: absolute;
+    top: -50px;
+    right: -40px;
+    background: rgba(255, 67, 67, 0.9);
+    border: none;
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.ad-close-btn:hover {
+    background: rgba(255, 69, 69, 0.808);
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ad-image {
+    max-width: 80vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    animation: imageFloat 3s infinite ease-in-out;
+    cursor: pointer;
+}
+
+@keyframes imageFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(1deg);
+    }
+}
+
+.ad-image:hover {
+    transform: scale(1.02) rotate(1deg);
+}
+
+/* Responsive Design for Ad Popup */
+@media (max-width: 768px) {
+    .ad-image {
+        max-width: 90vw;
+        max-height: 70vh;
+    }
+    
+    .ad-close-btn {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 500px) {
+    .ad-image {
+        max-width: 80vw;
+        max-height: 60vh;
+    }
+    
+    .ad-close-btn {
+        top: -30px;
+        right: -30px;
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ad-image {
+        max-width: 85vw;
+        max-height: 65vh;
+    }
+    
+    .ad-close-btn {
+        top: -5px;
+        right: -25px;
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+}
+
 
