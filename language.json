@@ -351,6 +351,33 @@
         "searchFailed": "Search failed",
         "searchCleared": "Search cleared!"
       }
+    },
+    "videoAdmin": {
+      "title": "Video Tutorial Admin",
+      "signInPrompt": "Sign in to manage video tutorials",
+      "signIn": "Sign In",
+      "signOut": "Sign Out",
+      "addNewVideo": "Add New Video Tutorial",
+      "englishTitle": "English Title",
+      "englishDescription": "English Description",
+      "kurdishTitle": "Kurdish Title (کوردی)",
+      "kurdishDescription": "Kurdish Description (کوردی)",
+      "youtubeLink": "YouTube Link (e.g., https://youtu.be/VIDEO_ID)",
+      "publishVideo": "Publish Video",
+      "update": "Update",
+      "delete": "Delete",
+      "videoIdPlaceholder": "Video ID for Update/Delete",
+      "titleRequired": "Title and YouTube link are required",
+      "videoIdRequired": "Enter Video ID",
+      "deleteConfirm": "Delete this video?",
+      "publishedSuccess": "Video published successfully!",
+      "updatedSuccess": "Video updated successfully!",
+      "deletedSuccess": "Video deleted successfully!",
+      "publishFailed": "Failed to publish video",
+      "updateFailed": "Failed to update video",
+      "deleteFailed": "Failed to delete video",
+      "firebaseNotReady": "Firebase not ready. Please reload the page.",
+      "signInFailed": "Sign-in failed"
     }
   },
   "ku": {
@@ -683,6 +710,33 @@
         "searchFailed": "گەڕان شکستی هێنا",
         "searchCleared": "گەڕان پاککرایەوە!"
       }
+    },
+    "videoAdmin": {
+      "title": "بەڕێوەبردنی ڤیدیۆ فێرکاری",
+      "signInPrompt": "چوونەژوورەوە بۆ بەڕێوەبردنی ڤیدیۆ فێرکاریەکان",
+      "signIn": "چوونەژوورەوە",
+      "signOut": "دەرچوونەوە",
+      "addNewVideo": "زیادکردنی ڤیدیۆ فێرکاری نوێ",
+      "englishTitle": "ناونیشانی ئینگلیزی",
+      "englishDescription": "پێناسەی ئینگلیزی",
+      "kurdishTitle": "ناونیشانی کوردی (کوردی)",
+      "kurdishDescription": "پێناسەی کوردی (کوردی)",
+      "youtubeLink": "لینکی یوتیوب (وەک: https://youtu.be/VIDEO_ID)",
+      "publishVideo": "بڵاوکردنەوەی ڤیدیۆ",
+      "update": "نوێکردنەوە",
+      "delete": "سڕینەوە",
+      "videoIdPlaceholder": "ناسنامەی ڤیدیۆ بۆ نوێکردنەوە/سڕینەوە",
+      "titleRequired": "ناونیشان و لینکی یوتیوب پێویستن",
+      "videoIdRequired": "ناسنامەی ڤیدیۆ بنووسە",
+      "deleteConfirm": "ئەم ڤیدیۆیە بسڕمەوە؟",
+      "publishedSuccess": "ڤیدیۆ بە سەرکەوتوویی بڵاوکرایەوە!",
+      "updatedSuccess": "ڤیدیۆ بە سەرکەوتوویی نوێکرایەوە!",
+      "deletedSuccess": "ڤیدیۆ بە سەرکەوتوویی سڕایەوە!",
+      "publishFailed": "شکستی هێنا لە بڵاوکردنەوەی ڤیدیۆدا",
+      "updateFailed": "شکستی هێنا لە نوێکردنەوەی ڤیدیۆدا",
+      "deleteFailed": "شکستی هێنا لە سڕینەوەی ڤیدیۆدا",
+      "firebaseNotReady": "فایربەیس ئامادە نییە. تکایە پەڕەکە دووبارە بار بکەرەوە.",
+      "signInFailed": "چوونەژوورەوە شکستی هێنا"
     }
   }
 } 

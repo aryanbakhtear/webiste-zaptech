@@ -655,7 +655,8 @@ body:not([lang="ku"]) .navbar.open .language-switcher-btn {
         height: 100vh;
         z-index: 999;
         pointer-events: none;
-        backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
         transition: opacity 0.2s;
         opacity: 0;
     }
@@ -674,6 +675,20 @@ body[lang="ku"] {
 
 body[lang="ku"] * {
     font-family: 'K24', Arial, sans-serif;
+}
+
+/* Preserve Font Awesome icon fonts in Kurdish mode */
+body[lang="ku"] .fa,
+body[lang="ku"] .fas,
+body[lang="ku"] .far,
+body[lang="ku"] .fa-solid,
+body[lang="ku"] .fa-regular {
+    font-family: "Font Awesome 6 Free" !important;
+}
+
+body[lang="ku"] .fab,
+body[lang="ku"] .fa-brands {
+    font-family: "Font Awesome 6 Brands" !important;
 }
 
 body[lang="ku"] .navbar {
@@ -1087,6 +1102,7 @@ body.personality-page .navbar.open .language-switcher-btn {
 
 .dropdown-toggle {
     cursor: pointer;
+    -webkit-user-select: none;
     user-select: none;
 }
 
