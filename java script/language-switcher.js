@@ -119,6 +119,7 @@ async function loadTranslations() {
                     website: "Website",
                     videoTutorial: "Video Tutorial",
                     pcAppsGames: "Pc Apps & Games",
+                    cppProject: "C++ Project",
                     tools: "Tools",
                     personality: "Personality",
                     quran: "Quran",
@@ -179,6 +180,7 @@ async function loadTranslations() {
                     website: "وێبسایت",
                     videoTutorial: "ڤیدیۆ تەڵەم",
                     pcAppsGames: "ئەپ و یاری کۆمپیوتەر",
+                    cppProject: "پرۆژەی C++",
                     personality: "کەسایەتی",
                     quran: "قورئان",
                     aboutUs: "دەربارەی ئێمە",
@@ -421,6 +423,10 @@ function updateNavigation() {
             'a[href="/pc-apps-and-games"]',
             'a[href="pc apps and games.html"]'
         ],
+        cppProject: [
+            'a[href="/cpp-project"]',
+            'a[href="cpp-project.html"]'
+        ],
         aboutUs: [
             'a[href="/#bg8"]',
             'a[href="#bg8"]',
@@ -456,6 +462,11 @@ function updateNavigation() {
     const quranLink = document.querySelector('.dropdown-menu a[data-translate="navbar.quran"], .dropdown-menu a[href="/quran"]');
     if (quranLink) {
         quranLink.textContent = getTranslation('nav.quran');
+    }
+    
+    const cppProjectLink = document.querySelector('.dropdown-menu a[data-translate="navbar.cppProject"], .dropdown-menu a[href="/cpp-project"], .dropdown-menu a[href="cpp-project.html"]');
+    if (cppProjectLink) {
+        cppProjectLink.textContent = getTranslation('nav.cppProject');
     }
     
     // Update Kurdish Image AI link in dropdown

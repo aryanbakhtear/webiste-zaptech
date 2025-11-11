@@ -54,6 +54,10 @@ body.quran-page .navbar {
     background-color: #6F43FE;
 }
 
+body.cpp-project-page .navbar {
+    background-color: #6F43FE;
+}
+
 /* Override page-specific navbar backgrounds when navbar is open */
 body.video-tutorial-page .navbar.open,
 body.video-tutorials-page .navbar.open,
@@ -61,7 +65,8 @@ body.pc-apps-games-page .navbar.open,
 body.website-page .navbar.open,
 body.home-page .navbar.open,
 body.personality-page .navbar.open,
-body.quran-page .navbar.open {
+body.quran-page .navbar.open,
+body.cpp-project-page .navbar.open {
     background: #ffff00 !important;
 }
 
@@ -162,6 +167,9 @@ body.personality-page .navbar-toggle {
     background: rgba(65, 94, 114, 0.9);
 }
 
+body.cpp-project-page .navbar-toggle {
+    background: rgba(111, 67, 254, 0.9);
+}
 /* Hover effects for toggle buttons */
 body.video-tutorial-page .navbar-toggle:hover,
 body.video-tutorials-page .navbar-toggle:hover {
@@ -184,6 +192,9 @@ body.personality-page .navbar-toggle:hover {
     background: rgba(65, 94, 114, 1);
 }
 
+body.cpp-project-page .navbar-toggle:hover {
+    background: rgba(111, 67, 254, 1);
+}
 /* Open navbar state */
 .navbar.open {
     background: #ffff00;

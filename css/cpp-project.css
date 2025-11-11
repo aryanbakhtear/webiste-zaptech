@@ -1,0 +1,256 @@
+.cpp-project-page {
+    background: radial-gradient(circle at top, rgba(111, 67, 254, 0.18), rgba(8, 6, 32, 0.96)),
+                linear-gradient(160deg, rgba(9, 9, 15, 0.92), rgba(28, 22, 56, 0.88));
+    min-height: 100vh;
+    color: #f5f5ff;
+    font-family: 'NavbarFont', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.cpp-hero {
+    padding: 120px 24px 48px;
+    text-align: center;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.cpp-hero h1 {
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+    color: #ffffff;
+}
+
+.cpp-hero p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.7;
+    color: rgba(231, 230, 255, 0.88);
+    margin: 0 auto;
+    max-width: 780px;
+}
+
+.compiler-wrapper {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+    background: rgba(15, 12, 34, 0.78);
+    border: 1px solid rgba(111, 67, 254, 0.25);
+    border-radius: 28px;
+    box-shadow: 0 32px 60px rgba(17, 9, 45, 0.55);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.compiler-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 28px;
+    background: linear-gradient(120deg, rgba(111, 67, 254, 0.18), rgba(37, 26, 84, 0.6));
+    border-bottom: 1px solid rgba(111, 67, 254, 0.35);
+}
+
+.compiler-header h2 {
+    font-size: 1.35rem;
+    margin: 0;
+    letter-spacing: 0.03em;
+}
+
+.compiler-controls {
+    display: flex;
+    gap: 12px;
+}
+
+.compiler-controls a {
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(245, 245, 255, 0.3);
+    color: #f5f5ff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.compiler-controls a:hover {
+    border-color: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.compiler-frame {
+    width: 100%;
+    min-height: 640px;
+    border: 0;
+    background: #0c0a1a;
+}
+
+.compiler-warning {
+    padding: 18px 24px;
+    font-size: 0.95rem;
+    color: rgba(231, 230, 255, 0.85);
+    background: rgba(255, 77, 109, 0.12);
+    border-top: 1px solid rgba(255, 77, 109, 0.35);
+    display: none;
+}
+
+.compiler-warning.active {
+    display: block;
+}
+
+.cpp-details {
+    max-width: 1100px;
+    width: 92%;
+    margin: 48px auto 80px;
+    background: rgba(17, 13, 41, 0.78);
+    border-radius: 28px;
+    border: 1px solid rgba(111, 67, 254, 0.22);
+    box-shadow: 0 20px 40px rgba(10, 6, 24, 0.55);
+    padding: 36px clamp(20px, 4vw, 48px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+}
+
+.cpp-card {
+    background: rgba(9, 7, 28, 0.68);
+    border-radius: 20px;
+    border: 1px solid rgba(111, 67, 254, 0.18);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cpp-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(111, 67, 254, 0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cpp-card:hover::before {
+    opacity: 1;
+}
+
+.cpp-card h3 {
+    font-size: 1.15rem;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+}
+
+.cpp-card p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin: 0;
+    color: rgba(230, 229, 255, 0.88);
+}
+
+.cpp-code-block {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(128, 102, 255, 0.4);
+    border-radius: 16px;
+    padding: 18px 20px;
+    font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+    color: #e6e7ff;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.cpp-copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(245, 245, 255, 0.3);
+    background: rgba(245, 245, 255, 0.05);
+    color: #f5f5ff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cpp-copy-btn:hover {
+    border-color: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.cpp-copy-btn.copied {
+    background: rgba(87, 230, 160, 0.18);
+    border-color: rgba(87, 230, 160, 0.6);
+    color: #c0ffe0;
+}
+
+.cpp-guidance-list {
+    display: grid;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cpp-guidance-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: rgba(230, 229, 255, 0.88);
+}
+
+.cpp-guidance-list li::before {
+    content: '➤';
+    color: #6f43fe;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+    .compiler-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .compiler-controls {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .compiler-controls a {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .cpp-hero {
+        padding-top: 96px;
+    }
+
+    .compiler-wrapper {
+        border-radius: 22px;
+    }
+
+    .cpp-details {
+        border-radius: 22px;
+        gap: 24px;
+    }
+
+    .cpp-card {
+        padding: 20px;
+    }
+
+    .compiler-frame {
+        min-height: 520px;
+    }
+}
+

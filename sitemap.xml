@@ -31,6 +31,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://yourdomain.com/cpp-project.html</loc>
+        <lastmod>2024-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://yourdomain.com/personality.html</loc>
         <lastmod>2024-01-01</lastmod>
         <changefreq>monthly</changefreq>

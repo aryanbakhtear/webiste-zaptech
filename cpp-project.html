@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Project - Zap Tech</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="shortcut icon" type="image/png" href="/images/logo.png">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/cpp-project.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="body cpp-project-page">
+    <div class="navbar" id="navbar">
+        <div class="logo-container">
+            <img src="/images/logo.png" alt="LOGO OF WEBSITE" class="logo">
+        </div>
+        <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation">
+            <span class="navbar-toggle-icon" style="font-weight: bold; background-color: #6F43FE; padding: 8px;">&#9776;</span>
+            <span class="navbar-toggle-close">&times;</span>
+        </button>
+        <div class="navbar-left">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/website">Website</a></li>
+                <li><a href="/video-tutorial">Video Tutorial</a></li>
+                <li><a href="/pc-apps-and-games">Pc Apps & Games</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-translate="navbar.tools">Tools</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/personality" data-translate="navbar.personality">Personality</a></li>
+                        <li><a href="/quran" data-translate="navbar.quran">Quran</a></li>
+                        <li><a href="/cpp-project" data-translate="navbar.cppProject">C++ Project</a></li>
+                        <li><a href="/steamacc">Steam Accounts</a></li>
+                        <li><a href="https://gemini.google.com/share/5c74decaacc7" target="_blank" rel="noopener" data-translate="navbar.kurdishImageAI">Kurdish Image AI</a></li>
+                        <li><a href="https://g.co/gemini/share/743738fcd56d" target="_blank" rel="noopener">Ai Auto Prompt</a></li>
+                    </ul>
+                </li>
+                <li><a href="/#bg8">About Us</a></li>
+                <li><a href="#" id="donate-btn">Donate $</a></li>
+                <li><button class="language-switcher-btn" onclick="toggleLanguage()">کوردی</button></li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-blur-bg"></div>
+
+    <section class="cpp-hero">
+        <h1>Run Your C++ Project Online</h1>
+        <p>
+            Launch your Zap Tech C++ project directly in the browser. The embedded compiler below uses a trusted online service,
+            so you can edit, build, and run your code without installing anything locally. Use the quick links to open a full tab
+            if you want extra workspace or need to save your session.
+        </p>
+    </section>
+
+    <section class="compiler-wrapper">
+        <div class="compiler-header">
+            <h2>Interactive Compiler</h2>
+            <div class="compiler-controls">
+                <a href="https://www.onlinegdb.com/" target="_blank" rel="noopener" id="open-new-tab">Open Fullscreen</a>
+                <a href="https://www.onlinegdb.com/" target="_self" rel="noopener" id="open-same-tab">Open Here (Login mode)</a>
+                <a href="https://www.onlinegdb.com/" target="_blank" rel="noopener">MyCompiler Dashboard</a>
+            </div>
+        </div>
+        <iframe
+            id="cpp-compiler-frame"
+            class="compiler-frame"
+            title="Embedded C++ Compiler"
+            src="https://www.onlinegdb.com/"
+            loading="lazy"
+            allow="clipboard-read; clipboard-write; fullscreen"
+        ></iframe>
+        <div class="compiler-warning" id="compiler-warning">
+            If you are not staying signed in: most browsers block third‑party cookies for iframes. Use “Open Here (Login mode)”
+            to open OnlineGDB in this tab and sign in, or “Open Fullscreen” to use a new tab. This ensures your login session
+            persists. If an organization policy blocks this, add an exception to allow cookies for onlinegdb.com.
+        </div>
+    </section>
+
+    <section class="cpp-details">
+        <article class="cpp-card">
+            <h3>Quick Start</h3>
+            <ul class="cpp-guidance-list">
+                <li>Paste your existing C++ project file(s) into the editor pane inside the compiler.</li>
+                <li>Use the run ▶ button to build and execute. Console output appears directly beneath the editor.</li>
+                <li>Sign in on the provider to save or share the session if you need persistent storage.</li>
+            </ul>
+        </article>
+        <article class="cpp-card">
+            <h3>Swap the Compiler Source</h3>
+            <p>
+                Prefer another service? Update the iframe <code>src</code> to any provider that supports embedding
+                (for example Replit, JDoodle embed links, or custom servers). Make sure the service does not block
+                iframe usage with <code>X-Frame-Options</code>.
+            </p>
+            <div class="cpp-code-block" id="iframe-snippet">
+                &lt;iframe
+                    src="https://www.onlinegdb.com/"
+                    title="Embedded C++ Compiler"
+                    width="100%"
+                    height="640"
+                    allow="clipboard-read; clipboard-write; fullscreen"
+                    loading="lazy"
+                &gt;&lt;/iframe&gt;
+                <button class="cpp-copy-btn" id="copy-snippet">Copy</button>
+            </div>
+        </article>
+        <article class="cpp-card">
+            <h3>Sample Project Entry Point</h3>
+            <p>Use this starter if you only need a quick test harness before pasting the rest of your project files.</p>
+            <div class="cpp-code-block" id="cpp-starter">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+int main() {
+    std::vector&lt;int&gt; data = {1, 2, 3, 4, 5};
+    int total = 0;
+    for (int value : data) {
+        total += value;
+    }
+    std::cout &lt;&lt; "Zap Tech sample run: total = " &lt;&lt; total &lt;&lt; std::endl;
+    return 0;
+}
+                <button class="cpp-copy-btn" id="copy-starter">Copy</button>
+            </div>
+        </article>
+    </section>
+
+    <div class="donate-modal" id="donate-modal">
+        <div class="donate-modal-content">
+            <div class="donate-header"></div>
+            <div class="donate-body">
+                <p class="donate-message">Help us continue providing free tools, tutorials, and resources to the community.</p>
+                <div class="donate-options">
+                    <button class="card-close-btn" onclick="closeDonateModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="donate-card fastpay-card">
+                        <div class="card-background" style="background-image: url('/images/fastpay.png');"></div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>Fastpay</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number">+964750 901 91 66</p>
+                                <div class="card-actions">
+                                    <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="donate-card fib-card">
+                        <div class="card-background" style="background-image: url('/images/fib.png');"></div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>FIB Bank</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number">+964750 901 91 66</p>
+                                <div class="card-actions">
+                                    <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="donate-card qi-card">
+                        <div class="card-background" style="background-image: url('/images/qi card.png');"></div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>Qi Card</h3>
+                            </div>
+                            <div class="card-info">
+                                <p class="phone-number">+964750 901 91 66</p>
+                                <p class="card-number">Card: 7111541806</p>
+                                <div class="card-actions">
+                                    <button class="copy-btn" onclick="copyToClipboard('+964750 901 91 66')">
+                                        <i class="fas fa-copy"></i> Copy Phone
+                                    </button>
+                                    <button class="copy-btn" onclick="copyToClipboard('7111541806')">
+                                        <i class="fas fa-copy"></i> Copy Card
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/java script/navbar.js"></script>
+    <script src="/java script/smooth-scroll.js"></script>
+    <script src="/java script/ultra-optimizer.js"></script>
+    <script src="/java script/language-switcher.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const warning = document.getElementById('compiler-warning');
+            const compilerFrame = document.getElementById('cpp-compiler-frame');
+            const snippetBtn = document.getElementById('copy-snippet');
+            const starterBtn = document.getElementById('copy-starter');
+
+            function showWarning() {
+                if (warning && !warning.classList.contains('active')) {
+                    warning.classList.add('active');
+                }
+            }
+
+            function hideWarning() {
+                if (warning && warning.classList.contains('active')) {
+                    warning.classList.remove('active');
+                }
+            }
+
+            if (compilerFrame) {
+                let frameLoaded = false;
+                compilerFrame.addEventListener('load', function () {
+                    frameLoaded = true;
+                    hideWarning();
+                });
+                setTimeout(function () {
+                    if (!frameLoaded) {
+                        showWarning();
+                    }
+                }, 4500);
+            }
+
+            function copyFromElement(button, elementId) {
+                const element = document.getElementById(elementId);
+                if (!element || !button) {
+                    return;
+                }
+                const clone = element.cloneNode(true);
+                clone.querySelectorAll('button').forEach(function (btn) {
+                    btn.remove();
+                });
+                const text = clone.textContent || '';
+                navigator.clipboard.writeText(text.trim()).then(function () {
+                    button.classList.add('copied');
+                    button.textContent = 'Copied!';
+                    setTimeout(function () {
+                        button.classList.remove('copied');
+                        button.textContent = 'Copy';
+                    }, 2200);
+                }).catch(function () {
+                    button.textContent = 'Copy failed';
+                    setTimeout(function () {
+                        button.classList.remove('copied');
+                        button.textContent = 'Copy';
+                    }, 2200);
+                });
+            }
+
+            if (snippetBtn) {
+                snippetBtn.addEventListener('click', function () {
+                    copyFromElement(snippetBtn, 'iframe-snippet');
+                });
+            }
+            if (starterBtn) {
+                starterBtn.addEventListener('click', function () {
+                    copyFromElement(starterBtn, 'cpp-starter');
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const donateBtn = document.getElementById('donate-btn');
+            const donateModal = document.getElementById('donate-modal');
+
+            if (donateBtn && donateModal) {
+                donateBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    donateModal.style.display = 'flex';
+                    setTimeout(function () {
+                        donateModal.classList.add('show');
+                    }, 10);
+                });
+
+                donateModal.addEventListener('click', function (e) {
+                    if (e.target === donateModal) {
+                        donateModal.classList.remove('show');
+                        setTimeout(function () {
+                            donateModal.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && donateModal && donateModal.style.display === 'flex') {
+                    donateModal.classList.remove('show');
+                    setTimeout(function () {
+                        donateModal.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+
+        function closeDonateModal() {
+            const donateModal = document.getElementById('donate-modal');
+            if (donateModal) {
+                donateModal.classList.remove('show');
+                setTimeout(function () {
+                    donateModal.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        function copyToClipboard(text) {
+            const activeEvent = window.event;
+            navigator.clipboard.writeText(text).then(function () {
+                if (!activeEvent) return;
+                const button = activeEvent.target.closest('.copy-btn');
+                if (!button) return;
+                const original = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.style.background = '#00A651';
+                setTimeout(function () {
+                    button.innerHTML = original;
+                    button.style.background = '';
+                }, 2000);
+            }).catch(function (err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
+
