@@ -161,6 +161,8 @@
     line-height: 1.6;
     position: relative;
     overflow-x: auto;
+    overflow-y: auto;
+    max-height: 420px;
     white-space: pre;
 }
 

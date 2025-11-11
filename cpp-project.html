@@ -88,40 +88,192 @@
             </ul>
         </article>
         <article class="cpp-card">
-            <h3>Swap the Compiler Source</h3>
-            <p>
-                Prefer another service? Update the iframe <code>src</code> to any provider that supports embedding
-                (for example Replit, JDoodle embed links, or custom servers). Make sure the service does not block
-                iframe usage with <code>X-Frame-Options</code>.
-            </p>
-            <div class="cpp-code-block" id="iframe-snippet">
-                &lt;iframe
-                    src="https://www.onlinegdb.com/"
-                    title="Embedded C++ Compiler"
-                    width="100%"
-                    height="640"
-                    allow="clipboard-read; clipboard-write; fullscreen"
-                    loading="lazy"
-                &gt;&lt;/iframe&gt;
-                <button class="cpp-copy-btn" id="copy-snippet">Copy</button>
-            </div>
-        </article>
-        <article class="cpp-card">
             <h3>Sample Project Entry Point</h3>
             <p>Use this starter if you only need a quick test harness before pasting the rest of your project files.</p>
             <div class="cpp-code-block" id="cpp-starter">
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
-
-int main() {
-    std::vector&lt;int&gt; data = {1, 2, 3, 4, 5};
-    int total = 0;
-    for (int value : data) {
-        total += value;
-    }
-    std::cout &lt;&lt; "Zap Tech sample run: total = " &lt;&lt; total &lt;&lt; std::endl;
-    return 0;
-}
+                #include <iostream>
+                    #include <fstream>
+                    #include <string>
+                    #include <vector>
+                    using namespace std;
+                    
+                    vector<string> itemName;
+                    vector<float> itemAmount;
+                    float balance = 0.0;
+                    
+                    void loadData();
+                    void saveData();
+                    void addMoney();
+                    void addExpense();
+                    void showAll();
+                    void removeItem();
+                    
+                    // we will define colors here
+                    
+                    #define GREEN   "\033[1;32m"
+                    #define RED     "\033[1;31m"
+                    #define YELLOW  "\033[1;33m"
+                    #define CYAN    "\033[1;36m"
+                    #define RESET   "\033[0m"
+                    
+                    int main() {
+                        int choice;
+                    
+                        loadData();   // load data is using for save data and load older data
+                    
+                        cout << CYAN << "=============================="<<endl;
+                        cout << "    Budget Tracker (IQD)   \n";
+                         cout << "   MADE BY ARYAN FOR MAKE LIFE EASIER  "<<endl;
+                        cout << "==============================" << RESET << endl;
+                    
+                       // we gonna use while , cuz if user did mistake it will repeat
+                    
+                        while (true) {
+                            cout << YELLOW << "\n1. Add Money (Income)";
+                            cout << "\n2. Add Expense";
+                            cout << "\n3. Remove Item";
+                            cout << "\n4. Show All & Balance";
+                            cout << "\n5. Exit";
+                            cout << "\nEnter your choice: " << RESET;
+                            cin >> choice;
+                    
+                    // we will use switch for make user input
+                    
+                            switch (choice) {
+                                case 1: addMoney(); break;
+                                case 2: addExpense(); break;
+                                case 3: removeItem(); break;
+                                case 4: showAll(); break;
+                                case 5:
+                                    saveData();
+                                    cout << GREEN << " Data saved. Goodbye!\n" << RESET;
+                                    return 0;
+                                default:
+                                    cout << RED << "Invalid option.\n" << RESET;
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    // we gonna explain every voids how its working
+                    
+                    // Load data from file
+                    
+                    void loadData() {
+                        ifstream file("budget.txt");
+                        if (!file) return;
+                        itemName.clear();
+                        itemAmount.clear();
+                        balance = 0.0;
+                    
+                        while (file) {
+                            string name;
+                            float amount;
+                            getline(file, name);
+                            file >> amount;
+                            file.ignore();
+                            if (file && !name.empty()) {
+                                itemName.push_back(name);
+                                itemAmount.push_back(amount);
+                                balance += amount;
+                            }
+                        }
+                        file.close();
+                    }
+                    
+                    // Save data to file
+                    void saveData() {
+                        ofstream file("budget.txt");
+                        for (size_t i = 0; i < itemName.size(); i++) {
+                            file << itemName[i] << endl;
+                            file << itemAmount[i] << endl;
+                        }
+                        file.close();
+                    }
+                    
+                    // Add income
+                    void addMoney() {
+                        cin.ignore();
+                        string name;
+                        float amount;
+                        cout << CYAN << "Enter source name: " << RESET;
+                        getline(cin, name);
+                        cout << CYAN << "Enter amount (IQD): " << RESET;
+                        cin >> amount;
+                    
+                        if (amount > 0) {
+                            itemName.push_back(name + " (income)");
+                            itemAmount.push_back(amount);
+                            balance += amount;
+                            saveData();
+                            cout << GREEN << "Added " << amount << " IQD from " << name << ".\n" << RESET;
+                        } else {
+                            cout << RED << " Invalid input.\n" << RESET;
+                        }
+                    }
+                    
+                    // Add expense
+                    void addExpense() {
+                        cin.ignore();
+                        string name;
+                        float amount;
+                        cout << CYAN << "Enter expense name: " << RESET;
+                        getline(cin, name);
+                        cout << CYAN << "Enter amount (IQD): " << RESET;
+                        cin >> amount;
+                    
+                        if (amount > 0 && amount <= balance) {
+                            itemName.push_back(name + " (expense)");
+                            itemAmount.push_back(-amount);
+                            balance -= amount;
+                            saveData();
+                            cout << RED << " Spent " << amount << " IQD for " << name << ".\n" << RESET;
+                        } else {
+                            cout << RED << "Invalid or insufficient funds.\n" << RESET;
+                        }
+                    }
+                    
+                    // Remove item
+                    void removeItem() {
+                        showAll();
+                        if (itemName.empty()) return;
+                    
+                        int index;
+                        cout << CYAN << "Enter item number to remove: " << RESET;
+                        cin >> index;
+                    
+                        if (index < 1 || index > (int)itemName.size()) {
+                            cout << RED << " Invalid index.\n" << RESET;
+                            return;
+                        }
+                    
+                        index--;
+                        float removed = itemAmount[index];
+                        balance -= removed;
+                    
+                        itemName.erase(itemName.begin() + index);
+                        itemAmount.erase(itemAmount.begin() + index);
+                    
+                        saveData();
+                        cout << GREEN << " Item removed. Balance updated by " << -removed << " IQD.\n" << RESET;
+                    }
+                    
+                    // Show all
+                    void showAll() {
+                        cout << CYAN << "\n=== Budget History ===\n" << RESET;
+                        if (itemName.empty()) {
+                            cout << YELLOW << "No records yet.\n" << RESET;
+                            return;
+                        }
+                        for (size_t i = 0; i < itemName.size(); i++) {
+                            string color = itemAmount[i] >= 0 ? GREEN : RED;
+                            cout << color << i + 1 << ". " << itemName[i] << " : " << itemAmount[i] << " IQD" << RESET << endl;
+                        }
+                        cout << YELLOW << "\n Current Balance: " << balance << " IQD\n" << RESET;
+                    }
+                    
                 <button class="cpp-copy-btn" id="copy-starter">Copy</button>
             </div>
         </article>
@@ -201,7 +353,6 @@ int main() {
         document.addEventListener('DOMContentLoaded', function () {
             const warning = document.getElementById('compiler-warning');
             const compilerFrame = document.getElementById('cpp-compiler-frame');
-            const snippetBtn = document.getElementById('copy-snippet');
             const starterBtn = document.getElementById('copy-starter');
 
             function showWarning() {
@@ -255,11 +406,6 @@ int main() {
                 });
             }
 
-            if (snippetBtn) {
-                snippetBtn.addEventListener('click', function () {
-                    copyFromElement(snippetBtn, 'iframe-snippet');
-                });
-            }
             if (starterBtn) {
                 starterBtn.addEventListener('click', function () {
                     copyFromElement(starterBtn, 'cpp-starter');
