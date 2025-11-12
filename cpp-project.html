@@ -88,193 +88,301 @@
             </ul>
         </article>
         <article class="cpp-card">
-            <h3>Sample Project Entry Point</h3>
+            <h3>Personal Budget Tracker</h3>
             <p>Use this starter if you only need a quick test harness before pasting the rest of your project files.</p>
             <div class="cpp-code-block" id="cpp-starter">
-                #include <iostream>
-                    #include <fstream>
-                    #include <string>
-                    #include <vector>
-                    using namespace std;
-                    
-                    vector<string> itemName;
-                    vector<float> itemAmount;
-                    float balance = 0.0;
-                    
-                    void loadData();
-                    void saveData();
-                    void addMoney();
-                    void addExpense();
-                    void showAll();
-                    void removeItem();
-                    
-                    // we will define colors here
-                    
-                    #define GREEN   "\033[1;32m"
-                    #define RED     "\033[1;31m"
-                    #define YELLOW  "\033[1;33m"
-                    #define CYAN    "\033[1;36m"
-                    #define RESET   "\033[0m"
-                    
-                    int main() {
-                        int choice;
-                    
-                        loadData();   // load data is using for save data and load older data
-                    
-                        cout << CYAN << "=============================="<<endl;
-                        cout << "    Budget Tracker (IQD)   \n";
-                         cout << "   MADE BY ARYAN FOR MAKE LIFE EASIER  "<<endl;
-                        cout << "==============================" << RESET << endl;
-                    
-                       // we gonna use while , cuz if user did mistake it will repeat
-                    
-                        while (true) {
-                            cout << YELLOW << "\n1. Add Money (Income)";
-                            cout << "\n2. Add Expense";
-                            cout << "\n3. Remove Item";
-                            cout << "\n4. Show All & Balance";
-                            cout << "\n5. Exit";
-                            cout << "\nEnter your choice: " << RESET;
-                            cin >> choice;
-                    
-                    // we will use switch for make user input
-                    
-                            switch (choice) {
-                                case 1: addMoney(); break;
-                                case 2: addExpense(); break;
-                                case 3: removeItem(); break;
-                                case 4: showAll(); break;
-                                case 5:
-                                    saveData();
-                                    cout << GREEN << " Data saved. Goodbye!\n" << RESET;
-                                    return 0;
-                                default:
-                                    cout << RED << "Invalid option.\n" << RESET;
-                            }
-                        }
-                    }
-                    
-                    
-                    
-                    
-                    // we gonna explain every voids how its working
-                    
-                    // Load data from file
-                    
-                    void loadData() {
-                        ifstream file("budget.txt");
-                        if (!file) return;
-                        itemName.clear();
-                        itemAmount.clear();
-                        balance = 0.0;
-                    
-                        while (file) {
-                            string name;
-                            float amount;
-                            getline(file, name);
-                            file >> amount;
-                            file.ignore();
-                            if (file && !name.empty()) {
-                                itemName.push_back(name);
-                                itemAmount.push_back(amount);
-                                balance += amount;
-                            }
-                        }
-                        file.close();
-                    }
-                    
-                    // Save data to file
-                    void saveData() {
-                        ofstream file("budget.txt");
-                        for (size_t i = 0; i < itemName.size(); i++) {
-                            file << itemName[i] << endl;
-                            file << itemAmount[i] << endl;
-                        }
-                        file.close();
-                    }
-                    
-                    // Add income
-                    void addMoney() {
-                        cin.ignore();
-                        string name;
-                        float amount;
-                        cout << CYAN << "Enter source name: " << RESET;
-                        getline(cin, name);
-                        cout << CYAN << "Enter amount (IQD): " << RESET;
-                        cin >> amount;
-                    
-                        if (amount > 0) {
-                            itemName.push_back(name + " (income)");
-                            itemAmount.push_back(amount);
-                            balance += amount;
-                            saveData();
-                            cout << GREEN << "Added " << amount << " IQD from " << name << ".\n" << RESET;
-                        } else {
-                            cout << RED << " Invalid input.\n" << RESET;
-                        }
-                    }
-                    
-                    // Add expense
-                    void addExpense() {
-                        cin.ignore();
-                        string name;
-                        float amount;
-                        cout << CYAN << "Enter expense name: " << RESET;
-                        getline(cin, name);
-                        cout << CYAN << "Enter amount (IQD): " << RESET;
-                        cin >> amount;
-                    
-                        if (amount > 0 && amount <= balance) {
-                            itemName.push_back(name + " (expense)");
-                            itemAmount.push_back(-amount);
-                            balance -= amount;
-                            saveData();
-                            cout << RED << " Spent " << amount << " IQD for " << name << ".\n" << RESET;
-                        } else {
-                            cout << RED << "Invalid or insufficient funds.\n" << RESET;
-                        }
-                    }
-                    
-                    // Remove item
-                    void removeItem() {
-                        showAll();
-                        if (itemName.empty()) return;
-                    
-                        int index;
-                        cout << CYAN << "Enter item number to remove: " << RESET;
-                        cin >> index;
-                    
-                        if (index < 1 || index > (int)itemName.size()) {
-                            cout << RED << " Invalid index.\n" << RESET;
-                            return;
-                        }
-                    
-                        index--;
-                        float removed = itemAmount[index];
-                        balance -= removed;
-                    
-                        itemName.erase(itemName.begin() + index);
-                        itemAmount.erase(itemAmount.begin() + index);
-                    
-                        saveData();
-                        cout << GREEN << " Item removed. Balance updated by " << -removed << " IQD.\n" << RESET;
-                    }
-                    
-                    // Show all
-                    void showAll() {
-                        cout << CYAN << "\n=== Budget History ===\n" << RESET;
-                        if (itemName.empty()) {
-                            cout << YELLOW << "No records yet.\n" << RESET;
-                            return;
-                        }
-                        for (size_t i = 0; i < itemName.size(); i++) {
-                            string color = itemAmount[i] >= 0 ? GREEN : RED;
-                            cout << color << i + 1 << ". " << itemName[i] << " : " << itemAmount[i] << " IQD" << RESET << endl;
-                        }
-                        cout << YELLOW << "\n Current Balance: " << balance << " IQD\n" << RESET;
-                    }
-                    
+                <pre><code>
+
+
+
+
+#include &lt;iostream&gt;       // bakar det bo cin w cout
+#include &lt;fstream&gt;        // bakar det bo save load data
+#include &lt;vector&gt;         // wak array bakare daynen bas tomatica nak manual
+#include &lt;string&gt;        // bo nasandni nawakan wak iitme name w ...
+
+using namespace std;
+
+vector&lt;string&gt; itemName;
+vector&lt;long long&gt; itemAmount;
+long long balance = 0;
+
+// hamw fanctionakan
+void loadData();
+void saveData();
+void addMoney();
+void addExpense();
+void showAll();
+void removeItem();
+
+// bakar det bo penasakrdni rangakan
+#define GREEN   "\033[1;32m"
+#define RED     "\033[1;31m"
+#define YELLOW  "\033[1;33m"
+#define CYAN    "\033[1;36m"
+#define RESET   "\033[0m"
+
+int main() {
+    long long choice;
+    loadData();            // awa agar data habw e kon saveman krdbw baw shewaza bange dakatawa
+
+    // loia while bakar denen agar user zhmara 6 nuse awkat desan daway le dakainawa zhmara daxl bkat
+    while (true) {
+        cout &lt;&lt; CYAN &lt;&lt; "\n==============================\n";
+        cout &lt;&lt; "     Personal Budget Tracker    \n";
+        cout &lt;&lt; "         MADE BY ARYAN    \n";
+        cout &lt;&lt; "==============================\n" &lt;&lt; RESET;
+        cout &lt;&lt; "1. Add Money\n";
+        cout &lt;&lt; "2. Spend Money\n";
+        cout &lt;&lt; "3. Remove Item\n";
+        cout &lt;&lt; "4. Show All\n";
+        cout &lt;&lt; "5. Save and Exit\n";
+        cout &lt;&lt; "Choose option: ";
+        cin &gt;&gt; choice;
+
+        switch (choice) {
+            case 1: addMoney(); break;
+            case 2: addExpense(); break;
+            case 3: removeItem(); break;
+            case 4: showAll(); break;
+            case 5:
+                saveData();
+                cout &lt;&lt; GREEN &lt;&lt; "Data saved. Goodbye!\n" &lt;&lt; RESET;
+                return 0;
+            default:
+                cout &lt;&lt; RED &lt;&lt; "Invalid option.\n" &lt;&lt; RESET;
+        }
+    }
+}
+
+//  aw function bakar det bo bang krdnaway aw shtanay save krawa lanaw file budget,txt
+void loadData() {
+    ifstream file("budget.txt");
+    if (!file.is_open()) return;
+
+    itemName.clear();
+    itemAmount.clear();
+    balance = 0.0;
+
+    string name;
+    long long amount;
+    while (file &gt;&gt; name &gt;&gt; amount) {
+        itemName.push_back(name);
+        itemAmount.push_back(amount);
+        balance += amount;
+    }
+    file.close();
+}
+
+// aw function bakar det bo save krdne balac w item w spendakan
+void saveData() {
+    ofstream file("budget.txt");
+    for (size_t i = 0; i &lt; itemName.size(); i++) {
+        file &lt;&lt; itemName[i] &lt;&lt; " " &lt;&lt; itemAmount[i] &lt;&lt; endl;
+    }
+    file.close();
+}
+
+// aw function bakar det bo zyad krdne paray hatu
+void addMoney() {
+    string name;
+    long long amount;
+    cout &lt;&lt; CYAN &lt;&lt; "Enter source name (1 word): " &lt;&lt; RESET;
+    cin &gt;&gt; name;
+    cout &lt;&lt; CYAN &lt;&lt; "Enter amount (IQD): " &lt;&lt; RESET;
+    cin &gt;&gt; amount;
+
+    // pushback bakar det bo zyadkrdne sht la naw array vector , ema vector bakar denen lla jyat array
+    if (amount &gt; 0) {
+        itemName.push_back(name + "_income");
+        itemAmount.push_back(amount);
+        balance += amount;
+        saveData();
+        cout &lt;&lt; GREEN &lt;&lt; "Added " &lt;&lt; amount &lt;&lt; " IQD from " &lt;&lt; name &lt;&lt; ".\n" &lt;&lt; RESET;
+    } else {
+        cout &lt;&lt; RED &lt;&lt; "Invalid input.\n" &lt;&lt; RESET;
+    }
+}
+
+// aw function bakar det bo sarfkrdne para
+void addExpense() {
+    string name;
+    long long amount;
+    cout &lt;&lt; CYAN &lt;&lt; "Enter expense name (1 word): " &lt;&lt; RESET;
+    cin &gt;&gt; name;
+    cout &lt;&lt; CYAN &lt;&lt; "Enter amount (IQD): " &lt;&lt; RESET;
+    cin &gt;&gt; amount;
+
+    // lera ema -= bakar henawa bo away agar shtekt daxl krd balance beta xware
+    if (amount &gt; 0 && amount &lt;= balance) {
+        itemName.push_back(name + "_expense");
+        itemAmount.push_back(-amount);
+        balance -= amount;
+        saveData();
+        cout &lt;&lt; RED &lt;&lt; "Spent " &lt;&lt; amount &lt;&lt; " IQD for " &lt;&lt; name &lt;&lt; ".\n" &lt;&lt; RESET;
+    } else {
+        cout &lt;&lt; RED &lt;&lt; "Invalid or insufficient funds.\n" &lt;&lt; RESET;
+    }
+}
+
+// aw function bakar det bo rashkrdnaway aw bra para w item daxlman krdya wak sarf krdn
+void removeItem() {
+    showAll();
+    if (itemName.empty()) return;
+
+    int index;
+    cout &lt;&lt; CYAN &lt;&lt; "Enter item number to remove: " &lt;&lt; RESET;
+    cin &gt;&gt; index;
+
+    if (index &lt; 1 || index &gt; (int)itemName.size()) {
+        cout &lt;&lt; RED &lt;&lt; "Invalid index.\n" &lt;&lt; RESET;
+        return;
+    }
+
+    // lera erase haya bakar det wak rashkrdnawa lanaw vector
+    index--;
+    long long removed = itemAmount[index];
+    balance -= removed;
+    itemName.erase(itemName.begin() + index);
+    itemAmount.erase(itemAmount.begin() + index);
+    saveData();
+    cout &lt;&lt; GREEN &lt;&lt; "Item removed. Balance updated by " &lt;&lt; -removed &lt;&lt; " IQD.\n" &lt;&lt; RESET;
+}
+
+// aw function bakar det bo peshandane aw shtanay hamana la naw filaka save krawa
+void showAll() {
+    cout &lt;&lt; CYAN &lt;&lt; "\n=== Budget History ===\n" &lt;&lt; RESET;
+    if (itemName.empty()) {
+        cout &lt;&lt; YELLOW &lt;&lt; "No records yet.\n" &lt;&lt; RESET;
+        return;
+    }
+
+    for (size_t i = 0; i &lt; itemName.size(); i++) {
+        string color = itemAmount[i] &gt;= 0 ? GREEN : RED;
+        cout &lt;&lt; color &lt;&lt; i + 1 &lt;&lt; ". " &lt;&lt; itemName[i]
+             &lt;&lt; " : " &lt;&lt; itemAmount[i] &lt;&lt; " IQD" &lt;&lt; RESET &lt;&lt; endl;
+    }
+    cout &lt;&lt; YELLOW &lt;&lt; "\nCurrent Balance: " &lt;&lt; balance &lt;&lt; " IQD\n" &lt;&lt; RESET;
+}</code></pre>
                 <button class="cpp-copy-btn" id="copy-starter">Copy</button>
+            </div>
+        </article>
+        <article class="cpp-card">
+            <h3>Electricity Bill Estimator</h3>
+            <p>Calculate your electricity bill based on usage. Supports calculation from Ampere/hours/days or direct kWh input.</p>
+            <div class="cpp-code-block" id="cpp-electricity">
+                <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+//double bakar dayninn chunka zhamarakan zor u point dardachi ,
+//functionaka dansenin ba nawi billcal , yani psula hisabkrdn
+// lanaw functionaka paremetari total danasenin
+//pashan functinaki dika ba nawwi priceperKW danasenin lo dyari krdni nrxaka lo har kw tek .
+// pashan ifakan dwayy return anjamaky daka lawe yasakay danusin
+double psulacal(double totalKW) {
+    double pricePerKW;
+
+    if (totalKW &lt;= 400)
+        pricePerKW = 72;
+    else if (totalKW &lt;= 800)
+        pricePerKW = 108;
+    else if (totalKW &lt;= 1200)
+        pricePerKW = 175;
+    else if (totalKW &lt;= 1600)
+        pricePerKW = 256;
+    else
+        pricePerKW = 350;
+
+    return totalKW * pricePerKW;
+}
+
+/* int choice danesin lo way ka datawe halbzheri
+ const lo shtak nagor bi yan bardawam , waku yasa bakar de katak compitar runi daka la barnamaka awa hargiz nagoret
+dwatr rangakan danasenin
+ pashan loopi do while bakar daynin , jwankari u rangakan la cout danusim kamma rangman bwe lo kam string
+dway la axir cin daxl dakain lasare int choice man nasand la cin choice danusin
+pashan har la naw (do) , (switch ) dakainawa 3 case danusin lagal default
+la case 1 amper u rozh u katzhmer danasenin pashan dawa l auser daka option bkat
+pashan har yakaw yasay xoy danusin
+pashan la case 2 ba user darey totalakat awandaya u bangi function aka dakayawa
+case 3 exit la programaka u default lo away loopaka 3 chioce */
+int main() {
+    int choice;
+    const double voltage = 220;
+
+    string reset = "\033[0m";
+    string red = "\033[1;31m";
+    string green = "\033[1;32m";
+    string yellow = "\033[1;33m";
+    string cyan = "\033[1;36m";
+    string magenta = "\033[1;35m";
+    string blue = "\033[1;34m";
+
+    do {
+        cout &lt;&lt; cyan &lt;&lt; "\n=========================================\n";
+        cout &lt;&lt; magenta &lt;&lt; "        ELECTRICITY BILL ESTIMATOR \n";
+        cout &lt;&lt; yellow &lt;&lt; "\n         Created by Ronya Hemn \n";
+        cout &lt;&lt; cyan &lt;&lt; "=========================================\n" &lt;&lt; reset;
+
+        cout &lt;&lt; yellow &lt;&lt; "1. " &lt;&lt; reset &lt;&lt; "Calculate bill using Ampere, hours, and days\n";
+        cout &lt;&lt; yellow &lt;&lt; "2. " &lt;&lt; reset &lt;&lt; "Calculate bill using known kWh\n";
+        cout &lt;&lt; yellow &lt;&lt; "3. " &lt;&lt; reset &lt;&lt; "Exit\n";
+        cout &lt;&lt; blue &lt;&lt; "Choose an option (1-3): " &lt;&lt; reset;
+        cin &gt;&gt; choice;
+
+        switch (choice) {
+            case 1: {
+                int days, hours;
+                double ampere;
+                cout &lt;&lt; green &lt;&lt; "\nEnter number of days in the month: " &lt;&lt; reset;
+                cin &gt;&gt; days;
+
+                cout &lt;&lt; green &lt;&lt; "Enter how many hours per day you use electricity: " &lt;&lt; reset;
+                cin &gt;&gt; hours;
+
+                cout &lt;&lt; green &lt;&lt; "Enter your average Ampere usage: " &lt;&lt; reset;
+                cin &gt;&gt; ampere;
+
+                double wattPerDay = ampere * voltage * hours;
+                double totalKW = (wattPerDay * days) / 1000;
+                double bill = psulacal(totalKW);
+
+                cout &lt;&lt; cyan &lt;&lt; "\n-------------------------------------\n" &lt;&lt; reset;
+                cout &lt;&lt; blue &lt;&lt; "Usage per day: " &lt;&lt; reset &lt;&lt; ampere &lt;&lt; "A for " &lt;&lt; hours &lt;&lt; "h\n";
+                cout &lt;&lt; blue &lt;&lt; "Total Monthly Usage: " &lt;&lt; reset &lt;&lt; totalKW &lt;&lt; " kWh\n";
+                cout &lt;&lt; blue &lt;&lt; "Electricity Bill: " &lt;&lt; reset &lt;&lt; yellow &lt;&lt; bill &lt;&lt; " IQD\n";
+                cout &lt;&lt; cyan &lt;&lt; "-------------------------------------\n" &lt;&lt; reset;
+                break;
+            }
+
+            case 2: {
+                double knownKW;
+                cout &lt;&lt; green &lt;&lt; "\nEnter your total monthly usage in kWh: " &lt;&lt; reset;
+                cin &gt;&gt; knownKW;
+
+                double bill = psulacal(knownKW);
+
+                cout &lt;&lt; cyan &lt;&lt; "\n-------------------------------------\n" &lt;&lt; reset;
+                cout &lt;&lt; blue &lt;&lt; "Electricity Bill for " &lt;&lt; knownKW
+                     &lt;&lt; " kWh = " &lt;&lt; yellow &lt;&lt; bill &lt;&lt; " IQD\n";
+                cout &lt;&lt; cyan &lt;&lt; "-------------------------------------\n" &lt;&lt; reset;
+                break;
+            }
+            case 3:
+                cout &lt;&lt; red &lt;&lt; "\nExiting program...\n" &lt;&lt; reset;
+                break;
+
+            default:
+                cout &lt;&lt; red &lt;&lt; "\nInvalid choice! Please try again.\n" &lt;&lt; reset;
+        }
+
+    } while (choice != 3);
+
+    return 0;
+}</code></pre>
+                <button class="cpp-copy-btn" id="copy-electricity">Copy</button>
             </div>
         </article>
     </section>
@@ -409,6 +517,13 @@
             if (starterBtn) {
                 starterBtn.addEventListener('click', function () {
                     copyFromElement(starterBtn, 'cpp-starter');
+                });
+            }
+
+            const electricityBtn = document.getElementById('copy-electricity');
+            if (electricityBtn) {
+                electricityBtn.addEventListener('click', function () {
+                    copyFromElement(electricityBtn, 'cpp-electricity');
                 });
             }
         });
