@@ -474,6 +474,12 @@ function updateNavigation() {
     if (kurdishImageAILink) {
         kurdishImageAILink.textContent = getTranslation('nav.kurdishImageAI');
     }
+    
+    // Update Ai Auto Prompt link in dropdown
+    const aiAutoPromptLink = document.querySelector('.dropdown-menu a[data-translate="navbar.aiAutoPrompt"]');
+    if (aiAutoPromptLink) {
+        aiAutoPromptLink.textContent = getTranslation('nav.aiAutoPrompt');
+    }
 
     // Update Steam Accounts link in Tools dropdown (exclude content area)
     const steamAccLink = document.querySelector('.dropdown-menu a[href="/steamacc"], .dropdown-menu a[href="steamacc.html"], .dropdown-menu a[href="/steamacc.html"]');

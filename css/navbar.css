@@ -1234,11 +1234,13 @@ body[lang="ku"] .dropdown.active .dropdown-toggle::after {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-    max-height:400px;
+    max-height: none;
     padding: 10px 0;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    overflow-y: visible;
+    overflow-x: visible;
 }
 
 .navbar.open .dropdown-menu {
@@ -1335,11 +1337,13 @@ body[lang="ku"] .navbar.open .dropdown-menu li a:hover {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
-        max-height: 200px;
+        max-height: none;
         padding: 10px 0;
         display: flex;
         flex-direction: column;
         align-items: stretch;
+        overflow-y: visible;
+        overflow-x: visible;
     }
     
     .dropdown-menu li a {

@@ -10,6 +10,7 @@
       "personality": "Personality",
       "quran": "Quran",
       "kurdishImageAI": "Kurdish Image AI",
+      "aiAutoPrompt": "Ai Auto Prompt",
       "aboutUs": "About Us",
       "donate": "Donate $"
     },
@@ -392,6 +393,7 @@
       "personality": "تاقیکردنەوەی کەسایەتی",
       "quran": "قورئان",
       "kurdishImageAI": "AI وێنەی کوردی",
+      "aiAutoPrompt": "AI پڕۆمپتی خۆکار",
       "aboutUs": " دەربارەی ئێمە",
       "donate": " ناردنی هاوکاری $"
     },
